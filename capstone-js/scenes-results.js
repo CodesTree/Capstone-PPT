@@ -118,13 +118,4 @@
     orbit: true
   }));
 
-  register("failure-comparison", container => new ComparisonScene(container, {
-    left: "failureTarget",
-    right: "failurePrediction",
-    leftLabel: "Target · VSD_z023_Left",
-    rightLabel: "Held-out V-style prediction",
-    leftOpacity: 0.42,
-    leftWireframe: true,
-    emptyText: "Patella prediction: <strong>empty</strong>"
-  }));
 })();

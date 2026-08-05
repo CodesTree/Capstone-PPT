@@ -79,7 +79,8 @@ def main() -> None:
         require(re.search(rf"{re.escape(token)}:\s*{re.escape(value)}\s*;", css, re.IGNORECASE) is not None, f"Missing CSS palette token {token}")
 
     require("color: hexNumber(palette[bone])" in runtime, "Three.js materials do not use the central palette")
-    require(len(re.findall(r'<section class="slide', html)) == 24, "Deck does not contain 24 slides")
+    require(len(re.findall(r'<section class="slide', html)) == 27, "Deck does not contain 27 slides")
+    require(len(re.findall(r'data-visual="', html)) == 8, "Deck does not contain 8 active 3D visuals")
     require('three@0.185.1/build/three.module.min.js' in html, "Pinned Three.js CDN import missing")
     require('three@0.185.1/examples/jsm/' in html, "Pinned Three.js addons import missing")
     require(not re.search(r'src="[^"]*(?:three(?:\.min)?\.js|three\.module)', html, re.IGNORECASE), "Three.js appears to be loaded from a local script")
@@ -88,7 +89,7 @@ def main() -> None:
 
     summary = {
         "status": "ok",
-        "slides": 24,
+        "slides": 27,
         "visuals": len(re.findall(r'data-visual="', html)),
         "palette": EXPECTED_PALETTE,
         "bone_order": EXPECTED_ORDER,

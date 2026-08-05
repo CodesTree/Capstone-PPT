@@ -518,12 +518,12 @@
   cursor: default;
 }
 
-.static-model-stage.orbit-enabled {
+.model-stage.orbit-enabled {
   cursor: grab;
   touch-action: none;
 }
 
-.static-model-stage.orbit-enabled.orbiting {
+.model-stage.orbit-enabled.orbiting {
   cursor: grabbing;
 }
 
