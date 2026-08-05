@@ -1,0 +1,299 @@
+{"kind":"deck","id":"pr/un63qv","name":"Deck"}
+{"kind":"layout","layoutId":"f19c7049-b3cf-4f71-aa08-4969e0d01226","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"da974173-7d76-4ff0-82bd-dd3127766062","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/i258g3","slide":1,"title":"CAPSTONE PROJECT 2","textShapes":6}
+{"kind":"textbox","id":"sh/6tsrup0v","slide":1,"name":"title-kicker","text":"CAPSTONE PROJECT 2","textPreview":"CAPSTONE PROJECT 2","textChars":18,"textLines":1,"bbox":[42,34,360,30]}
+{"kind":"textbox","id":"sh/tgjap4zm","slide":1,"name":"title-main","text":"Fracture-Preserving\n3D Knee Reconstruction","textPreview":"Fracture-Preserving | 3D Knee Reconstruction","textChars":42,"textLines":2,"bbox":[42,112,570,215]}
+{"kind":"textbox","id":"sh/8fa9wzi1","slide":1,"name":"title-sub","text":"A controlled comparison of U-Net-style and V-Net-style decoder blocks","textPreview":"A controlled comparison of U-Net-style and V-Net-style decoder blocks","textChars":69,"textLines":1,"bbox":[42,356,555,104]}
+{"kind":"textbox","id":"sh/vilsrehs","slide":1,"name":"title-meta","text":"CHAN ZHENG SHAO  ·  24020059\nSupervisor: Prof. Ts. Dr Lee Yun Li","textPreview":"CHAN ZHENG SHAO  ·  24020059 | Supervisor: Prof. Ts. Dr Lee Yun Li","textChars":64,"textLines":2,"bbox":[42,558,520,72]}
+{"kind":"shape","id":"sh/uhcry907","slide":1,"name":"hero-back","bbox":[655,42,584,590]}
+{"kind":"textbox","id":"sh/gju90jyd","slide":1,"name":"hero-caption","text":"Paired AP + lateral projections\n→ four-bone 3D occupancy","textPreview":"Paired AP + lateral projections | → four-bone 3D occupancy","textChars":56,"textLines":2,"bbox":[690,530,500,68]}
+{"kind":"textbox","id":"sh/bmh8fah8","slide":1,"name":"page-1","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"image","id":"im/wjep4ja9","slide":1,"name":"","geometry":"roundRect","alt":"Report Figure 33 — AP and LAT DRRs","bbox":[678,119,538,392]}
+{"kind":"notes","id":"nt/i258g3","slide":1,"text":"Timing: 0:30\n\nTalk track:\nIntroduce the project as a controlled computing experiment, not a clinically deployable system. State the central result only as a preview: residual topology mattered more than activation choice.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 1–2; title page and abstract; Figure 33 on p. 88"}
+{"kind":"slide","id":"sl/7qcjbb","slide":2,"title":"TOPIC KNOWLEDGE","textShapes":8}
+{"kind":"textbox","id":"sh/tk7qhsfm","slide":2,"name":"section-2","text":"TOPIC KNOWLEDGE","textPreview":"TOPIC KNOWLEDGE","textChars":15,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/6hg76xwb","slide":2,"name":"title-2","text":"Two X-rays are accessible—but 3D fracture morphology remains ambiguous","textPreview":"Two X-rays are accessible—but 3D fracture morphology remains ambiguous","textChars":70,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/rip8f2xg","slide":2,"name":"rule-2","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/g7i9c7ed","slide":2,"name":"source-2","text":"Report pp. 10–11, 22–23","textPreview":"Report pp. 10–11, 22–23","textChars":23,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/18rqlcvy","slide":2,"name":"page-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/f698j2xs","slide":2,"name":"projection-caption","text":"Each view loses depth; overlap means several 3D anatomies can produce similar projections.","textPreview":"Each view loses depth; overlap means several 3D anatomies can produce similar projections.","textChars":90,"textLines":1,"bbox":[55,520,545,92]}
+{"kind":"shape","id":"sh/wbep03et","slide":2,"name":"gap-1-dot","bbox":[658,192,10,10]}
+{"kind":"textbox","id":"sh/hcnq98fe","slide":2,"name":"gap-1-text","text":"AP and lateral views are complementary, but the inverse problem remains underdetermined.","textPreview":"AP and lateral views are complementary, but the inverse problem remains underdetermined.","textChars":88,"textLines":1,"bbox":[680,183,538,76]}
+{"kind":"shape","id":"sh/18vitkn2","slide":2,"name":"gap-2-dot","bbox":[658,299,10,10]}
+{"kind":"textbox","id":"sh/07m10f6h","slide":2,"name":"gap-2-text","text":"CT reveals fragments and articular geometry, but adds radiation, cost, infrastructure and segmentation work.","textPreview":"CT reveals fragments and articular geometry, but adds radiation, cost, infrastructure and segmentation work.","textChars":108,"textLines":1,"bbox":[680,290,538,76]}
+{"kind":"shape","id":"sh/f6d0ra5w","slide":2,"name":"gap-3-dot","bbox":[658,430,10,10]}
+{"kind":"textbox","id":"sh/e54jy5ob","slide":2,"name":"gap-3-text","text":"The intended role is an adjunct: more 3D information from common radiographs—not a replacement for CT in complex trauma.","textPreview":"The intended role is an adjunct: more 3D information from common radiographs—not a replacement for CT in complex trauma.","textChars":120,"textLines":1,"bbox":[680,421,538,76]}
+{"kind":"image","id":"im/3ytkbixg","slide":2,"name":"","geometry":"roundRect","alt":"Report Figure 33 — paired DRRs","bbox":[42,178,570,325]}
+{"kind":"notes","id":"nt/7qcjbb","slide":2,"text":"Timing: 1:20\n\nTalk track:\nExplain why two projections do not uniquely determine a volume. Contrast the accessibility of radiography with CT’s detailed 3D evidence and resource burden. Emphasise the project’s careful adjunct framing.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 10–11, 22–23; background and domain background; Figure 33 on p. 88"}
+{"kind":"slide","id":"sl/le8o7m","slide":3,"title":"TOPIC KNOWLEDGE","textShapes":12}
+{"kind":"textbox","id":"sh/w7at4n6d","slide":3,"name":"section-3","text":"TOPIC KNOWLEDGE","textPreview":"TOPIC KNOWLEDGE","textChars":15,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/v61cbips","slide":3,"name":"title-3","text":"Literature proves feasibility, not a fair decoder comparison","textPreview":"Literature proves feasibility, not a fair decoder comparison","textChars":60,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/a58b2do7","slide":3,"name":"rule-3","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/5wjuhc7u","slide":3,"name":"source-3","text":"Report pp. 20–21, 38–51","textPreview":"Report pp. 20–21, 38–51","textChars":23,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/kvad8769","slide":3,"name":"page-3","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/ju1cf2po","slide":3,"name":"lit-h-0","text":"Feasible","textPreview":"Feasible","textChars":8,"textLines":1,"bbox":[42,182,560,40]}
+{"kind":"textbox","id":"sh/itsv6xo3","slide":3,"name":"lit-b-0","text":"Prior systems reconstruct bone from one or two radiographs using voxel, registration, transformer and implicit methods.","textPreview":"Prior systems reconstruct bone from one or two radiographs using voxel, registration, transformer and implicit methods.","textChars":119,"textLines":1,"bbox":[42,233,565,110]}
+{"kind":"textbox","id":"sh/l0zu587q","slide":3,"name":"lit-h-1","text":"Incomparable","textPreview":"Incomparable","textChars":12,"textLines":1,"bbox":[656,182,560,40]}
+{"kind":"textbox","id":"sh/0zqtw365","slide":3,"name":"lit-b-1","text":"Anatomy, datasets, geometry, capacity, preprocessing and evaluation protocols differ across studies.","textPreview":"Anatomy, datasets, geometry, capacity, preprocessing and evaluation protocols differ across studies.","textChars":100,"textLines":1,"bbox":[656,233,565,110]}
+{"kind":"textbox","id":"sh/uh4vqpoj","slide":3,"name":"lit-h-2","text":"Metrics diverge","textPreview":"Metrics diverge","textChars":15,"textLines":1,"bbox":[42,421,560,40]}
+{"kind":"textbox","id":"sh/vidcjup4","slide":3,"name":"lit-b-2","text":"High Dice can coexist with clinically important landmark or surface error; subgroup averages can hide failure.","textPreview":"High Dice can coexist with clinically important landmark or surface error; subgroup averages can hide failure.","textChars":110,"textLines":1,"bbox":[42,472,565,110]}
+{"kind":"textbox","id":"sh/gjmdsf6p","slide":3,"name":"lit-h-3","text":"Research gap","textPreview":"Research gap","textChars":12,"textLines":1,"bbox":[656,421,560,40]}
+{"kind":"textbox","id":"sh/hkfulk7u","slide":3,"name":"lit-b-3","text":"No matched 2×2 decoder study isolates residual topology and activation while holding the full upstream pathway fixed.","textPreview":"No matched 2×2 decoder study isolates residual topology and activation while holding the full upstream pathway fixed.","textChars":117,"textLines":1,"bbox":[656,472,565,110]}
+{"kind":"notes","id":"nt/le8o7m","slide":3,"text":"Timing: 1:25\n\nTalk track:\nSynthesize the literature rather than listing papers. The key implication is experimental: reported model rankings cannot identify which decoder property caused an improvement. Mention that Dice and clinical/surface accuracy can diverge.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 20–21, 38–51; literature review introduction, comparative benchmarks, metrics, decoder lineages and research gap"}
+{"kind":"slide","id":"sl/vgtehu","slide":4,"title":"TECHNICAL APPROACH","textShapes":17}
+{"kind":"textbox","id":"sh/fm5oz61o","slide":4,"name":"section-4","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/gne5sb29","slide":4,"name":"title-4","text":"The research question isolates topology and activation","textPreview":"The research question isolates topology and activation","textChars":54,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/1on61gju","slide":4,"name":"rule-4","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/6xcnm1k7","slide":4,"name":"source-4","text":"Report pp. 12–15","textPreview":"Report pp. 12–15","textChars":16,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/ri54vm1s","slide":4,"name":"page-4","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/sje5or2d","slide":4,"name":"rq-panel","bbox":[42,171,1196,150]}
+{"kind":"textbox","id":"sh/tknmxwjy","slide":4,"name":"rq","text":"How do decoder-block topology and activation influence overlap, surface accuracy and robustness—under one shared, leakage-controlled bi-planar front end?","textPreview":"How do decoder-block topology and activation influence overlap, surface accuracy and robustness—under one shared, leakage-controlled bi-p...","textChars":153,"textLines":1,"bbox":[72,196,1136,106]}
+{"kind":"textbox","id":"sh/itcnyhkb","slide":4,"name":"obj-no-0","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[42,366,62,46]}
+{"kind":"textbox","id":"sh/jul4rm1w","slide":4,"name":"obj-h-0","text":"Cohort","textPreview":"Cohort","textChars":6,"textLines":1,"bbox":[42,414,260,64]}
+{"kind":"textbox","id":"sh/vitknmp0","slide":4,"name":"obj-b-0","text":"Verify geometry, laterality and subject-level separation.","textPreview":"Verify geometry, laterality and subject-level separation.","textChars":57,"textLines":1,"bbox":[42,490,260,92]}
+{"kind":"textbox","id":"sh/ah0juhof","slide":4,"name":"obj-no-1","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[341,366,62,46]}
+{"kind":"textbox","id":"sh/xkb2pc76","slide":4,"name":"obj-h-1","text":"Fair front end","textPreview":"Fair front end","textChars":14,"textLines":1,"bbox":[341,414,260,64]}
+{"kind":"textbox","id":"sh/wj21w76l","slide":4,"name":"obj-b-1","text":"Hold encoder, fusion and 2D→3D lifting constant.","textPreview":"Hold encoder, fusion and 2D→3D lifting constant.","textChars":48,"textLines":1,"bbox":[341,490,260,92]}
+{"kind":"textbox","id":"sh/jmtkrmpc","slide":4,"name":"obj-no-2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[640,366,62,46]}
+{"kind":"textbox","id":"sh/ilkjyhor","slide":4,"name":"obj-h-2","text":"Complementary metrics","textPreview":"Complementary metrics","textChars":21,"textLines":1,"bbox":[640,414,260,64]}
+{"kind":"textbox","id":"sh/5ob2tw72","slide":4,"name":"obj-b-2","text":"Use Dice + ASSD with bone and cohort analysis.","textPreview":"Use Dice + ASSD with bone and cohort analysis.","textChars":46,"textLines":1,"bbox":[640,490,260,92]}
+{"kind":"textbox","id":"sh/kn210r6x","slide":4,"name":"obj-no-3","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[939,366,62,46]}
+{"kind":"textbox","id":"sh/zqp0f2ps","slide":4,"name":"obj-h-3","text":"Controlled comparison","textPreview":"Controlled comparison","textChars":21,"textLines":1,"bbox":[939,414,260,64]}
+{"kind":"textbox","id":"sh/ypgjmxo7","slide":4,"name":"obj-b-3","text":"Evaluate four decoder arms over five grouped folds.","textPreview":"Evaluate four decoder arms over five grouped folds.","textChars":51,"textLines":1,"bbox":[939,490,260,92]}
+{"kind":"notes","id":"nt/vgtehu","slide":4,"text":"Timing: 1:10\n\nTalk track:\nRead the research question, then connect each objective to a threat to validity: leakage, upstream confounding, metric blindness and unfair model comparison.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 12–15; problem statement, research question, aim, objectives and scope"}
+{"kind":"slide","id":"sl/idmxch","slide":5,"title":"TECHNICAL APPROACH","textShapes":5}
+{"kind":"textbox","id":"sh/rm9gjyts","slide":5,"name":"section-5","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/cnixc3ad","slide":5,"name":"title-5","text":"A geometrically controlled pipeline makes the experiment auditable","textPreview":"A geometrically controlled pipeline makes the experiment auditable","textChars":66,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/doryl8by","slide":5,"name":"rule-5","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/2hgf6tsb","slide":5,"name":"source-5","text":"Report pp. 58–60, 90–104","textPreview":"Report pp. 58–60, 90–104","textChars":24,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/3ipgfytw","slide":5,"name":"page-5","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/pkryhobm","slide":5,"name":"method-caption","text":"Fold-specific representation learning → shared fusion/lifting → controlled decoder comparison → subject-level evaluation","textPreview":"Fold-specific representation learning → shared fusion/lifting → controlled decoder comparison → subject-level evaluation","textChars":120,"textLines":1,"bbox":[110,621,1060,38]}
+{"kind":"image","id":"im/po7mtobi","slide":5,"name":"","geometry":"roundRect","alt":"Report Figure 34 — proposed modelling plan","bbox":[42,164,1196,458]}
+{"kind":"notes","id":"nt/idmxch","slide":5,"text":"Timing: 1:25\n\nTalk track:\nUse the report’s modelling-plan figure to walk left to right. Highlight that the encoder is trained within each fold, then frozen; all arms receive the same feature pyramid, and evaluation uses held-out subjects.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 58–60, 90–104; CRISP-DM, methodology flow and Figure 34 on p. 90"}
+{"kind":"slide","id":"sl/7zomm8","slide":6,"title":"TECHNICAL APPROACH","textShapes":15}
+{"kind":"textbox","id":"sh/itwbidkn","slide":6,"name":"section-6","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/5wnutsje","slide":6,"name":"title-6","text":"The cohort is small, mixed and leakage-controlled","textPreview":"The cohort is small, mixed and leakage-controlled","textChars":49,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/kvetkn2t","slide":6,"name":"rule-6","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/bqlcnilw","slide":6,"name":"source-6","text":"Report pp. 14, 76–77, 110","textPreview":"Report pp. 14, 76–77, 110","textChars":25,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/apcbedkr","slide":6,"name":"page-6","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/xsnup8j2","slide":6,"name":"cohort-intro","text":"Quantitative cohort after eligibility and quality checks","textPreview":"Quantitative cohort after eligibility and quality checks","textChars":56,"textLines":1,"bbox":[42,153,900,46]}
+{"kind":"shape","id":"sh/wretgn2h","slide":6,"name":"subjects-panel","bbox":[42,236,270,174]}
+{"kind":"textbox","id":"sh/fmpcz21g","slide":6,"name":"subjects-value","text":"43","textPreview":"43","textChars":2,"textLines":1,"bbox":[64,258,226,70]}
+{"kind":"textbox","id":"sh/ulgbqxkv","slide":6,"name":"subjects-label","text":"subjects","textPreview":"subjects","textChars":8,"textLines":1,"bbox":[64,337,226,54]}
+{"kind":"shape","id":"sh/sf6d8vy9","slide":6,"name":"knees-panel","bbox":[337,236,270,174]}
+{"kind":"textbox","id":"sh/tgzeh0fe","slide":6,"name":"knees-value","text":"71","textPreview":"71","textChars":2,"textLines":1,"bbox":[359,258,226,70]}
+{"kind":"textbox","id":"sh/6dov6lg3","slide":6,"name":"knees-label","text":"knees","textPreview":"knees","textChars":5,"textLines":1,"bbox":[359,337,226,54]}
+{"kind":"shape","id":"sh/7exwfqxo","slide":6,"name":"healthy-panel","bbox":[632,236,270,174]}
+{"kind":"textbox","id":"sh/kb6d4byx","slide":6,"name":"healthy-value","text":"58","textPreview":"58","textChars":2,"textLines":1,"bbox":[654,258,226,70]}
+{"kind":"textbox","id":"sh/5cfedgfi","slide":6,"name":"healthy-label","text":"healthy knees","textPreview":"healthy knees","textChars":13,"textLines":1,"bbox":[654,337,226,54]}
+{"kind":"shape","id":"sh/i9ov21gr","slide":6,"name":"fractured-panel","bbox":[927,236,311,174]}
+{"kind":"textbox","id":"sh/jaxwb6xc","slide":6,"name":"fractured-value","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[949,258,267,70]}
+{"kind":"textbox","id":"sh/w7md0by1","slide":6,"name":"fractured-label","text":"fractured knees","textPreview":"fractured knees","textChars":15,"textLines":1,"bbox":[949,337,267,54]}
+{"kind":"textbox","id":"sh/x8fu9gfm","slide":6,"name":"fold-line","text":"5 subject-grouped folds  ·  every fold contains healthy and fractured anatomy  ·  bilateral knees stay together","textPreview":"5 subject-grouped folds  ·  every fold contains healthy and fractured anatomy  ·  bilateral knees stay together","textChars":111,"textLines":1,"bbox":[42,464,1196,52]}
+{"kind":"textbox","id":"sh/dsn2h83y","slide":6,"name":"cohort-caveat","text":"Interpretation boundary: healthy and fractured cases come from different datasets, so pathology is confounded with acquisition domain.","textPreview":"Interpretation boundary: healthy and fractured cases come from different datasets, so pathology is confounded with acquisition domain.","textChars":134,"textLines":1,"bbox":[95,558,1090,58]}
+{"kind":"notes","id":"nt/7zomm8","slide":6,"text":"Timing: 0:55\n\nTalk track:\nExplain why subject grouping matters: bilateral knees are correlated and must not cross train/test boundaries. Then acknowledge the 4.5-to-1 imbalance and the dataset-domain confounding.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 14, 76–77, 110; scope, cohort construction and leakage audit"}
+{"kind":"slide","id":"sl/c0k09a","slide":7,"title":"TECHNICAL APPROACH","textShapes":18}
+{"kind":"textbox","id":"sh/ob2hgju1","slide":7,"name":"section-7","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/natgnetg","slide":7,"name":"title-7","text":"Ground-truth meshes become four-channel targets","textPreview":"Ground-truth meshes become four-channel targets","textChars":47,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/29kzetcv","slide":7,"name":"rule-7","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/x0vit8bi","slide":7,"name":"source-7","text":"Report pp. 83-85, 109-110","textPreview":"Report pp. 83-85, 109-110","textChars":25,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/cfmhk3ux","slide":7,"name":"page-7","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/adkzitc7","slide":7,"name":"mesh-caption","text":"Femur  |  Tibia  |  Patella  |  Fibula","textPreview":"Femur  |  Tibia  |  Patella  |  Fibula","textChars":38,"textLines":1,"bbox":[60,615,412,31]}
+{"kind":"shape","id":"sh/l4vix8bu","slide":7,"name":"mesh-step-dot-0","bbox":[518,177,38,38]}
+{"kind":"textbox","id":"sh/k3mho3u9","slide":7,"name":"mesh-step-no-0","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[521,185,32,22]}
+{"kind":"textbox","id":"sh/6pwrq9kv","slide":7,"name":"mesh-step-h-0","text":"Segment the CT","textPreview":"Segment the CT","textChars":14,"textLines":1,"bbox":[582,169,620,35]}
+{"kind":"textbox","id":"sh/7q58ze1g","slide":7,"name":"mesh-step-b-0","text":"3D Slicer labels the complete four-bone anatomy; TotalSegmentator accelerates the initial segmentation.","textPreview":"3D Slicer labels the complete four-bone anatomy; TotalSegmentator accelerates the initial segmentation.","textChars":103,"textLines":1,"bbox":[582,206,620,64]}
+{"kind":"shape","id":"sh/8re9sz21","slide":7,"name":"mesh-step-dot-1","bbox":[518,289,38,38]}
+{"kind":"textbox","id":"sh/tsnq14jm","slide":7,"name":"mesh-step-no-1","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[521,297,32,22]}
+{"kind":"textbox","id":"sh/udgru9kr","slide":7,"name":"mesh-step-h-1","text":"Refine and export","textPreview":"Refine and export","textChars":17,"textLines":1,"bbox":[582,281,620,35]}
+{"kind":"textbox","id":"sh/vep83e1c","slide":7,"name":"mesh-step-b-1","text":"Apply 2-3 mm Gaussian smoothing, then export one STL surface for each bone.","textPreview":"Apply 2-3 mm Gaussian smoothing, then export one STL surface for each bone.","textChars":75,"textLines":1,"bbox":[582,318,620,64]}
+{"kind":"shape","id":"sh/gfy9wj2x","slide":7,"name":"mesh-step-dot-2","bbox":[518,401,38,38]}
+{"kind":"textbox","id":"sh/hg7q5oji","slide":7,"name":"mesh-step-no-2","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[521,409,32,22]}
+{"kind":"textbox","id":"sh/axc7ipkn","slide":7,"name":"mesh-step-h-2","text":"Align and voxelise","textPreview":"Align and voxelise","textChars":18,"textLines":1,"bbox":[582,393,620,35]}
+{"kind":"textbox","id":"sh/bil8rul8","slide":7,"name":"mesh-step-b-2","text":"Transform every STL into the same LPS-aligned 200 mm, 256³ grid as four fixed-order binary channels.","textPreview":"Transform every STL into the same LPS-aligned 200 mm, 256³ grid as four fixed-order binary channels.","textChars":100,"textLines":1,"bbox":[582,430,620,64]}
+{"kind":"shape","id":"sh/fqhw3mdo","slide":7,"name":"mesh-step-dot-3","bbox":[518,513,38,38]}
+{"kind":"textbox","id":"sh/ep8fahw3","slide":7,"name":"mesh-step-no-3","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[521,521,32,22]}
+{"kind":"textbox","id":"sh/1cze5wvu","slide":7,"name":"mesh-step-h-3","text":"Train and evaluate","textPreview":"Train and evaluate","textChars":18,"textLines":1,"bbox":[582,505,620,35]}
+{"kind":"textbox","id":"sh/grqxcre9","slide":7,"name":"mesh-step-b-3","text":"Paired DRRs are inputs; voxel masks supervise reconstruction and provide per-bone Dice and ASSD references.","textPreview":"Paired DRRs are inputs; voxel masks supervise reconstruction and provide per-bone Dice and ASSD references.","textChars":107,"textLines":1,"bbox":[582,542,620,64]}
+{"kind":"textbox","id":"sh/rmxwzmxs","slide":7,"name":"mesh-limit","text":"Limitation: meshes were manually prepared without radiologist or orthopaedic-specialist validation.","textPreview":"Limitation: meshes were manually prepared without radiologist or orthopaedic-specialist validation.","textChars":99,"textLines":1,"bbox":[528,618,690,35]}
+{"kind":"image","id":"im/qp0v2dsb","slide":7,"name":"","geometry":"roundRect","alt":"Report Figure 37 - manually segmented STL ground truth","bbox":[42,172,448,438]}
+{"kind":"notes","id":"nt/c0k09a","slide":7,"text":"Timing: 1:05\n\nTalk track:\nExplain the full target lineage. CT volumes were segmented into the four bones in 3D Slicer, assisted by TotalSegmentator and surface smoothing, then exported as STL meshes. Each surface was transformed into one common LPS grid and voxelised as a separate binary channel. These masks supervise decoder training and act as the held-out reference for Dice and ASSD. State the annotation-validation limitation clearly.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 83-85, 109-110; four-bone target construction and Figure 37"}
+{"kind":"slide","id":"sl/hr9x8d","slide":8,"title":"TECHNICAL APPROACH","textShapes":12}
+{"kind":"textbox","id":"sh/jq94rel4","slide":8,"name":"section-8","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/krilkjmp","slide":8,"name":"title-8","text":"Data preparation removes geometry as a hidden explanation","textPreview":"Data preparation removes geometry as a hidden explanation","textChars":57,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/lsbmto3a","slide":8,"name":"rule-8","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/a103e94n","slide":8,"name":"source-8","text":"Report pp. 78–88","textPreview":"Report pp. 78–88","textChars":16,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/b29knel8","slide":8,"name":"page-8","text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/x4rmp43e","slide":8,"name":"gate-h-0","text":"Physical coordinates","textPreview":"Physical coordinates","textChars":20,"textLines":1,"bbox":[42,468,275,34]}
+{"kind":"textbox","id":"sh/mxg3ap4r","slide":8,"name":"gate-b-0","text":"DICOM slice ordering, 0.5 mm intermediate resampling and LPS canonicalisation.","textPreview":"DICOM slice ordering, 0.5 mm intermediate resampling and LPS canonicalisation.","textChars":78,"textLines":1,"bbox":[42,511,275,95]}
+{"kind":"textbox","id":"sh/nypkju5c","slide":8,"name":"gate-h-1","text":"One target space","textPreview":"One target space","textChars":16,"textLines":1,"bbox":[341,468,275,34]}
+{"kind":"textbox","id":"sh/ny14bal0","slide":8,"name":"gate-b-1","text":"200 mm field of view on a 256³ grid at 0.78125 mm isotropic spacing.","textPreview":"200 mm field of view on a 256³ grid at 0.78125 mm isotropic spacing.","textChars":68,"textLines":1,"bbox":[341,511,275,95]}
+{"kind":"textbox","id":"sh/2xs3i5kf","slide":8,"name":"gate-h-2","text":"Four-bone masks","textPreview":"Four-bone masks","textChars":15,"textLines":1,"bbox":[640,468,275,34]}
+{"kind":"textbox","id":"sh/p0jmdk3q","slide":8,"name":"gate-b-2","text":"Femur, tibia, patella and fibula use one fixed channel order.","textPreview":"Femur, tibia, patella and fibula use one fixed channel order.","textChars":61,"textLines":1,"bbox":[640,511,275,95]}
+{"kind":"textbox","id":"sh/ozalkf25","slide":8,"name":"gate-h-3","text":"Aligned DRRs","textPreview":"Aligned DRRs","textChars":12,"textLines":1,"bbox":[939,468,275,34]}
+{"kind":"textbox","id":"sh/b214fu1w","slide":8,"name":"gate-b-3","text":"Paired 256×256 AP/LAT projections correspond exactly to the 3D target.","textPreview":"Paired 256×256 AP/LAT projections correspond exactly to the 3D target.","textChars":70,"textLines":1,"bbox":[939,511,275,95]}
+{"kind":"image","id":"im/tcry5sfy","slide":8,"name":"","geometry":"roundRect","alt":"Report Figure 29 — data preparation workflow","bbox":[42,176,1196,250]}
+{"kind":"notes","id":"nt/hr9x8d","slide":8,"text":"Timing: 1:00\n\nTalk track:\nExplain how each preprocessing choice protects the experiment from a false architectural result. Note the limitation: meshes and fracture regions were manually prepared without expert clinical validation.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 78–88; data preparation; Figure 29 on p. 79"}
+{"kind":"slide","id":"sl/x8q9e1","slide":9,"title":"TECHNICAL APPROACH","textShapes":25}
+{"kind":"textbox","id":"sh/uhwb21s3","slide":9,"name":"section-9","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/h47uxwru","slide":9,"name":"title-9","text":"A 2×2 factorial design separates topology from activation","textPreview":"A 2×2 factorial design separates topology from activation","textChars":57,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/wjed4ra9","slide":9,"name":"rule-9","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/j6pcz690","slide":9,"name":"source-9","text":"Report pp. 59, 98–102","textPreview":"Report pp. 59, 98–102","textChars":21,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/i5gv61sf","slide":9,"name":"page-9","text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/587u1grq","slide":9,"name":"th-0","bbox":[42,213,260,72]}
+{"kind":"textbox","id":"sh/47yd8ba5","slide":9,"name":"tht-0","text":"Decoder arm","textPreview":"Decoder arm","textChars":11,"textLines":1,"bbox":[57,231,230,40]}
+{"kind":"shape","id":"sh/rapc3q9w","slide":9,"name":"th-1","bbox":[302,213,312,72]}
+{"kind":"textbox","id":"sh/69gvulsb","slide":9,"name":"tht-1","text":"Block topology","textPreview":"Block topology","textChars":14,"textLines":1,"bbox":[317,231,282,40]}
+{"kind":"shape","id":"sh/o7qhcjat","slide":9,"name":"th-2","bbox":[614,213,290,72]}
+{"kind":"textbox","id":"sh/98zilore","slide":9,"name":"tht-2","text":"Activation","textPreview":"Activation","textChars":10,"textLines":1,"bbox":[629,231,260,40]}
+{"kind":"shape","id":"sh/m58za9sn","slide":9,"name":"th-3","bbox":[904,213,334,72]}
+{"kind":"textbox","id":"sh/n6hgje98","slide":9,"name":"tht-3","text":"Interpretation","textPreview":"Interpretation","textChars":14,"textLines":1,"bbox":[919,231,304,40]}
+{"kind":"shape","id":"sh/wvahgjqp","slide":9,"name":"cell-0-0","bbox":[42,285,260,72]}
+{"kind":"textbox","id":"sh/xwjipora","slide":9,"name":"cellt-0-0","text":"U-style","textPreview":"U-style","textChars":7,"textLines":1,"bbox":[57,302,230,40]}
+{"kind":"shape","id":"sh/at8ze98z","slide":9,"name":"cell-0-1","bbox":[302,285,312,72]}
+{"kind":"textbox","id":"sh/buh0ne9k","slide":9,"name":"cellt-0-1","text":"Plain","textPreview":"Plain","textChars":5,"textLines":1,"bbox":[317,302,282,40]}
+{"kind":"shape","id":"sh/kzahk3q1","slide":9,"name":"cell-0-2","bbox":[614,285,290,72]}
+{"kind":"textbox","id":"sh/l0jit8rm","slide":9,"name":"cellt-0-2","text":"ReLU","textPreview":"ReLU","textChars":4,"textLines":1,"bbox":[629,302,260,40]}
+{"kind":"shape","id":"sh/tgfyxojq","slide":9,"name":"cell-0-3","bbox":[904,285,334,72]}
+{"kind":"textbox","id":"sh/sf6h43i5","slide":9,"name":"cellt-0-3","text":"Historical reference condition","textPreview":"Historical reference condition","textChars":30,"textLines":1,"bbox":[919,302,304,40]}
+{"kind":"shape","id":"sh/7exgvy1k","slide":9,"name":"cell-1-0","bbox":[42,357,260,72]}
+{"kind":"textbox","id":"sh/6toz2t0z","slide":9,"name":"cellt-1-0","text":"Plain-PReLU","textPreview":"Plain-PReLU","textChars":11,"textLines":1,"bbox":[57,374,230,40]}
+{"kind":"shape","id":"sh/hkzi18jm","slide":9,"name":"cell-1-1","bbox":[302,357,312,72]}
+{"kind":"textbox","id":"sh/gjqh83i1","slide":9,"name":"cellt-1-1","text":"Plain","textPreview":"Plain","textChars":5,"textLines":1,"bbox":[317,374,282,40]}
+{"kind":"shape","id":"sh/fih0zy1w","slide":9,"name":"cell-1-2","bbox":[614,357,290,72]}
+{"kind":"textbox","id":"sh/uh8z6t0b","slide":9,"name":"cellt-1-2","text":"PReLU","textPreview":"PReLU","textChars":5,"textLines":1,"bbox":[629,374,260,40]}
+{"kind":"shape","id":"sh/xovy54ji","slide":9,"name":"cell-1-3","bbox":[904,357,334,72]}
+{"kind":"textbox","id":"sh/wnmhwjix","slide":9,"name":"cellt-1-3","text":"Activation-only change","textPreview":"Activation-only change","textChars":22,"textLines":1,"bbox":[919,374,304,40]}
+{"kind":"shape","id":"sh/mtkv65gv","slide":9,"name":"cell-2-0","bbox":[42,429,260,72]}
+{"kind":"textbox","id":"sh/nutwzahg","slide":9,"name":"cellt-2-0","text":"Residual-ReLU","textPreview":"Residual-ReLU","textChars":13,"textLines":1,"bbox":[57,446,230,40]}
+{"kind":"shape","id":"sh/8v2x8fy1","slide":9,"name":"cell-2-1","bbox":[302,429,312,72]}
+{"kind":"textbox","id":"sh/9wbe1kz6","slide":9,"name":"cellt-2-1","text":"Projected residual","textPreview":"Projected residual","textChars":18,"textLines":1,"bbox":[317,446,282,40]}
+{"kind":"shape","id":"sh/axkfapgr","slide":9,"name":"cell-2-2","bbox":[614,429,290,72]}
+{"kind":"textbox","id":"sh/vydw3uhc","slide":9,"name":"cellt-2-2","text":"ReLU","textPreview":"ReLU","textChars":4,"textLines":1,"bbox":[629,446,260,40]}
+{"kind":"shape","id":"sh/wzmxczyx","slide":9,"name":"cell-2-3","bbox":[904,429,334,72]}
+{"kind":"textbox","id":"sh/xkve54zi","slide":9,"name":"cellt-2-3","text":"Topology-only change","textPreview":"Topology-only change","textChars":20,"textLines":1,"bbox":[919,446,304,40]}
+{"kind":"shape","id":"sh/q10vyl0n","slide":9,"name":"cell-3-0","bbox":[42,501,260,72]}
+{"kind":"textbox","id":"sh/b29wrqh8","slide":9,"name":"cellt-3-0","text":"V-style","textPreview":"V-style","textChars":7,"textLines":1,"bbox":[57,518,230,40]}
+{"kind":"shape","id":"sh/76hkfi5k","slide":9,"name":"cell-3-1","bbox":[302,501,312,72]}
+{"kind":"textbox","id":"sh/6l836xoz","slide":9,"name":"cellt-3-1","text":"Projected residual","textPreview":"Projected residual","textChars":18,"textLines":1,"bbox":[317,518,282,40]}
+{"kind":"shape","id":"sh/t8z2hsnq","slide":9,"name":"cell-3-2","bbox":[614,501,290,72]}
+{"kind":"textbox","id":"sh/s7ql8n65","slide":9,"name":"cellt-3-2","text":"PReLU","textPreview":"PReLU","textChars":5,"textLines":1,"bbox":[629,518,260,40]}
+{"kind":"shape","id":"sh/fa1kj25w","slide":9,"name":"cell-3-3","bbox":[904,501,334,72]}
+{"kind":"textbox","id":"sh/u9s3axob","slide":9,"name":"cellt-3-3","text":"Historical reference condition","textPreview":"Historical reference condition","textChars":30,"textLines":1,"bbox":[919,518,304,40]}
+{"kind":"textbox","id":"sh/1cjmlcn2","slide":9,"name":"constants","text":"Held constant: fold-specific encoder · AP/LAT fusion · 2D→3D lift · decoder skeleton · data split · loss · optimiser · seed · output processing","textPreview":"Held constant: fold-specific encoder · AP/LAT fusion · 2D→3D lift · decoder skeleton · data split · loss · optimiser · seed · output proc...","textChars":143,"textLines":1,"bbox":[55,592,1170,55]}
+{"kind":"notes","id":"nt/x8q9e1","slide":9,"text":"Timing: 1:25\n\nTalk track:\nShow how the two extra arms isolate causal factors descriptively. The residual-ReLU arm asks what happens when topology changes alone; plain-PReLU asks what happens when activation changes alone.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 59, 98–102; Tables 5, 10 and 11; controlled factorial decoder design"}
+{"kind":"slide","id":"sl/ehk71s","slide":10,"title":"TECHNICAL APPROACH","textShapes":14}
+{"kind":"textbox","id":"sh/jyd47qx8","slide":10,"name":"section-10","text":"TECHNICAL APPROACH","textPreview":"TECHNICAL APPROACH","textChars":18,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/kzm50vet","slide":10,"name":"title-10","text":"Fairness is enforced before results are compared","textPreview":"Fairness is enforced before results are compared","textChars":48,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/5kvm90fe","slide":10,"name":"rule-10","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/atknulwr","slide":10,"name":"source-10","text":"Report pp. 102–105","textPreview":"Report pp. 102–105","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/vut43qxw","slide":10,"name":"page-10","text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/wv25wveh","slide":10,"name":"timeline","bbox":[76,344,1128,0]}
+{"kind":"shape","id":"sh/xwbm50f2","slide":10,"name":"time-dot-0","bbox":[130,332,24,24]}
+{"kind":"textbox","id":"sh/mp0nq1wf","slide":10,"name":"time-no-0","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[125,280,80,35]}
+{"kind":"textbox","id":"sh/nq94z6x0","slide":10,"name":"time-h-0","text":"Train within fold","textPreview":"Train within fold","textChars":17,"textLines":1,"bbox":[125,390,310,42]}
+{"kind":"textbox","id":"sh/jqxc7e1g","slide":10,"name":"time-b-0","text":"Exclude test subjects from encoder, fusion and decoder optimisation.","textPreview":"Exclude test subjects from encoder, fusion and decoder optimisation.","textChars":68,"textLines":1,"bbox":[125,444,310,120]}
+{"kind":"shape","id":"sh/ypobe9kv","slide":10,"name":"time-dot-1","bbox":[520,332,24,24]}
+{"kind":"textbox","id":"sh/lcfu94jm","slide":10,"name":"time-no-1","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[515,280,80,35]}
+{"kind":"textbox","id":"sh/kr6dgj21","slide":10,"name":"time-h-1","text":"Freeze and match","textPreview":"Freeze and match","textChars":16,"textLines":1,"bbox":[515,390,310,42]}
+{"kind":"textbox","id":"sh/7ehcbe1c","slide":10,"name":"time-b-1","text":"Same front-end hash, initial state, loss, optimiser, seed and schedule.","textPreview":"Same front-end hash, initial state, loss, optimiser, seed and schedule.","textChars":71,"textLines":1,"bbox":[515,444,310,120]}
+{"kind":"shape","id":"sh/6dovi9k7","slide":10,"name":"time-dot-2","bbox":[910,332,24,24]}
+{"kind":"textbox","id":"sh/tgzudoji","slide":10,"name":"time-no-2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[905,280,80,35]}
+{"kind":"textbox","id":"sh/8fqdkj2x","slide":10,"name":"time-h-2","text":"Evaluate out of fold","textPreview":"Evaluate out of fold","textChars":20,"textLines":1,"bbox":[905,390,310,42]}
+{"kind":"textbox","id":"sh/nidczul8","slide":10,"name":"time-b-2","text":"20 runs → 71 knees per arm → 43 subject-level comparisons.","textPreview":"20 runs → 71 knees per arm → 43 subject-level comparisons.","textChars":58,"textLines":1,"bbox":[905,444,310,120]}
+{"kind":"textbox","id":"sh/2h4b6pkn","slide":10,"name":"metrics-line","text":"Primary evidence: Dice (overlap) + ASSD in mm (surface) + bone/cohort breakdown + explicit empty-prediction penalties","textPreview":"Primary evidence: Dice (overlap) + ASSD in mm (surface) + bone/cohort breakdown + explicit empty-prediction penalties","textChars":117,"textLines":1,"bbox":[77,588,1126,52]}
+{"kind":"notes","id":"nt/ehk71s","slide":10,"text":"Timing: 1:00\n\nTalk track:\nWalk through the evaluation contract. Dice alone is insufficient; ASSD and explicit empty-prediction handling stop catastrophic small-bone failures from disappearing inside an average.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 102–105; decoder training protocol and controlled out-of-fold evaluation"}
+{"kind":"slide","id":"sl/hqzdev","slide":11,"title":"CRITICAL THINKING","textShapes":9}
+{"kind":"textbox","id":"sh/4fq5s7e9","slide":11,"name":"section-11","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/juhoz2do","slide":11,"name":"title-11","text":"The shared front end was fair—but small bones set the ceiling","textPreview":"The shared front end was fair—but small bones set the ceiling","textChars":61,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/it8nqhw3","slide":11,"name":"rule-11","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/hsfmxcfy","slide":11,"name":"source-11","text":"Report pp. 114–120","textPreview":"Report pp. 114–120","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/wr65o7ed","slide":11,"name":"page-11","text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/uponmxw7","slide":11,"name":"bridge-panel","bbox":[824,178,414,174]}
+{"kind":"textbox","id":"sh/1oj69wv2","slide":11,"name":"bridge-value","text":"0.574","textPreview":"0.574","textChars":5,"textLines":1,"bbox":[846,200,370,70]}
+{"kind":"textbox","id":"sh/gna50reh","slide":11,"name":"bridge-label","text":"best validation macro-Dice","textPreview":"best validation macro-Dice","textChars":26,"textLines":1,"bbox":[846,279,370,54]}
+{"kind":"textbox","id":"sh/a10belwj","slide":11,"name":"front-end-detail","text":"Femur 0.732  ·  Tibia 0.676\nPatella 0.529  ·  Fibula 0.359","textPreview":"Femur 0.732  ·  Tibia 0.676 | Patella 0.529  ·  Fibula 0.359","textChars":58,"textLines":2,"bbox":[824,388,414,92]}
+{"kind":"textbox","id":"sh/b29s7qd4","slide":11,"name":"front-end-meaning","text":"The same size-dependent hierarchy later appears in every decoder—evidence of a pipeline-level limit, not a decoder-only defect.","textPreview":"The same size-dependent hierarchy later appears in every decoder—evidence of a pipeline-level limit, not a decoder-only defect.","textChars":127,"textLines":1,"bbox":[80,527,1120,76]}
+{"kind":"textbox","id":"sh/c3itgvep","slide":11,"name":"front-end-caveat","text":"Fair representation ≠ high-quality representation","textPreview":"Fair representation ≠ high-quality representation","textChars":49,"textLines":1,"bbox":[316,617,650,34]}
+{"kind":"image","id":"im/2lwrapg3","slide":11,"name":"","geometry":"roundRect","alt":"Report Figure 44 — shared front-end performance","bbox":[42,178,737,300]}
+{"kind":"notes","id":"nt/hqzdev","slide":11,"text":"Timing: 1:10\n\nTalk track:\nExplain that identical front-end checkpoints establish fairness, but do not guarantee that the representation is strong. Fold 4 had weak cross-view evidence, and small bones were already the hardest before decoder comparison.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 114–120; Figures 40–44; encoder pretraining and shared front-end results"}
+{"kind":"slide","id":"sl/zdcvr6","slide":12,"title":"CRITICAL THINKING","textShapes":9}
+{"kind":"textbox","id":"sh/bml8ju94","slide":12,"name":"section-12","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/cnupczap","slide":12,"name":"title-12","text":"Residual-ReLU leads the controlled decoder test","textPreview":"Residual-ReLU leads the controlled decoder test","textChars":47,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/donql4ru","slide":12,"name":"rule-12","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/ypw7e9sf","slide":12,"name":"source-12","text":"Report pp. 123–126","textPreview":"Report pp. 123–126","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/zq58ne90","slide":12,"name":"page-12","text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/lsnqp4r6","slide":12,"name":"dice-gain-panel","bbox":[675,178,563,174]}
+{"kind":"textbox","id":"sh/ets725sb","slide":12,"name":"dice-gain-value","text":"+0.049","textPreview":"+0.049","textChars":6,"textLines":1,"bbox":[697,200,519,70]}
+{"kind":"textbox","id":"sh/fu18ba9w","slide":12,"name":"dice-gain-label","text":"Dice: residual added under ReLU","textPreview":"Dice: residual added under ReLU","textChars":31,"textLines":1,"bbox":[697,279,519,54]}
+{"kind":"shape","id":"sh/z6dcve54","slide":12,"name":"assd-gain-panel","bbox":[675,370,563,174]}
+{"kind":"textbox","id":"sh/y54bm9oj","slide":12,"name":"assd-gain-value","text":"−2.44 mm","textPreview":"−2.44 mm","textChars":8,"textLines":1,"bbox":[697,392,519,70]}
+{"kind":"textbox","id":"sh/l8fuxonu","slide":12,"name":"assd-gain-label","text":"ASSD: residual added under ReLU","textPreview":"ASSD: residual added under ReLU","textChars":31,"textLines":1,"bbox":[697,471,519,54]}
+{"kind":"textbox","id":"sh/k76toj6p","slide":12,"name":"cost","text":"≈2.1% more decoder parameters\nTraining time remained ~37.5–38.3 minutes/run","textPreview":"≈2.1% more decoder parameters | Training time remained ~37.5–38.3 minutes/run","textChars":75,"textLines":2,"bbox":[675,571,563,67]}
+{"kind":"chart","id":"ch/sbqp8ju9","slide":12,"name":"","chartType":"bar","bbox":[42,196,590,436]}
+{"kind":"notes","id":"nt/zdcvr6","slide":12,"text":"Timing: 1:40\n\nTalk track:\nPresent the overall subject-level result. V-style beats U-style, but the factorial arms reveal why: residual topology drives the gain. PReLU alone is neutral, and slightly worsens the residual condition. Avoid claiming that full V-Net universally beats 3D U-Net.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 123–126; Figure 45 and Tables 14–15"}
+{"kind":"slide","id":"sl/mc4cy1","slide":13,"title":"CRITICAL THINKING","textShapes":8}
+{"kind":"textbox","id":"sh/3a1o7itg","slide":13,"name":"section-13","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/4vu50nu1","slide":13,"name":"title-13","text":"Small bones remain the bottleneck","textPreview":"Small bones remain the bottleneck","textChars":33,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/pw369sbm","slide":13,"name":"rule-13","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/u5snudcz","slide":13,"name":"source-13","text":"Report pp. 129–131","textPreview":"Report pp. 129–131","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/f61o3idk","slide":13,"name":"page-13","text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/h8j658ba","slide":13,"name":"bone-callout-1","text":"Fibula","textPreview":"Fibula","textChars":6,"textLines":1,"bbox":[772,211,410,42]}
+{"kind":"textbox","id":"sh/e1c76xc3","slide":13,"name":"bone-callout-2","text":"Dice improves 0.106 → 0.183\nASSD falls 25.93 → 17.51 mm","textPreview":"Dice improves 0.106 → 0.183 | ASSD falls 25.93 → 17.51 mm","textChars":55,"textLines":2,"bbox":[772,259,410,86]}
+{"kind":"shape","id":"sh/z2lof2to","slide":13,"name":"bone-rule","bbox":[772,369,410,0]}
+{"kind":"textbox","id":"sh/nydgn6xo","slide":13,"name":"bone-callout-3","text":"Meaning","textPreview":"Meaning","textChars":7,"textLines":1,"bbox":[772,394,410,42]}
+{"kind":"textbox","id":"sh/2x4zu1w3","slide":13,"name":"bone-callout-4","text":"A substantial error reduction is not the same as accurate reconstruction. The small-bone ceiling persists.","textPreview":"A substantial error reduction is not the same as accurate reconstruction. The small-bone ceiling persists.","textChars":106,"textLines":1,"bbox":[772,444,410,136]}
+{"kind":"chart","id":"ch/8bexgvi5","slide":13,"name":"","chartType":"bar","bbox":[42,178,682,458]}
+{"kind":"notes","id":"nt/mc4cy1","slide":13,"text":"Timing: 1:20\n\nTalk track:\nCompare large and small bones. The fibula gains are large in relative terms, but its absolute performance remains unsuitable. This distinction demonstrates critical interpretation rather than simply celebrating improvement.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 129–131; Table 18 and bone-specific discussion"}
+{"kind":"slide","id":"sl/k5ltva","slide":14,"title":"CRITICAL THINKING","textShapes":8}
+{"kind":"textbox","id":"sh/50zq98fi","slide":14,"name":"section-14","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/ixorytgr","slide":14,"name":"title-14","text":"Fractured anatomy remains harder across every decoder","textPreview":"Fractured anatomy remains harder across every decoder","textChars":53,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/jyx87yhc","slide":14,"name":"rule-14","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/s3q943y9","slide":14,"name":"source-14","text":"Report pp. 132–134","textPreview":"Report pp. 132–134","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/t4zqd8fe","slide":14,"name":"page-14","text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/72h8byxo","slide":14,"name":"fract-best-panel","bbox":[760,180,478,174]}
+{"kind":"textbox","id":"sh/o7mpsjyp","slide":14,"name":"fract-best-value","text":"0.377","textPreview":"0.377","textChars":5,"textLines":1,"bbox":[782,202,434,70]}
+{"kind":"textbox","id":"sh/98fq1oza","slide":14,"name":"fract-best-label","text":"best fractured-cohort Dice","textPreview":"best fractured-cohort Dice","textChars":26,"textLines":1,"bbox":[782,281,434,54]}
+{"kind":"textbox","id":"sh/twzytkfa","slide":14,"name":"fract-benefit","text":"Residual-ReLU vs U-style\n+0.041 Dice  ·  −3.28 mm ASSD","textPreview":"Residual-ReLU vs U-style | +0.041 Dice  ·  −3.28 mm ASSD","textChars":54,"textLines":2,"bbox":[780,385,438,76]}
+{"kind":"textbox","id":"sh/svqx0zyp","slide":14,"name":"fract-caveat","text":"Caution: fracture status is confounded with dataset and scanner domain; this is a cohort difference, not a causal fracture effect.","textPreview":"Caution: fracture status is confounded with dataset and scanner domain; this is a cohort difference, not a causal fracture effect.","textChars":130,"textLines":1,"bbox":[765,503,468,118]}
+{"kind":"chart","id":"ch/e1o72hsb","slide":14,"name":"","chartType":"bar","bbox":[42,178,670,458]}
+{"kind":"notes","id":"nt/k5ltva","slide":14,"text":"Timing: 1:20\n\nTalk track:\nShow that residual decoding helps both cohorts, yet none closes the fractured performance gap. State the domain-confounding limitation clearly: the result cannot isolate fracture status from dataset acquisition effects.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 132–134; Table 19 and healthy/fractured discussion"}
+{"kind":"slide","id":"sl/sfb7mn","slide":15,"title":"CRITICAL THINKING","textShapes":9}
+{"kind":"textbox","id":"sh/tsbi1sv2","slide":15,"name":"section-15","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/65kj6xcb","slide":15,"name":"title-15","text":"Aggregate gains do not eliminate catastrophic failures","textPreview":"Aggregate gains do not eliminate catastrophic failures","textChars":54,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/7qt0z2dw","slide":15,"name":"rule-15","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/gvm1c7ud","slide":15,"name":"source-15","text":"Report pp. 127–128, 135–137","textPreview":"Report pp. 127–128, 135–137","textChars":27,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/1wvi5cvy","slide":15,"name":"page-15","text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"textbox","id":"sh/fud032ds","slide":15,"name":"fail-h1","text":"Empty patella prediction","textPreview":"Empty patella prediction","textChars":24,"textLines":1,"bbox":[700,184,500,42]}
+{"kind":"textbox","id":"sh/ozm1grup","slide":15,"name":"fail-b1","text":"One residual-decoder case received ~177 mm subject-level patellar ASSD. The failure was retained—not averaged away.","textPreview":"One residual-decoder case received ~177 mm subject-level patellar ASSD. The failure was retained—not averaged away.","textChars":115,"textLines":1,"bbox":[700,234,500,102]}
+{"kind":"shape","id":"sh/p0v29cva","slide":15,"name":"fail-r1","bbox":[700,354,500,0]}
+{"kind":"textbox","id":"sh/l4nul0bq","slide":15,"name":"fail-h2","text":"Sensitivity experiment","textPreview":"Sensitivity experiment","textChars":22,"textLines":1,"bbox":[700,378,500,42]}
+{"kind":"textbox","id":"sh/03edcfa5","slide":15,"name":"fail-b2","text":"SimCLR + joint training improved aggregate Dice, but the healthy–fractured gap widened. Better averages did not mean safer pathology generalisation.","textPreview":"SimCLR + joint training improved aggregate Dice, but the healthy–fractured gap widened. Better averages did not mean safer pathology gene...","textChars":148,"textLines":1,"bbox":[700,428,500,120]}
+{"kind":"textbox","id":"sh/z25cjatk","slide":15,"name":"fail-take","text":"Critical conclusion: read Dice, surface distance, subgroups and explicit failures together.","textPreview":"Critical conclusion: read Dice, surface distance, subgroups and explicit failures together.","textChars":91,"textLines":1,"bbox":[700,575,500,68]}
+{"kind":"image","id":"im/reh03eh0","slide":15,"name":"","geometry":"roundRect","alt":"Report Figure 45 — decoder UI comparison","bbox":[42,174,610,448]}
+{"kind":"notes","id":"nt/sfb7mn","slide":15,"text":"Timing: 1:25\n\nTalk track:\nUse the report’s reconstruction interface figure as context, then explain the retained empty-prediction penalty. The alternative pipeline reinforces the central caution: an aggregate improvement can coexist with worse pathological generalisation.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 127–128, 135–137; Table 17, Figure 45 and Tables 20–21"}
+{"kind":"slide","id":"sl/wy8stn","slide":16,"title":"CRITICAL THINKING","textShapes":9}
+{"kind":"textbox","id":"sh/be1kje9k","slide":16,"name":"section-16","text":"CRITICAL THINKING","textPreview":"CRITICAL THINKING","textChars":17,"textLines":1,"bbox":[42,25,300,28]}
+{"kind":"textbox","id":"sh/wza1cjq5","slide":16,"name":"title-16","text":"Geometry-inconsistent lifting is the plausible system bottleneck","textPreview":"Geometry-inconsistent lifting is the plausible system bottleneck","textChars":64,"textLines":1,"bbox":[42,58,1160,72]}
+{"kind":"shape","id":"sh/x0j2lora","slide":16,"name":"rule-16","bbox":[42,135,1196,0]}
+{"kind":"textbox","id":"sh/y1sjet8v","slide":16,"name":"source-16","text":"Report pp. 139–143","textPreview":"Report pp. 139–143","textChars":18,"textLines":1,"bbox":[42,675,400,20]}
+{"kind":"textbox","id":"sh/j21kny9g","slide":16,"name":"page-16","text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"shape","id":"sh/k3a1g3q1","slide":16,"name":"current-panel","bbox":[42,189,532,342]}
+{"kind":"textbox","id":"sh/l4j2porm","slide":16,"name":"current-h","text":"Current lift","textPreview":"Current lift","textChars":12,"textLines":1,"bbox":[75,220,466,45]}
+{"kind":"textbox","id":"sh/65sjit87","slide":16,"name":"current-b","text":"Finite-source DRRs contain divergent rays\n\nBut AP/LAT features are copied along Cartesian axes\n\n→ fused voxels may not represent the same physical point","textPreview":"Finite-source DRRs contain divergent rays |  | But AP/LAT features are copied along Cartesian axes |  | → fused voxels may not represent ...","textChars":152,"textLines":5,"bbox":[76,291,464,190]}
+{"kind":"shape","id":"sh/76lkry9s","slide":16,"name":"bottleneck-arrow","bbox":[594,310,92,80]}
+{"kind":"shape","id":"sh/761o7i1k","slide":16,"name":"future-panel","bbox":[706,189,532,342]}
+{"kind":"textbox","id":"sh/65sned0f","slide":16,"name":"future-h","text":"Matched future test","textPreview":"Matched future test","textChars":19,"textLines":1,"bbox":[739,220,466,45]}
+{"kind":"textbox","id":"sh/t8j69sjq","slide":16,"name":"future-b","text":"Projection-matrix-aware ray lifting\n\nor differentiable DRR reprojection loss\n\nKeep encoder, decoder, cohort, folds and training fixed","textPreview":"Projection-matrix-aware ray lifting |  | or differentiable DRR reprojection loss |  | Keep encoder, decoder, cohort, folds and training f...","textChars":133,"textLines":5,"bbox":[740,291,464,190]}
+{"kind":"textbox","id":"sh/s7a5gni5","slide":16,"name":"hypothesis","text":"This is a supported hypothesis—not a demonstrated causal result—because no matched lift ablation was run.","textPreview":"This is a supported hypothesis—not a demonstrated causal result—because no matched lift ablation was run.","textChars":105,"textLines":1,"bbox":[138,574,1004,67]}
+{"kind":"notes","id":"nt/wy8stn","slide":16,"text":"Timing: 1:05\n\nTalk track:\nExplain the mismatch between finite-source projection geometry and Cartesian feature broadcasting. Be precise that this is a plausible bottleneck, not a causal finding. The proposed experiment changes only the lift.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 139–143; integrated limitations and projection-aware lifting future work"}
+{"kind":"slide","id":"sl/ogkkc5","slide":17,"title":"CONCLUSION","textShapes":6}
+{"kind":"textbox","id":"sh/idcni5wn","slide":17,"name":"close-kicker","text":"CONCLUSION","textPreview":"CONCLUSION","textChars":10,"textLines":1,"bbox":[42,35,240,30]}
+{"kind":"textbox","id":"sh/5036t0ve","slide":17,"name":"close-title","text":"Residual topology matters more than activation choice","textPreview":"Residual topology matters more than activation choice","textChars":53,"textLines":1,"bbox":[42,128,1120,150]}
+{"kind":"textbox","id":"sh/kzu5kvet","slide":17,"name":"close-sub","text":"Residual-ReLU was the strongest tested condition—but the project establishes a controlled evaluation method, not clinical readiness.","textPreview":"Residual-ReLU was the strongest tested condition—but the project establishes a controlled evaluation method, not clinical readiness.","textChars":132,"textLines":1,"bbox":[42,309,1070,92]}
+{"kind":"shape","id":"sh/725ovadk","slide":17,"name":"close-rule","bbox":[42,445,1196,0]}
+{"kind":"textbox","id":"sh/61wnm5wz","slide":17,"name":"close-next","text":"Next: projection-aware lifting  ·  balanced fractured cohorts  ·  expert fracture evaluation  ·  real paired X-ray/CT validation","textPreview":"Next: projection-aware lifting  ·  balanced fractured cohorts  ·  expert fracture evaluation  ·  real paired X-ray/CT validation","textChars":128,"textLines":1,"bbox":[42,491,1145,76]}
+{"kind":"textbox","id":"sh/t4n6xkva","slide":17,"name":"close-boundary","text":"Best defensible claim: residual decoding uses the available 3D features more effectively, while absolute and fracture-specific performance remain limited.","textPreview":"Best defensible claim: residual decoding uses the available 3D features more effectively, while absolute and fracture-specific performanc...","textChars":154,"textLines":1,"bbox":[42,594,1145,68]}
+{"kind":"textbox","id":"sh/s3e5ofep","slide":17,"name":"page-17","text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1180,672,58,22]}
+{"kind":"notes","id":"nt/ogkkc5","slide":17,"text":"Timing: 0:35\n\nTalk track:\nClose by answering the research question directly. Reiterate the boundary between a controlled architecture result and a clinically valid reconstruction system. Invite questions on the experiment, failure analysis or proposed ablations.\n\n[Sources]\n- 24020059_Capstone_2.docx, pp. 143–147; future work and conclusion"}
