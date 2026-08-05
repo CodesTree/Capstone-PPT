@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fracture-Preserving 3D Knee Reconstruction</title>
+  <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="capstone-css/modeling-scenes.css">
   <style>
     /* ===========================================
        THEME: SWISS MODERN RESEARCH DECK
@@ -692,21 +694,183 @@
         </div>
       </section>
 
-      <!-- SLIDE 09 — REPRESENTATION LEARNING -->
-      <section class="slide" data-title="Shared front end">
+
+      <!-- MODELLING DEEP DIVE 01 — P1 -->
+      <section class="slide model-slide" data-title="P1 visual grammar">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">09</span></div>
-          <h2 class="reveal d1" data-editable>Learn the representation once. Test the decoder fairly.</h2>
-          <div class="two-col" style="margin-top:44px;flex:1;grid-template-columns:1.35fr .65fr">
-            <div class="image-frame reveal-left d2"><img src="capstone-assets/representation-learning.png" alt="Fold-specific representation learning and shared front-end development"></div>
-            <div style="display:flex;flex-direction:column;gap:20px">
-              <article class="card reveal d2"><div class="kicker">P1</div><h3>FCMAE pretraining</h3><p data-editable>Fold-specific masked-autoencoder learning from single views.</p></article>
-              <article class="card reveal d3"><div class="kicker">P2</div><h3>Cross-view completion</h3><p data-editable>Bidirectional AP↔LAT completion encourages shared anatomy.</p></article>
-              <article class="card dark reveal d4"><div class="kicker">Control</div><h3>Frozen upstream</h3><p data-editable>Encoder, fusion and 2D→3D lift are identical for all decoder arms.</p></article>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>P1 learns the visual grammar of radiographs.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">Phase P1 · Single-view FCMAE</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Start with one projection.</div><p class="model-step-copy" data-editable>The encoder sees an AP or lateral DRR as a 256 × 256 image—without a bone mask or 3D answer.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Hide exactly 60% of its patches.</div><p class="model-step-copy" data-editable>A uniform 8 × 8 grid supplies 64 patches; 38 are masked for each training example.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Compress the visible evidence at four scales.</div><p class="model-step-copy" data-editable>ConvNeXt preserves fine edges in large feature maps and gathers broader context in smaller maps.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Reconstruct only what was hidden.</div><p class="model-step-copy" data-editable>Learning missing radiographic structure adapts the encoder to this image domain without using anatomy labels.</p></div>
+              </div>
+              <div class="model-note"><strong>No supervision from the final task:</strong> no fracture labels, bone targets or 3D volume enter P1.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="p1" aria-label="Interactive P1 masked reconstruction visual">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Loading scientific visual…</div>
+              <div class="model-fallback">P1 hides 38 of 64 image patches and trains the encoder to reconstruct the missing radiographic content.</div>
             </div>
           </div>
         </div>
+        <div class="source">Project implementation: 01_encoder_pipeline.ipynb · Report §3.4.2 and §4.2 · 60% uniform masking, 32 px patches.</div>
+        <aside class="speaker-notes">[Sources] 24020059_Capstone_2.docx §§3.4.2, 4.2; TestProject/HPC/HPC_notebooks/modeling_HPC/01_encoder_pipeline.ipynb.</aside>
       </section>
+
+      <!-- MODELLING DEEP DIVE 02 — P2 -->
+      <section class="slide model-slide" data-title="P2 cross-view completion">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>P2 teaches the two views to complete each other.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">Phase P2 · Paired-view learning</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Pair two projections of the same knee.</div><p class="model-step-copy" data-editable>AP and lateral images contain complementary evidence about the same anatomy.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Ask each view to help complete the other.</div><p class="model-step-copy" data-editable>Training runs in both directions: AP from lateral evidence and lateral from AP evidence.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Restrict where tokens may communicate.</div><p class="model-step-copy" data-editable>At the final 8 × 8 grid, attention is allowed only within the same or one adjacent superior–inferior patch row.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Learn correspondence—not 3D shape yet.</div><p class="model-step-copy" data-editable>The two views become related representations, but the four-bone occupancy target is still withheld.</p></div>
+              </div>
+              <div class="model-note"><strong>Reading the lines:</strong> they show where attention is permitted, not the strength of learned attention.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="p2" aria-label="Interactive bidirectional AP lateral completion visual">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Loading paired views…</div>
+              <div class="model-fallback">P2 uses bidirectional completion and a same-or-adjacent-row attention allowance to relate AP and lateral evidence.</div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Project implementation: CrossViewDecoder and rowwise_attention_mask · Report §3.4.3 and §4.2.</div>
+        <aside class="speaker-notes">[Sources] 24020059_Capstone_2.docx §§3.4.3, 4.2; TestProject/HPC/HPC_notebooks/modeling_HPC/01_encoder_pipeline.ipynb.</aside>
+      </section>
+
+      <!-- MODELLING DEEP DIVE 03 — FEATURE PYRAMID -->
+      <section class="slide model-slide" data-title="Four feature scales">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>Four scales preserve different kinds of evidence.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">ConvNeXt feature pyramid</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>One image becomes four feature maps.</div><p class="model-step-copy" data-editable>The visualization shows RMS activation energy across channels—an honest summary, not a selected “interesting” channel.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>High resolution keeps local detail.</div><p class="model-step-copy" data-editable>The 64² and 32² maps use local fusion, supporting edges and smaller anatomical structures.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Low resolution gathers wider context.</div><p class="model-step-copy" data-editable>The 16² and 8² maps use cross-attention so distant AP and lateral evidence can interact.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Project each scale to a matched decoder width.</div><p class="model-step-copy" data-editable>Trainable 1 × 1 convolutions convert the four levels to 64, 128, 256 and 512 channels.</p></div>
+              </div>
+              <div class="model-note"><strong>Feature maps are evidence, not bones.</strong> Their patterns become interpretable only through the supervised lifting and decoding stages.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="features" aria-label="Interactive four-scale encoder feature pyramid">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Extracting feature scales…</div>
+              <div class="model-fallback">The encoder emits 64²×96, 32²×192, 16²×384 and 8²×768 feature maps.</div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Actual fold-4 P2 encoder activations for VSD_005_Left · RMS across channels · Source hashes in model-assets-manifest.json.</div>
+        <aside class="speaker-notes">[Sources] Generated asset manifest; 03_decoder_pipeline.ipynb BiPlanarFrontEnd; report §§3.4.6, 4.3.</aside>
+      </section>
+
+      <!-- MODELLING DEEP DIVE 04 — LIFT -->
+      <section class="slide model-slide" data-title="2D to 3D lift">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>The lift copies two feature planes into a 3D grid.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">Shared 2D → 3D pathway</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Begin with fused AP and lateral maps.</div><p class="model-step-copy" data-editable>The lateral map is flipped to match the standardized LPS orientation.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Replicate each plane along an orthogonal axis.</div><p class="model-step-copy" data-editable>The code permutes, inserts a new dimension and expands the feature map into a cube.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Concatenate both cubes and learn a 3D fusion.</div><p class="model-step-copy" data-editable>A 3 × 3 × 3 convolution mixes the complementary AP and lateral evidence at every scale.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>But the input rays were divergent.</div><p class="model-step-copy" data-editable>The current lift assumes Cartesian replication and receives no source position, detector spacing or projection matrix.</p></div>
+              </div>
+              <div class="model-note"><strong>Plausible bottleneck—not proven causality:</strong> a matched Cartesian-versus-ray-lift experiment is still required.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="lift" aria-label="Interactive Cartesian feature lifting visual">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Building 3D feature lift…</div>
+              <div class="model-fallback">AP and flipped lateral feature maps are expanded along orthogonal Cartesian axes and fused with a 3D convolution.</div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Exact lift implementation: flip → permute → unsqueeze → expand → concatenate → Conv3D · Report §§3.4.6 and 4.10.1.</div>
+        <aside class="speaker-notes">[Sources] 03_decoder_pipeline.ipynb BiPlanarFrontEnd.lift; report §§3.4.6, 4.10.1–4.10.2.</aside>
+      </section>
+
+      <!-- MODELLING DEEP DIVE 05 — DECODER -->
+      <section class="slide model-slide" data-title="Decoder prediction">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>The decoder grows coarse evidence into four bone predictions.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">Matched 3D decoder skeleton</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Start at 8³ with 512 channels.</div><p class="model-step-copy" data-editable>The smallest feature volume carries the widest contextual view of the knee.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Upsample to 16³ and add the matching skip.</div><p class="model-step-copy" data-editable>Transposed convolution doubles spatial resolution; concatenation restores scale-specific evidence.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Repeat at 32³ and 64³.</div><p class="model-step-copy" data-editable>Each stage combines the growing volume with a finer lifted feature level.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Refine at 128³, then emit four logits.</div><p class="model-step-copy" data-editable>One channel is produced for each bone before a shared trilinear upsample to 256³.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Convert logits into occupied voxels.</div><p class="model-step-copy" data-editable>Sigmoid probabilities above 0.5 form the final femur, tibia, patella and fibula prediction.</p></div>
+              </div>
+              <div class="model-note"><strong>The surfaces shown are saved model output.</strong> No fictional intermediate bone shapes are introduced.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="decoder" aria-label="Interactive decoder resolution and prediction visual">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Loading held-out prediction…</div>
+              <div class="model-fallback">The decoder upsamples 8³ → 16³ → 32³ → 64³, refines at 128³, then outputs four channels at 256³.</div>
+              <div class="bone-legend">
+                <div class="bone-key"><span class="bone-swatch" style="--bone-color:var(--bone-femur)"></span>Femur</div>
+                <div class="bone-key"><span class="bone-swatch" style="--bone-color:var(--bone-tibia)"></span>Tibia</div>
+                <div class="bone-key"><span class="bone-swatch" style="--bone-color:var(--bone-patella)"></span>Patella</div>
+                <div class="bone-key"><span class="bone-swatch" style="--bone-color:var(--bone-fibula)"></span>Fibula</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Actual Residual-ReLU OOF mask: VSD_005_Left, fold 4 · Decoder logits at 128³, shared trilinear output at 256³.</div>
+        <aside class="speaker-notes">[Sources] 03_decoder_pipeline.ipynb MatchedDecoder3D; generated model asset manifest.</aside>
+      </section>
+
+      <!-- MODELLING DEEP DIVE 06 — RESIDUAL -->
+      <section class="slide model-slide" data-title="Residual refinement">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>A residual path preserves the coarse guess while the block refines it.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">The controlled architectural factor</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Every arm receives the same input feature.</div><p class="model-step-copy" data-editable>The encoder, fusion, lifting, decoder widths and training conditions remain fixed.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Both blocks apply two matched 3D convolutions.</div><p class="model-step-copy" data-editable>Group normalization and the chosen ReLU or PReLU activation are applied in the same skeleton.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>The residual arm adds a projection shortcut.</div><p class="model-step-copy" data-editable>A 1 × 1 × 1 projection aligns channel width, allowing the original coarse signal to bypass refinement.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Learning becomes “refine this” instead of “rebuild everything.”</div><p class="model-step-copy" data-editable>This is the topology change isolated by the 2 × 2 experiment on the next slide.</p></div>
+              </div>
+              <div class="model-note"><strong>Important:</strong> the result concerns these controlled decoder blocks—not a universal claim that full V-Net always beats 3D U-Net.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage reveal d3" data-visual="residual" aria-label="Interactive plain and projected residual decoder block">
+              <canvas class="model-canvas"></canvas><div class="model-dom-layer"></div>
+              <div class="model-loading">Loading decoder block…</div>
+              <div class="model-fallback">A projected residual path carries the input around two matched 3D convolutions before addition and activation.</div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Unified DecoderBlock implementation · Only residual topology and ReLU/PReLU activation vary across the four arms.</div>
+        <aside class="speaker-notes">[Sources] 03_decoder_pipeline.ipynb DecoderBlock and MatchedDecoder3D; report §§3.4.7, 4.5.</aside>
+      </section>
+
+
 
       <!-- SLIDE 10 — FACTORIAL DESIGN -->
       <section class="slide" data-title="Controlled experiment">
@@ -803,14 +967,20 @@
           <div class="two-col" style="margin-top:38px;grid-template-columns:1.05fr .95fr">
             <div>
               <div class="bar-list reveal-left d2">
-                <div class="bar-row"><div class="label">Femur Dice</div><div class="bar-track"><div class="bar-fill red" style="width:63.1%"></div></div><div class="bar-value">.631</div></div>
-                <div class="bar-row"><div class="label">Tibia Dice</div><div class="bar-track"><div class="bar-fill red" style="width:62.7%"></div></div><div class="bar-value">.627</div></div>
-                <div class="bar-row"><div class="label">Patella Dice</div><div class="bar-track"><div class="bar-fill red" style="width:38%"></div></div><div class="bar-value">.380</div></div>
-                <div class="bar-row"><div class="label">Fibula Dice</div><div class="bar-track"><div class="bar-fill red" style="width:18.3%"></div></div><div class="bar-value">.183</div></div>
+                <div class="bar-row"><div class="label">Femur Dice</div><div class="bar-track"><div class="bar-fill" style="width:63.1%;background:var(--bone-femur)"></div></div><div class="bar-value">.631</div></div>
+                <div class="bar-row"><div class="label">Tibia Dice</div><div class="bar-track"><div class="bar-fill" style="width:62.7%;background:var(--bone-tibia)"></div></div><div class="bar-value">.627</div></div>
+                <div class="bar-row"><div class="label">Patella Dice</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--bone-patella)"></div></div><div class="bar-value">.380</div></div>
+                <div class="bar-row"><div class="label">Fibula Dice</div><div class="bar-track"><div class="bar-fill" style="width:18.3%;background:var(--bone-fibula)"></div></div><div class="bar-value">.183</div></div>
               </div>
               <div class="card dark reveal d3" style="margin-top:38px"><p style="font-size:27px" data-editable>Healthy: <strong>.489 Dice / 11.12 mm</strong><br>Fractured: <strong class="accent">.377 Dice / 12.19 mm</strong></p></div>
             </div>
-            <div class="image-frame reveal d3"><img src="capstone-assets/bone-models.png" alt="Four-bone 3D reconstructions comparing target and predictions"></div>
+            <div class="legacy-model-wrap reveal d3">
+              <div class="model-stage static-model-stage" data-visual="success-comparison" aria-label="Authentic Residual-ReLU prediction and isolated patella and fibula channels for VSD_005_Left">
+                <canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div>
+                <div class="model-fallback"><strong>3D view unavailable.</strong><span>The representative Residual-ReLU prediction retains all four channels; the second view isolates patella and fibula.</span></div>
+              </div>
+              <div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div>
+            </div>
           </div>
         </div>
         <div class="source">Residual-ReLU bone-specific results. Femur/tibia remained strongest; patella/fibula and fractured cases defined the performance ceiling.</div>
@@ -820,43 +990,58 @@
       <section class="slide quote-slide" data-title="Failure analysis">
         <div class="slide-inner">
           <div class="topline reveal"><span>06 · Critical Analysis</span><span class="slide-no">15</span></div>
-          <div class="statement reveal d1" data-editable>Better overlap did <strong>not</strong> guarantee reliable surfaces.</div>
+          <div class="statement reveal d1" data-editable>Better overlap did <strong class="constraint-accent">not</strong> guarantee reliable surfaces.</div>
           <div class="two-col" style="margin-top:46px;grid-template-columns:.88fr 1.12fr">
-            <div class="card red reveal-left d2">
+            <div class="card dark reveal-left d2">
               <div class="metric">346.41 mm</div>
               <div class="metric-label">V-style left-patella ASSD</div>
               <p style="font-size:27px;margin-top:28px" data-editable>An empty left-patella prediction inflated the subject-level patella ASSD to 177.58 mm—even while the right side measured 8.74 mm.</p>
             </div>
-            <div class="image-frame reveal d3"><img src="capstone-assets/decoder-reconstructions.png" alt="Ground truth and decoder reconstruction examples showing varying prediction quality"></div>
+            <div class="legacy-model-wrap reveal d3">
+              <div class="model-stage static-model-stage" data-visual="failure-comparison" aria-label="Authentic target and held-out failure prediction for VSD_z023_Left">
+                <canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div>
+                <div class="model-fallback"><strong>3D view unavailable.</strong><span>The held-out prediction is empty for the patella channel at the 0.5 threshold.</span></div>
+              </div>
+              <div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div>
+            </div>
           </div>
         </div>
         <div class="source">Fold-4 sensitivity case. Catastrophic empty predictions were retained, not removed as outliers—making the failure mode visible.</div>
       </section>
 
-      <!-- SLIDE 16 — BOTTLENECK -->
-      <section class="slide" data-title="Bottleneck hypothesis">
+      <!-- MODELLING DEEP DIVE 07 — CONSTRAINTS -->
+      <section class="slide model-slide" data-title="Pipeline constraints">
         <div class="slide-inner">
-          <div class="topline reveal"><span>06 · Critical Analysis</span><span class="slide-no">16</span></div>
-          <h2 class="reveal d1" data-editable>A plausible bottleneck: geometry-inconsistent lifting.</h2>
-          <div class="two-col" style="margin-top:42px">
-            <article class="card dark reveal-left d2" style="min-height:480px">
-              <div class="kicker">What generated the inputs</div>
-              <h3 style="font-size:42px">Finite-source DRR geometry</h3>
-              <p style="font-size:27px;margin-top:30px" data-editable>Divergent rays encoded source position, detector spacing and perspective.</p>
-              <div style="font:800 82px/1 var(--font-display);margin-top:60px;color:var(--red)">╲│╱</div>
-            </article>
-            <article class="card reveal d3" style="min-height:480px">
-              <div class="kicker">What the model assumed</div>
-              <h3 style="font-size:42px">Cartesian axis replication</h3>
-              <p style="font-size:27px;margin-top:30px" data-editable>AP and flipped-LAT features were copied along orthogonal axes without a projection matrix or ray paths.</p>
-              <div style="font:800 82px/1 var(--font-display);margin-top:60px;color:var(--blue)">┼ ┼ ┼</div>
-            </article>
+          <div class="topline reveal"><span>05 · Results &amp; Interpretation</span><span class="slide-no"></span></div>
+          <h2 class="reveal d1" data-editable>A real failure makes the pipeline’s constraints visible.</h2>
+          <div class="model-layout">
+            <div class="model-copy reveal-left d2">
+              <div class="model-eyebrow">Held-out case · VSD_z023_Left · Fold 2</div>
+              <div class="model-step-content">
+                <div data-step-panel class="active"><div class="model-step-title" data-editable>Begin with the 3D target.</div><p class="model-step-copy" data-editable>The reference volume contains all four bones, including the small patella and fibula.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Reveal the out-of-fold prediction.</div><p class="model-step-copy" data-editable>The V-style decoder recovers the large-bone structure but does not produce a patella component at the 0.5 threshold.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Overlay prediction and target.</div><p class="model-step-copy" data-editable>Solid surfaces are the prediction; neutral wireframes show where the target continues beyond it.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Isolate the small-bone failure.</div><p class="model-step-copy" data-editable>The absent green prediction is data-authentic—not an invented intermediate shape.</p></div>
+                <div data-step-panel><div class="model-step-title" data-editable>Trace plausible information bottlenecks.</div><p class="model-step-copy" data-editable>Two projections collapse depth; the deepest map is only 8 × 8; Cartesian lifting differs from divergent DRR rays; logits are refined at 128³; fractured examples are limited.</p></div>
+              </div>
+              <div class="model-note"><strong>Interpretation, not proof of causality:</strong> these constraints explain where evidence can be lost; the controlled experiment identifies the residual decoder as the stronger design.</div>
+              <div class="model-progress"><div class="model-progress-dots"></div><button class="model-next" type="button">Next step</button></div>
+            </div>
+            <div class="model-stage-wrap reveal-right d2">
+              <div class="model-stage" data-visual="bottlenecks" aria-label="Interactive comparison of ground truth and out-of-fold prediction for VSD_z023_Left">
+                <canvas></canvas>
+                <div class="model-dom-layer"></div>
+                <div class="model-loading">Loading authentic 3D surfaces…</div>
+                <div class="model-fallback"><strong>3D view unavailable.</strong><span>The target contains all four bones; the held-out prediction contains femur, tibia and fibula, while the patella is empty at the 0.5 threshold.</span></div>
+              </div>
+              <div class="bone-legend" aria-label="Bone colour legend">
+                <span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span>
+              </div>
+              <div class="model-source reveal d3">Sources: Report §4.10.1; fold-2 Residual-V prediction; generated asset manifest.</div>
+            </div>
           </div>
-          <div class="card red reveal d4" style="margin-top:28px;min-height:120px">
-            <p style="font-size:27px" data-editable><strong>Inference—not proven causality:</strong> uncommon fractures and small bones provide less evidence for learning this geometric correction from only 43 subjects.</p>
-          </div>
+          <aside class="speaker-notes">[Sources] 24020059_Capstone_2.docx §4.10.1; HPC_modelling output: VSD_z023_Left, fold 2, residual_vnet_style; capstone-assets/modeling/model-assets-manifest.json. Solid surfaces are prediction; neutral wireframe is ground truth. The magenta callout denotes an error/constraint, avoiding red because red is reserved for fibula.</aside>
         </div>
-        <div class="source">Supported by persistent errors across frozen and joint-training regimes, but a matched Cartesian-vs-ray-lift ablation is still required.</div>
       </section>
 
       <!-- SLIDE 17 — RESPONSIBLE COMPUTING -->
@@ -934,7 +1119,7 @@
   <!-- Presentation controls are outside the 1920×1080 stage. -->
   <nav class="deck-controls" aria-label="Presentation controls">
     <button id="prevBtn" aria-label="Previous slide">←</button>
-    <span id="counter">1 / 19</span>
+    <span id="counter">1 / 24</span>
     <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
     <button id="nextBtn" aria-label="Next slide">→</button>
   </nav>
@@ -943,167 +1128,42 @@
   <div class="edit-hotzone" title="Hover or click to edit"></div>
   <button class="edit-toggle" id="editToggle" title="Edit mode (E)">✎</button>
 
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.min.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/"
+      }
+    }
+  </script>
   <script>
-    /* ===========================================
-       SLIDE PRESENTATION CONTROLLER
-       Keyboard, wheel, touch and fixed-stage scaling.
-       =========================================== */
-    class SlidePresentation {
-      constructor() {
-        this.slides = [...document.querySelectorAll(".slide")];
-        this.currentSlide = 0;
-        this.stage = document.getElementById("deckStage");
-        this.counter = document.getElementById("counter");
-        this.progress = document.getElementById("progressFill");
-        this.wheelLocked = false;
-        this.touchStartX = 0;
-        this.setupStageScale();
-        this.setupNavigation();
-        this.showSlide(this.readHash());
-      }
-
-      setupStageScale() {
-        const scale = () => {
-          const factor = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-          const x = (window.innerWidth - 1920 * factor) / 2;
-          const y = (window.innerHeight - 1080 * factor) / 2;
-          this.stage.style.transform = `translate(${x}px, ${y}px) scale(${factor})`;
-        };
-        scale();
-        window.addEventListener("resize", scale);
-      }
-
-      setupNavigation() {
-        document.addEventListener("keydown", event => {
-          if (event.target.getAttribute("contenteditable") === "true") return;
-          if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(event.key)) {
-            event.preventDefault(); this.next();
-          }
-          if (["ArrowLeft", "ArrowUp", "PageUp"].includes(event.key)) {
-            event.preventDefault(); this.prev();
-          }
-          if (event.key === "Home") this.showSlide(0);
-          if (event.key === "End") this.showSlide(this.slides.length - 1);
-        });
-        document.getElementById("prevBtn").addEventListener("click", () => this.prev());
-        document.getElementById("nextBtn").addEventListener("click", () => this.next());
-        window.addEventListener("wheel", event => {
-          if (this.wheelLocked || Math.abs(event.deltaY) < 18) return;
-          this.wheelLocked = true;
-          event.deltaY > 0 ? this.next() : this.prev();
-          setTimeout(() => { this.wheelLocked = false; }, 420);
-        }, { passive: true });
-        window.addEventListener("touchstart", event => {
-          this.touchStartX = event.changedTouches[0].screenX;
-        }, { passive: true });
-        window.addEventListener("touchend", event => {
-          const delta = event.changedTouches[0].screenX - this.touchStartX;
-          if (Math.abs(delta) > 50) delta < 0 ? this.next() : this.prev();
-        }, { passive: true });
-        window.addEventListener("hashchange", () => this.showSlide(this.readHash(), false));
-      }
-
-      readHash() {
-        const value = parseInt(location.hash.replace("#", ""), 10);
-        return Number.isFinite(value) ? value - 1 : 0;
-      }
-
-      showSlide(index, updateHash = true) {
-        this.currentSlide = Math.max(0, Math.min(index, this.slides.length - 1));
-        this.slides.forEach((slide, i) => {
-          slide.classList.toggle("active", i === this.currentSlide);
-          slide.classList.toggle("visible", i === this.currentSlide);
-        });
-        this.counter.textContent = `${this.currentSlide + 1} / ${this.slides.length}`;
-        this.progress.style.width = `${((this.currentSlide + 1) / this.slides.length) * 100}%`;
-        document.title = `${this.currentSlide + 1}. ${this.slides[this.currentSlide].dataset.title} — 3D Knee Reconstruction`;
-        if (updateHash) history.replaceState(null, "", `#${this.currentSlide + 1}`);
-      }
-
-      next() { this.showSlide(this.currentSlide + 1); }
-      prev() { this.showSlide(this.currentSlide - 1); }
-    }
-
-    /* ===========================================
-       INLINE EDITOR
-       E toggles editing; Ctrl/Cmd+S stores locally
-       and downloads the edited HTML.
-       =========================================== */
-    class InlineEditor {
-      constructor() {
-        this.isActive = false;
-        this.key = "capstone-knee-deck-edits-v1";
-        this.editables = [...document.querySelectorAll("[data-editable]")];
-        this.restore();
-        document.addEventListener("keydown", event => {
-          if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "s") {
-            event.preventDefault();
-            this.save();
-            this.download();
-          }
-        });
-      }
-      toggleEditMode() {
-        this.isActive = !this.isActive;
-        document.body.classList.toggle("editing", this.isActive);
-        document.getElementById("editToggle").classList.toggle("active", this.isActive);
-        this.editables.forEach(element => element.setAttribute("contenteditable", String(this.isActive)));
-      }
-      save() {
-        const values = this.editables.map(element => element.innerHTML);
-        localStorage.setItem(this.key, JSON.stringify(values));
-      }
-      restore() {
-        const saved = localStorage.getItem(this.key);
-        if (!saved) return;
-        try {
-          JSON.parse(saved).forEach((value, index) => {
-            if (this.editables[index] && typeof value === "string") this.editables[index].innerHTML = value;
-          });
-        } catch (_) { /* Ignore malformed local edits. */ }
-      }
-      download() {
-        this.save();
-        const clone = document.documentElement.cloneNode(true);
-        clone.querySelectorAll("[contenteditable]").forEach(el => el.removeAttribute("contenteditable"));
-        const blob = new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: "text/html" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = "capstone-presentation-edited.html";
-        link.click();
-        URL.revokeObjectURL(link.href);
-      }
-    }
-
-    const deck = new SlidePresentation();
-    const editor = new InlineEditor();
-    const hotzone = document.querySelector(".edit-hotzone");
-    const editToggle = document.getElementById("editToggle");
-    let hideTimeout = null;
-
-    editToggle.addEventListener("click", () => editor.toggleEditMode());
-    hotzone.addEventListener("click", () => editor.toggleEditMode());
-    hotzone.addEventListener("mouseenter", () => {
-      clearTimeout(hideTimeout);
-      editToggle.classList.add("show");
-    });
-    hotzone.addEventListener("mouseleave", () => {
-      hideTimeout = setTimeout(() => {
-        if (!editor.isActive) editToggle.classList.remove("show");
-      }, 400);
-    });
-    editToggle.addEventListener("mouseenter", () => clearTimeout(hideTimeout));
-    editToggle.addEventListener("mouseleave", () => {
-      hideTimeout = setTimeout(() => {
-        if (!editor.isActive) editToggle.classList.remove("show");
-      }, 400);
-    });
-    document.addEventListener("keydown", event => {
-      if ((event.key === "e" || event.key === "E") && event.target.getAttribute("contenteditable") !== "true") {
-        editor.toggleEditMode();
-      }
+    window.ThreeRuntimeReady = new Promise((resolve, reject) => {
+      window.__resolveThreeRuntime = resolve;
+      window.__rejectThreeRuntime = reject;
     });
   </script>
+  <script type="module">
+    Promise.all([
+      import("three"),
+      import("three/addons/loaders/GLTFLoader.js")
+    ]).then(([THREE, loaderModule]) => {
+      const runtime = { THREE, GLTFLoader: loaderModule.GLTFLoader };
+      window.ThreeRuntime = runtime;
+      window.__resolveThreeRuntime(runtime);
+      window.dispatchEvent(new Event("three-ready"));
+    }).catch(error => {
+      console.error("Three.js CDN runtime failed to load.", error);
+      window.__rejectThreeRuntime(error);
+      document.documentElement.classList.add("three-failed");
+    });
+  </script>
+  <script src="capstone-assets/modeling/model-assets.js"></script>
+  <script src="capstone-js/modeling-runtime.js"></script>
+  <script src="capstone-js/scenes-learning.js"></script>
+  <script src="capstone-js/scenes-volume.js"></script>
+  <script src="capstone-js/scene-bottlenecks.js"></script>
+  <script src="capstone-js/scenes-results.js"></script>
+  <script src="capstone-js/deck-controller.js"></script>
 </body>
 </html>
 

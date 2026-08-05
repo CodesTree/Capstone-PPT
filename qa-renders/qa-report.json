@@ -1,0 +1,721 @@
+{
+  "slideCount": 24,
+  "renderCount": 47,
+  "readyVisuals": 9,
+  "failedVisuals": 0,
+  "consoleErrors": [],
+  "pageErrors": [],
+  "localBinaryRequests": [],
+  "results": [
+    {
+      "slide": 1,
+      "title": "Title",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-01-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 2,
+      "title": "The inverse problem",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-02-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 3,
+      "title": "Why it matters",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-03-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 4,
+      "title": "Literature trajectory",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-04-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 5,
+      "title": "Research gap",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-05-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 6,
+      "title": "Research question",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-06-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 7,
+      "title": "Cohort",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-07-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 8,
+      "title": "Preparation pipeline",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-08-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 9,
+      "title": "P1 visual grammar",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-09-step-00.png",
+          "audit": {
+            "activePanel": "Start with one projection.The encoder sees an AP or lateral DRR as a 256 × 256 image—without a bone ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-09-step-01.png",
+          "audit": {
+            "activePanel": "Hide exactly 60% of its patches.A uniform 8 × 8 grid supplies 64 patches; 38 are masked for each tra",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-09-step-02.png",
+          "audit": {
+            "activePanel": "Compress the visible evidence at four scales.ConvNeXt preserves fine edges in large feature maps and",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-09-step-03.png",
+          "audit": {
+            "activePanel": "Reconstruct only what was hidden.Learning missing radiographic structure adapts the encoder to this ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 10,
+      "title": "P2 cross-view completion",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-10-step-00.png",
+          "audit": {
+            "activePanel": "Pair two projections of the same knee.AP and lateral images contain complementary evidence about the",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-10-step-01.png",
+          "audit": {
+            "activePanel": "Ask each view to help complete the other.Training runs in both directions: AP from lateral evidence ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-10-step-02.png",
+          "audit": {
+            "activePanel": "Restrict where tokens may communicate.At the final 8 × 8 grid, attention is allowed only within the ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-10-step-03.png",
+          "audit": {
+            "activePanel": "Learn correspondence—not 3D shape yet.The two views become related representations, but the four-bon",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 11,
+      "title": "Four feature scales",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-11-step-00.png",
+          "audit": {
+            "activePanel": "One image becomes four feature maps.The visualization shows RMS activation energy across channels—an",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-11-step-01.png",
+          "audit": {
+            "activePanel": "High resolution keeps local detail.The 64² and 32² maps use local fusion, supporting edges and small",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-11-step-02.png",
+          "audit": {
+            "activePanel": "Low resolution gathers wider context.The 16² and 8² maps use cross-attention so distant AP and later",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-11-step-03.png",
+          "audit": {
+            "activePanel": "Project each scale to a matched decoder width.Trainable 1 × 1 convolutions convert the four levels t",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 12,
+      "title": "2D to 3D lift",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-12-step-00.png",
+          "audit": {
+            "activePanel": "Begin with fused AP and lateral maps.The lateral map is flipped to match the standardized LPS orient",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-12-step-01.png",
+          "audit": {
+            "activePanel": "Replicate each plane along an orthogonal axis.The code permutes, inserts a new dimension and expands",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-12-step-02.png",
+          "audit": {
+            "activePanel": "Concatenate both cubes and learn a 3D fusion.A 3 × 3 × 3 convolution mixes the complementary AP and ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-12-step-03.png",
+          "audit": {
+            "activePanel": "But the input rays were divergent.The current lift assumes Cartesian replication and receives no sou",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 13,
+      "title": "Decoder prediction",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-13-step-00.png",
+          "audit": {
+            "activePanel": "Start at 8³ with 512 channels.The smallest feature volume carries the widest contextual view of the ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-13-step-01.png",
+          "audit": {
+            "activePanel": "Upsample to 16³ and add the matching skip.Transposed convolution doubles spatial resolution; concate",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-13-step-02.png",
+          "audit": {
+            "activePanel": "Repeat at 32³ and 64³.Each stage combines the growing volume with a finer lifted feature level.",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-13-step-03.png",
+          "audit": {
+            "activePanel": "Refine at 128³, then emit four logits.One channel is produced for each bone before a shared trilinea",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 4,
+          "fileName": "slide-13-step-04.png",
+          "audit": {
+            "activePanel": "Convert logits into occupied voxels.Sigmoid probabilities above 0.5 form the final femur, tibia, pat",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 14,
+      "title": "Residual refinement",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-14-step-00.png",
+          "audit": {
+            "activePanel": "Every arm receives the same input feature.The encoder, fusion, lifting, decoder widths and training ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-14-step-01.png",
+          "audit": {
+            "activePanel": "Both blocks apply two matched 3D convolutions.Group normalization and the chosen ReLU or PReLU activ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-14-step-02.png",
+          "audit": {
+            "activePanel": "The residual arm adds a projection shortcut.A 1 × 1 × 1 projection aligns channel width, allowing th",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-14-step-03.png",
+          "audit": {
+            "activePanel": "Learning becomes “refine this” instead of “rebuild everything.”This is the topology change isolated ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 718
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 15,
+      "title": "Controlled experiment",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-15-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 16,
+      "title": "Evaluation",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-16-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 17,
+      "title": "Main result",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-17-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 18,
+      "title": "Fold robustness",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-18-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 19,
+      "title": "Subgroup results",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-19-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 788,
+              "height": 500
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 20,
+      "title": "Failure analysis",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-20-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 928,
+              "height": 500
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 21,
+      "title": "Pipeline constraints",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-21-step-00.png",
+          "audit": {
+            "activePanel": "Begin with the 3D target.The reference volume contains all four bones, including the small patella a",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 1,
+          "fileName": "slide-21-step-01.png",
+          "audit": {
+            "activePanel": "Reveal the out-of-fold prediction.The V-style decoder recovers the large-bone structure but does not",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 2,
+          "fileName": "slide-21-step-02.png",
+          "audit": {
+            "activePanel": "Overlay prediction and target.Solid surfaces are the prediction; neutral wireframes show where the t",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 3,
+          "fileName": "slide-21-step-03.png",
+          "audit": {
+            "activePanel": "Isolate the small-bone failure.The absent green prediction is data-authentic—not an invented interme",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        },
+        {
+          "step": 4,
+          "fileName": "slide-21-step-04.png",
+          "audit": {
+            "activePanel": "Trace plausible information bottlenecks.Two projections collapse depth; the deepest map is only 8 × ",
+            "overflows": [],
+            "stageState": "ready",
+            "canvasPixels": {
+              "width": 1166,
+              "height": 782
+            }
+          }
+        }
+      ]
+    },
+    {
+      "slide": 22,
+      "title": "Responsible computing",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-22-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 23,
+      "title": "Conclusion",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-23-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    },
+    {
+      "slide": 24,
+      "title": "Future work",
+      "states": [
+        {
+          "step": 0,
+          "fileName": "slide-24-step-00.png",
+          "audit": {
+            "activePanel": null,
+            "overflows": [],
+            "stageState": null,
+            "canvasPixels": null
+          }
+        }
+      ]
+    }
+  ]
+}
