@@ -1,6 +1,6 @@
 # Capstone presentation
 
-Open `capstone-presentation.html` directly in Chrome or Edge. The deck is a fixed 1920 × 1080 presentation with 24 slides.
+Open `capstone-presentation.html` directly in Chrome or Edge. The deck is a fixed 1920 × 1080 presentation with 25 slides.
 
 - Use the arrow keys or mouse wheel to move between slides.
 - On modelling slides, click the visual or **Next step** to reveal the next concept.

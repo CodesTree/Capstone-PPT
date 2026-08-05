@@ -546,138 +546,103 @@
         <div class="slide-inner">
           <div class="topline reveal"><span>Capstone Project 2 · Final Presentation</span><span class="slide-no">01</span></div>
           <h1 class="reveal d1" data-editable>Fracture-Preserving<br>3D Knee Reconstruction</h1>
-          <p class="title-sub reveal d2" data-editable>A controlled comparison of U-Net-style and V-Net-style decoder blocks from bi-planar X-rays</p>
+          <p class="title-sub reveal d2" data-editable>A controlled comparison of U-Net-style and V-Net-style decoder blocks</p>
           <div class="title-meta reveal d3">
             <span data-editable>CHAN ZHENG SHAO · 24020059<br>BIS (Hons) Data Analytics</span>
-            <span data-editable>Supervisor: Prof. Ts. Dr Lee Yun Li<br>Sunway University · 3 August 2026</span>
+            <span data-editable>Supervisor: Prof. Ts. Dr Lee Yun Li<br>Sunway University</span>
           </div>
         </div>
       </section>
 
-      <!-- SLIDE 02 — BACKGROUND -->
+      <!-- SLIDE 02 — INVERSE PROBLEM -->
       <section class="slide" data-title="The inverse problem">
         <div class="slide-inner">
-          <div class="topline reveal"><span>01 · Background</span><span class="slide-no">02</span></div>
-          <h2 class="reveal d1" data-editable>Two projections. One missing dimension.</h2>
-          <div class="hero-equation">
-            <div class="reveal-left d2">
-              <div class="kicker">Observed evidence</div>
-              <div class="big">2D × 2</div>
-              <p class="lead" style="margin-top:28px" data-editable>AP and lateral radiographs are fast and accessible, but depth is collapsed and anatomy overlaps.</p>
-            </div>
-            <div class="arrow reveal-scale d3">→</div>
-            <div class="reveal d4">
-              <div class="kicker">Desired output</div>
-              <div class="big">3D × 4</div>
-              <p class="lead" style="margin-top:28px" data-editable>Recover femur, tibia, patella and fibula—without smoothing away fracture morphology.</p>
+          <div class="topline reveal"><span>01 · Topic Knowledge</span><span class="slide-no">02</span></div>
+          <h2 class="reveal d1" data-editable>Two X-rays are accessible—but 3D fracture morphology remains ambiguous.</h2>
+          <div class="two-col" style="margin-top:34px;flex:1;grid-template-columns:1.05fr .95fr">
+            <div class="image-frame reveal-left d2"><img src="capstone-assets/biplanar-drr.png" alt="Paired AP and lateral knee radiographs"></div>
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <article class="card reveal d2"><h3>Complementary, not complete</h3><p data-editable>AP and lateral views reveal different structures, but depth remains underdetermined and several 3D anatomies can produce similar projections.</p></article>
+              <article class="card reveal d3"><h3>CT remains the detailed reference</h3><p data-editable>CT resolves fragments and articular geometry, but adds radiation, cost, infrastructure and segmentation work.</p></article>
+              <article class="card dark reveal d4"><h3>Intended role</h3><p data-editable>Provide additional 3D information from common radiographs as an experimental adjunct—not replace CT in complex trauma.</p></article>
             </div>
           </div>
         </div>
-        <div class="source">Clinical premise: radiographs are complementary projections of an ill-posed inverse problem; CT remains the detailed reference, not a target for replacement.</div>
+        <div class="source">Report pp. 10–11, 22–23.</div>
       </section>
 
-      <!-- SLIDE 03 — DOMAIN MOTIVATION -->
-      <section class="slide" data-title="Why it matters">
+      <!-- SLIDE 03 — LITERATURE GAP -->
+      <section class="slide" data-title="Literature gap">
         <div class="slide-inner">
-          <div class="topline reveal"><span>01 · Background</span><span class="slide-no">03</span></div>
-          <h2 class="reveal d1" data-editable>Fracture morphology is spatial—not binary.</h2>
-          <div class="two-col" style="margin-top:46px;flex:1">
-            <div class="image-frame reveal-left d2"><img src="capstone-assets/biplanar-drr.png" alt="AP and lateral digitally reconstructed radiographs of a knee"></div>
-            <div class="three-col reveal d3" style="grid-template-columns:1fr;gap:18px">
-              <article class="card"><h3>Cortical continuity</h3><p data-editable>A plausible-looking surface can incorrectly close a clinically meaningful fracture gap.</p></article>
-              <article class="card"><h3>Fragment displacement</h3><p data-editable>Angulation, separation and articular depression depend on 3D relationships.</p></article>
-              <article class="card red"><h3>Safety consequence</h3><p data-editable>High aggregate overlap is not evidence of reliable fracture preservation.</p></article>
-            </div>
+          <div class="topline reveal"><span>01 · Topic Knowledge</span><span class="slide-no">03</span></div>
+          <h2 class="reveal d1" data-editable>Literature proves feasibility, not a fair decoder comparison.</h2>
+          <div class="four-col" style="margin-top:48px">
+            <article class="card reveal d2"><div class="kicker">Feasible</div><h3>Reconstruction works</h3><p data-editable>Prior systems reconstruct bone from one or two radiographs using voxel, registration, transformer and implicit methods.</p></article>
+            <article class="card reveal d3"><div class="kicker">Incomparable</div><h3>Systems change together</h3><p data-editable>Anatomy, datasets, geometry, capacity, preprocessing and evaluation protocols differ across studies.</p></article>
+            <article class="card reveal d4"><div class="kicker">Metrics diverge</div><h3>Overlap is insufficient</h3><p data-editable>High Dice can coexist with clinically important landmark or surface error; subgroup averages can hide failure.</p></article>
+            <article class="card red reveal d5"><div class="kicker" style="color:white">Research gap</div><h3>No matched ablation</h3><p data-editable>No controlled 2×2 study isolates residual topology and activation while holding the upstream pathway fixed.</p></article>
           </div>
         </div>
-        <div class="source">Project report §§1.1–1.2. The system is positioned as an experimental adjunct; it does not claim diagnostic or clinical readiness.</div>
+        <div class="source">Report pp. 20–21, 38–51.</div>
       </section>
 
-      <!-- SLIDE 04 — LITERATURE REVIEW -->
-      <section class="slide" data-title="Literature trajectory">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>02 · Literature Review</span><span class="slide-no">04</span></div>
-          <h2 class="reveal d1" data-editable>From geometric fitting to learned volumetric reconstruction.</h2>
-          <div class="timeline reveal d2">
-            <div class="timeline-item"><div class="year">2015</div><p data-editable>Reviews establish calibration, focal position, orientation and superimposition as core constraints.</p></div>
-            <div class="timeline-item"><div class="year">2020</div><p data-editable>Kasten et al. demonstrate end-to-end biplanar knee-bone reconstruction.</p></div>
-            <div class="timeline-item"><div class="year">2021</div><p data-editable>Shiode et al. extend 2D→3D reconstruction to actual wrist radiographs.</p></div>
-            <div class="timeline-item"><div class="year">2022</div><p data-editable>Van Houtte et al. constrain outputs through calibrated atlas registration.</p></div>
-            <div class="timeline-item"><div class="year">2023</div><p data-editable>Fracture representation and cross-anatomy benchmarking expose pathology and ranking sensitivity.</p></div>
-            <div class="timeline-item"><div class="year">2024–25</div><p data-editable>Implicit fields and transformer methods widen the solution space—but not the validation guarantees.</p></div>
-          </div>
-          <div class="card dark reveal d3" style="margin-top:44px;min-height:150px;display:flex;align-items:center;gap:40px">
-            <div class="metric accent">12</div>
-            <p style="font-size:26px" data-editable>comparative studies were synthesized across datasets, inputs, preprocessing, architecture, training and reported outcomes—not merely listed.</p>
-          </div>
-        </div>
-        <div class="source">Hosseinian & Arefi (2015); Kasten et al. (2020); Shiode et al. (2021); Van Houtte et al. (2022); Buttongkum et al. (2023); Shakya & Khanal (2023).</div>
-      </section>
-
-      <!-- SLIDE 05 — LITERATURE SYNTHESIS / GAP -->
-      <section class="slide" data-title="Research gap">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>02 · Literature Review</span><span class="slide-no">05</span></div>
-          <h2 class="reveal d1" data-editable>The literature compares systems—but rarely isolates causes.</h2>
-          <div class="three-col" style="margin-top:54px">
-            <article class="card reveal d2"><div class="kicker">Confound 01</div><h3>Named networks bundle many choices</h3><p data-editable>Topology, activation, normalization, capacity, loss and training commonly change together.</p></article>
-            <article class="card reveal d3"><div class="kicker">Confound 02</div><h3>Datasets and geometry differ</h3><p data-editable>Projection models, anatomy, preprocessing and splits can change apparent model ranking.</p></article>
-            <article class="card reveal d4"><div class="kicker">Blind spot 03</div><h3>Aggregate metrics hide failure</h3><p data-editable>Dice can stay plausible while small bones, surfaces or fracture gaps fail catastrophically.</p></article>
-          </div>
-          <div class="question reveal d5" data-editable>So the research gap is not “Which network wins?” It is “Which decoder property causes the difference under controlled conditions?”</div>
-        </div>
-      </section>
-
-      <!-- SLIDE 06 — PROBLEM AND OBJECTIVES -->
+      <!-- SLIDE 04 — RESEARCH QUESTION -->
       <section class="slide" data-title="Research question">
         <div class="slide-inner">
-          <div class="topline reveal"><span>03 · Problem & Objectives</span><span class="slide-no">06</span></div>
-          <div class="kicker reveal d1" style="margin-top:70px">Research question</div>
-          <div class="question reveal d2" style="margin-top:16px" data-editable>How do decoder-block topology and activation influence overlap, surface accuracy and robustness in healthy and fractured knees under a shared, leakage-controlled front end?</div>
-          <div class="two-col" style="margin-top:54px">
-            <div>
-              <div class="objective-row reveal d2"><div class="n">01</div><p data-editable>Build a geometry-verified, subject-isolated cohort.</p></div>
-              <div class="objective-row reveal d3"><div class="n">02</div><p data-editable>Hold the upstream representation constant.</p></div>
-            </div>
-            <div>
-              <div class="objective-row reveal d3"><div class="n">03</div><p data-editable>Evaluate volume, surface, bone and cohort failure.</p></div>
-              <div class="objective-row reveal d4"><div class="n">04</div><p data-editable>Compare four decoder arms over five grouped folds.</p></div>
-            </div>
+          <div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">04</span></div>
+          <h2 class="reveal d1" data-editable>The research question isolates topology and activation.</h2>
+          <div class="question reveal d2" style="margin-top:30px" data-editable>How do decoder-block topology and activation influence overlap, surface accuracy and robustness—under one shared, leakage-controlled bi-planar front end?</div>
+          <div class="four-col" style="margin-top:42px">
+            <article class="card reveal d2"><div class="metric">01</div><h3>Cohort</h3><p data-editable>Verify geometry, laterality and subject-level separation.</p></article>
+            <article class="card reveal d3"><div class="metric">02</div><h3>Fair front end</h3><p data-editable>Hold encoder, fusion and 2D→3D lifting constant.</p></article>
+            <article class="card reveal d4"><div class="metric">03</div><h3>Complementary metrics</h3><p data-editable>Use Dice and ASSD with bone and cohort analysis.</p></article>
+            <article class="card dark reveal d5"><div class="metric accent">04</div><h3>Controlled comparison</h3><p data-editable>Evaluate four decoder arms over five grouped folds.</p></article>
           </div>
         </div>
+        <div class="source">Report pp. 12–15.</div>
       </section>
 
-      <!-- SLIDE 07 — DATA -->
+      <!-- SLIDE 06 — COHORT -->
       <section class="slide" data-title="Cohort">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">07</span></div>
-          <h2 class="reveal d1" data-editable>Subject isolation before model optimization.</h2>
-          <div class="four-col" style="margin-top:46px">
-            <div class="card dark reveal d2"><div class="metric">43</div><div class="metric-label">Subjects</div></div>
-            <div class="card reveal d2"><div class="metric">71</div><div class="metric-label">Knees</div></div>
-            <div class="card reveal d3"><div class="metric">58</div><div class="metric-label">Healthy knees</div></div>
-            <div class="card red reveal d3"><div class="metric">13</div><div class="metric-label">Fractured knees</div></div>
+          <div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">06</span></div>
+          <h2 class="reveal d1" data-editable>The cohort is small, mixed and leakage-controlled.</h2>
+          <div class="four-col" style="margin-top:42px">
+            <div class="card dark reveal d2"><div class="metric">43</div><div class="metric-label">subjects</div></div>
+            <div class="card reveal d2"><div class="metric">71</div><div class="metric-label">knees</div></div>
+            <div class="card reveal d3"><div class="metric">58</div><div class="metric-label">healthy knees</div></div>
+            <div class="card red reveal d3"><div class="metric">13</div><div class="metric-label">fractured knees</div></div>
           </div>
-          <div class="two-col" style="margin-top:34px;flex:1">
-            <div class="image-frame reveal-left d3"><img src="capstone-assets/data-pipeline.png" alt="Data sources and four-bone target preparation pipeline"></div>
-            <div class="card reveal d4">
-              <div class="kicker">Leakage controls</div>
-              <ul class="clean">
-                <li data-editable>Bilateral knees from one subject stay in one fold.</li>
-                <li data-editable>Laterality and physical geometry are verified before training.</li>
-                <li data-editable>Results are aggregated at subject level—not knee-weighted.</li>
-                <li data-editable>Every test fold contains healthy and fractured-source anatomy.</li>
-              </ul>
+          <div class="two-col" style="margin-top:32px">
+            <article class="card reveal d4"><h3>Five subject-grouped folds</h3><p data-editable>Every fold contains healthy and fractured anatomy, while bilateral knees remain together.</p></article>
+            <article class="card dark reveal d5"><h3>Interpretation boundary</h3><p data-editable>Healthy and fractured cases come from different datasets, so pathology remains confounded with acquisition domain.</p></article>
+          </div>
+        </div>
+        <div class="source">Report pp. 14, 76–77, 110.</div>
+      </section>
+
+      <!-- SLIDE 07 — FOUR-CHANNEL TARGETS -->
+      <section class="slide" data-title="Ground-truth meshes">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">07</span></div>
+          <h2 class="reveal d1" data-editable>Ground-truth meshes become four-channel targets.</h2>
+          <div class="two-col" style="margin-top:32px;flex:1;grid-template-columns:.9fr 1.1fr">
+            <div class="image-frame reveal-left d2"><img src="capstone-assets/four-channel-targets.png" alt="Combined femur, tibia, patella and fibula meshes separated into four target channels"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+              <article class="card reveal d2"><div class="metric">1</div><h3>Segment the CT</h3><p data-editable>3D Slicer labels the complete anatomy; TotalSegmentator accelerates the initial segmentation.</p></article>
+              <article class="card reveal d3"><div class="metric">2</div><h3>Refine and export</h3><p data-editable>Apply 2–3 mm Gaussian smoothing, then export one STL surface per bone.</p></article>
+              <article class="card reveal d4"><div class="metric">3</div><h3>Align and voxelise</h3><p data-editable>Transform every STL into the same LPS-aligned 200 mm, 256³ four-channel grid.</p></article>
+              <article class="card dark reveal d5"><div class="metric accent">4</div><h3>Train and evaluate</h3><p data-editable>Paired DRRs drive reconstruction; masks provide per-bone Dice and ASSD references.</p></article>
             </div>
           </div>
         </div>
-        <div class="source">VSD: 30 healthy subjects / 58 knees. Ruikar et al.: 13 fractured subjects / 13 knees. Cohort status remains confounded with dataset source.</div>
+        <div class="source">Report pp. 83–85, 109–110. Limitation: meshes were manually prepared without radiologist or orthopaedic-specialist validation.</div>
       </section>
 
-      <!-- SLIDE 08 — PREPARATION PIPELINE -->
+      <!-- PREPARATION PIPELINE -->
       <section class="slide" data-title="Preparation pipeline">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">08</span></div>
+          <div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">08</span></div>
           <h2 class="reveal d1" data-editable>A geometry-first preparation pipeline.</h2>
           <div class="flow reveal d2">
             <div class="flow-step"><div class="n">01</div><h3>DICOM reconstruction</h3><p data-editable>Order slices using physical coordinates—not filenames.</p></div>
@@ -692,13 +657,51 @@
             <article class="card red"><div class="kicker" style="color:white">Risk gate 03</div><h3>Subject leakage</h3><p data-editable>Group bilateral knees before all fold-specific learning and evaluation.</p></article>
           </div>
         </div>
+        <div class="source">Report pp. 78–88.</div>
       </section>
 
+      <!-- SLIDE 09 — FACTORIAL DESIGN -->
+      <section class="slide" data-title="Controlled experiment">
+        <div class="slide-inner">
+          <div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">09</span></div>
+          <h2 class="reveal d1" data-editable>A 2×2 factorial design separates topology from activation.</h2>
+          <div class="two-col" style="margin-top:24px;grid-template-columns:1.35fr .65fr">
+            <div class="matrix reveal-left d2">
+              <div></div><div class="head">ReLU</div><div class="head">PReLU</div>
+              <div class="side">Plain topology</div><div class="cell">U-style<br>Plain + ReLU</div><div class="cell">Plain + PReLU</div>
+              <div class="side">Projected residual</div><div class="cell winner">Residual + ReLU<br>Best overall</div><div class="cell">V-style<br>Residual + PReLU</div>
+            </div>
+            <div>
+              <div class="card dark reveal d3" style="margin-top:36px">
+                <div class="kicker">Held constant</div>
+                <ul class="clean">
+                  <li data-editable>Encoder and AP↔LAT fusion</li>
+                  <li data-editable>2D→3D lifting pathway</li>
+                  <li data-editable>Decoder skeleton and widths</li>
+                  <li data-editable>Folds, data and augmentation</li>
+                  <li data-editable>Loss, optimiser and schedule</li>
+                </ul>
+              </div>
+              <div class="image-frame reveal d4" style="height:215px;margin-top:18px"><img src="capstone-assets/residual-block.png" alt="Projected residual decoder block"></div>
+            </div>
+          </div>
+        </div>
+        <div class="source">Report pp. 59, 98–102.</div>
+      </section>
 
+      <!-- SLIDE 10 — FAIR COMPARISON -->
+      <section class="slide" data-title="Fairness controls">
+        <div class="slide-inner"><div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">10</span></div><h2 class="reveal d1" data-editable>Fairness is enforced before results are compared.</h2><div class="three-col" style="margin-top:78px"><article class="card reveal d2"><div class="metric">01</div><h3>Train within fold</h3><p data-editable>Exclude test subjects from encoder, fusion and decoder optimisation.</p></article><article class="card reveal d3"><div class="metric">02</div><h3>Freeze and match</h3><p data-editable>Use the same front-end hash, initial state, loss, optimiser, seed and schedule.</p></article><article class="card dark reveal d4"><div class="metric accent">03</div><h3>Evaluate out of fold</h3><p data-editable>20 runs → 71 knees per arm → 43 subject-level comparisons.</p></article></div><div class="question reveal d5" style="font-size:30px;margin-top:46px" data-editable>Primary evidence: Dice overlap + ASSD surface distance + bone/cohort breakdown + explicit empty-prediction penalties.</div></div><div class="source">Report pp. 102–105.</div>
+      </section>
+
+      <!-- SLIDE 11 — REPRESENTATION LEARNING SUMMARY -->
+      <section class="slide" data-title="P1 and P2 summary">
+        <div class="slide-inner"><div class="topline reveal"><span>02 · Technical Approach</span><span class="slide-no">11</span></div><h2 class="reveal d1" data-editable>P1 learns structure; P2 links both views.</h2><div class="tag reveal d2" style="margin:18px auto 0">Five fold-specific ConvNeXtV2 encoders · test-fold subjects excluded from both phases</div><div class="two-col" style="margin-top:28px;flex:1"><article class="card reveal-left d3" style="display:flex;flex-direction:column"><div class="kicker">P1 · Single-view FCMAE</div><h3>Learn radiographic structure</h3><ul class="clean"><li data-editable>Mask 60% of patches.</li><li data-editable>Reconstruct one AP or LAT DRR.</li><li data-editable>Use no bone, fracture or 3D labels.</li></ul><div class="metric" style="margin-top:auto">0.3788 → 0.1032</div><div class="metric-label">validation loss</div></article><article class="card dark reveal-right d4" style="display:flex;flex-direction:column"><div class="kicker">P2 · Bidirectional completion</div><h3>Relate complementary views</h3><ul class="clean"><li data-editable>Keep the masked objective.</li><li data-editable>Add AP→LAT and LAT→AP completion.</li><li data-editable>Still withhold the 3D reconstruction target.</li></ul><div class="metric accent" style="margin-top:auto">0.4774 → 0.4298</div><div class="metric-label">validation loss</div></article></div></div><div class="source">Report pp. 91–92, 114–118. P1 and P2 losses measure different tasks and should not be compared directly.</div>
+      </section>
       <!-- MODELLING DEEP DIVE 01 — P1 -->
       <section class="slide model-slide" data-title="P1 visual grammar">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">12</span></div>
           <h2 class="reveal d1" data-editable>P1 learns the visual grammar of radiographs.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -726,7 +729,7 @@
       <!-- MODELLING DEEP DIVE 02 — P2 -->
       <section class="slide model-slide" data-title="P2 cross-view completion">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">13</span></div>
           <h2 class="reveal d1" data-editable>P2 teaches the two views to complete each other.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -754,7 +757,7 @@
       <!-- MODELLING DEEP DIVE 03 — FEATURE PYRAMID -->
       <section class="slide model-slide" data-title="Four feature scales">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">14</span></div>
           <h2 class="reveal d1" data-editable>Four scales preserve different kinds of evidence.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -782,7 +785,7 @@
       <!-- MODELLING DEEP DIVE 04 — LIFT -->
       <section class="slide model-slide" data-title="2D to 3D lift">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">15</span></div>
           <h2 class="reveal d1" data-editable>The lift copies two feature planes into a 3D grid.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -810,7 +813,7 @@
       <!-- MODELLING DEEP DIVE 05 — DECODER -->
       <section class="slide model-slide" data-title="Decoder prediction">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">16</span></div>
           <h2 class="reveal d1" data-editable>The decoder grows coarse evidence into four bone predictions.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -845,7 +848,7 @@
       <!-- MODELLING DEEP DIVE 06 — RESIDUAL -->
       <section class="slide model-slide" data-title="Residual refinement">
         <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no"></span></div>
+          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">17</span></div>
           <h2 class="reveal d1" data-editable>A residual path preserves the coarse guess while the block refines it.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
@@ -872,148 +875,46 @@
 
 
 
-      <!-- SLIDE 10 — FACTORIAL DESIGN -->
-      <section class="slide" data-title="Controlled experiment">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">10</span></div>
-          <h2 class="reveal d1" data-editable>A 2 × 2 factorial experiment isolates the causal candidates.</h2>
-          <div class="two-col" style="margin-top:24px;grid-template-columns:1.35fr .65fr">
-            <div class="matrix reveal-left d2">
-              <div></div><div class="head">ReLU</div><div class="head">PReLU</div>
-              <div class="side">Plain topology</div><div class="cell">U-style<br>Plain + ReLU</div><div class="cell">Plain + PReLU</div>
-              <div class="side">Projected residual</div><div class="cell winner">Residual + ReLU<br>Best overall</div><div class="cell">V-style<br>Residual + PReLU</div>
-            </div>
-            <div>
-              <div class="card dark reveal d3" style="margin-top:36px">
-                <div class="kicker">Held constant</div>
-                <ul class="clean">
-                  <li data-editable>Encoder and AP–LAT fusion</li>
-                  <li data-editable>2D→3D lifting pathway</li>
-                  <li data-editable>Decoder skeleton and widths</li>
-                  <li data-editable>Folds, data and augmentation</li>
-                  <li data-editable>Loss, optimizer and schedule</li>
-                </ul>
-              </div>
-              <div class="image-frame reveal d4" style="height:215px;margin-top:18px"><img src="capstone-assets/residual-block.png" alt="Projected residual decoder block"></div>
-            </div>
-          </div>
-        </div>
+      <!-- SLIDE 18 — FRONT-END CEILING -->
+      <section class="slide" data-title="Front-end ceiling">
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">18</span></div><h2 class="reveal d1" data-editable>The shared front end was fair—but small bones set the ceiling.</h2>
+          <div class="two-col" style="margin-top:24px;grid-template-columns:1.05fr .95fr;height:610px"><div class="image-frame reveal-left d2"><img src="capstone-assets/front-end-performance-summary.png" alt="Shared front-end performance summary showing validation macro-Dice and per-bone Dice by fold"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-content:center"><article class="card red reveal d2"><div class="metric">0.574</div><div class="metric-label">best validation macro-Dice</div></article><article class="card reveal d3"><h3>Large bones</h3><p style="font-size:27px" data-editable>Femur 0.732 · Tibia 0.676</p></article><article class="card reveal d4"><h3>Small bones</h3><p style="font-size:27px" data-editable>Patella 0.529 · Fibula 0.359</p></article><article class="card dark reveal d5"><p data-editable>The same size-dependent hierarchy later appears in every decoder—evidence of a pipeline-level limit, not a decoder-only defect.</p></article></div></div>
+        </div><div class="source">Report pp. 114–120. Fair representation ≠ high-quality representation.</div>
       </section>
 
-      <!-- SLIDE 11 — EVALUATION -->
-      <section class="slide" data-title="Evaluation">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>04 · Methodology</span><span class="slide-no">11</span></div>
-          <h2 class="reveal d1" data-editable>One score cannot establish reconstruction quality.</h2>
-          <div class="four-col" style="margin-top:54px">
-            <article class="card reveal d2"><div class="metric">Dice</div><div class="metric-label">Volumetric overlap</div><p style="margin-top:22px" data-editable>How much predicted and target volume coincide.</p></article>
-            <article class="card reveal d3"><div class="metric">ASSD</div><div class="metric-label">Surface distance</div><p style="margin-top:22px" data-editable>Mean bidirectional surface error in millimetres.</p></article>
-            <article class="card reveal d4"><div class="metric">4×</div><div class="metric-label">Bone-specific</div><p style="margin-top:22px" data-editable>Femur, tibia, patella and fibula reported separately.</p></article>
-            <article class="card red reveal d5"><div class="metric">0≠∅</div><div class="metric-label">Failure-aware</div><p style="margin-top:22px" data-editable>Empty predictions remain explicit catastrophic failures.</p></article>
-          </div>
-          <div class="card dark reveal d5" style="margin-top:42px;min-height:150px">
-            <p style="font-size:29px" data-editable>Five subject-grouped out-of-fold tests × subject-macro aggregation × healthy/fractured subgroup reporting = a more defensible evaluation than a single pooled mean.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SLIDE 12 — MAIN RESULT -->
+      <!-- SLIDE 19 — MAIN RESULT -->
       <section class="slide" data-title="Main result">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>05 · Results</span><span class="slide-no">12</span></div>
-          <h2 class="reveal d1" data-editable>Residual topology—not PReLU—explained the advantage.</h2>
-          <div class="two-col" style="margin-top:38px;grid-template-columns:.78fr 1.22fr;align-items:start">
-            <div class="card red reveal-left d2" style="min-height:500px;display:flex;flex-direction:column;justify-content:center">
-              <div class="metric">0.455</div><div class="metric-label">Best mean macro Dice</div>
-              <div class="rule" style="background:white;margin:36px 0"></div>
-              <div class="metric">11.44 mm</div><div class="metric-label">Best mean ASSD</div>
-              <p style="margin-top:38px;font-size:25px" data-editable>Residual + ReLU ranked first overall.</p>
-            </div>
-            <div class="bar-list reveal d3">
-              <div class="bar-row"><div class="label">U-style · Plain/ReLU</div><div class="bar-track"><div class="bar-fill" style="width:81.2%"></div></div><div class="bar-value">.406</div></div>
-              <div class="bar-row"><div class="label">Plain/PReLU</div><div class="bar-track"><div class="bar-fill" style="width:81.2%"></div></div><div class="bar-value">.406</div></div>
-              <div class="bar-row"><div class="label">V-style · Residual/PReLU</div><div class="bar-track"><div class="bar-fill" style="width:89.2%"></div></div><div class="bar-value">.446</div></div>
-              <div class="bar-row"><div class="label">Residual/ReLU</div><div class="bar-track"><div class="bar-fill red" style="width:91%"></div></div><div class="bar-value accent">.455</div></div>
-              <div class="card dark" style="margin-top:20px">
-                <p style="font-size:26px" data-editable><strong class="accent">+0.049 Dice / −2.44 mm ASSD</strong><br>when residual connectivity is added under ReLU.</p>
-              </div>
-            </div>
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">19</span></div><h2 class="reveal d1" data-editable>Residual-ReLU leads the controlled decoder test.</h2>
+          <div class="two-col" style="margin-top:42px;grid-template-columns:.75fr 1.25fr;flex:1"><div style="display:flex;flex-direction:column;gap:22px"><article class="card red reveal-left d2"><div class="metric">+0.049</div><div class="metric-label">Dice when residual topology is added under ReLU</div></article><article class="card dark reveal-left d3"><div class="metric accent">−2.44 mm</div><div class="metric-label">ASSD when residual topology is added under ReLU</div></article><article class="card reveal-left d4"><p data-editable>Residual decoding adds approximately 2.1% more decoder parameters; training remained about 37.5–38.3 minutes per run.</p></article></div>
+            <div class="bar-list reveal d3" style="margin-top:18px"><div class="bar-row"><div class="label">U-style · Plain/ReLU</div><div class="bar-track"><div class="bar-fill" style="width:81.2%"></div></div><div class="bar-value">.406</div></div><div class="bar-row"><div class="label">Plain/PReLU</div><div class="bar-track"><div class="bar-fill" style="width:81.2%"></div></div><div class="bar-value">.406</div></div><div class="bar-row"><div class="label">V-style · Residual/PReLU</div><div class="bar-track"><div class="bar-fill" style="width:89.2%"></div></div><div class="bar-value">.446</div></div><div class="bar-row"><div class="label">Residual/ReLU</div><div class="bar-track"><div class="bar-fill red" style="width:91%"></div></div><div class="bar-value accent">.455</div></div><div class="card dark" style="margin-top:30px"><p style="font-size:28px" data-editable><strong class="accent">Topology—not PReLU—explained the advantage.</strong><br>Residual-ReLU ranked first overall.</p></div></div>
           </div>
-        </div>
-        <div class="source">Five-fold subject-macro comparison. Replacing ReLU with PReLU produced approximately no Dice improvement in plain blocks and slightly reduced residual performance.</div>
+        </div><div class="source">Report pp. 123–126.</div>
       </section>
 
-      <!-- SLIDE 13 — ROBUSTNESS -->
-      <section class="slide" data-title="Fold robustness">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>05 · Results</span><span class="slide-no">13</span></div>
-          <h2 class="reveal d1" data-editable>The result persisted across grouped folds.</h2>
-          <div class="two-col" style="margin-top:38px;flex:1;grid-template-columns:1.25fr .75fr">
-            <div class="image-frame reveal-left d2"><img src="capstone-assets/fold-comparison.png" alt="Bar chart and heatmap comparing decoder performance across folds"></div>
-            <div style="display:flex;flex-direction:column;gap:22px">
-              <article class="card red reveal d2"><div class="metric">5 / 5</div><div class="metric-label">Residual-ReLU beats U-style Dice</div></article>
-              <article class="card reveal d3"><h3>Capacity gate</h3><p data-editable>Residual variants passed both healthy-only and mixed-cohort capacity checks; U-style failed the healthy-only subset gate.</p></article>
-              <article class="card dark reveal d4"><h3>Careful claim</h3><p data-editable>This is a descriptive advantage under this representation and cohort—not proof that full V-Net always beats 3D U-Net.</p></article>
-            </div>
-          </div>
-        </div>
+      <!-- SLIDE 20 — FOLD 4 ROBUSTNESS -->
+      <section class="slide" data-title="Fold 4 robustness">
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">20</span></div><h2 class="reveal d1" data-editable>Fold 4 lowered accuracy—not the conclusion.</h2><div class="two-col" style="margin-top:42px;flex:1"><article class="card reveal-left d2"><div class="kicker">Why Fold 4 was weak</div><h3>Representation quality fell</h3><p data-editable>P2 pairing margin was 0.000079, only 5/9 subjects were positive, and feature retrieval and dimensionality were poorer. Every decoder therefore reached its lowest Dice.</p></article><article class="card dark reveal-right d3"><div class="kicker">What was done</div><h3>The fold was retained</h3><p data-editable>Removing Fold 4 changed the residual Dice gain only from about 0.044 to 0.043, so the decoder ordering remained robust.</p></article></div><div class="question reveal d4" style="font-size:31px;margin-top:32px" data-editable>Surface caution: a separate Fold-2 empty-patella case produced approximately 177 mm subject ASSD and was retained to avoid optimistic results.</div></div><div class="source">Report pp. 116–118, 127–128.</div>
       </section>
 
-      <!-- SLIDE 14 — BONE AND COHORT -->
-      <section class="slide" data-title="Subgroup results">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>05 · Results</span><span class="slide-no">14</span></div>
-          <h2 class="reveal d1" data-editable>Small bones and fractured anatomy remained the stress test.</h2>
-          <div class="two-col" style="margin-top:38px;grid-template-columns:1.05fr .95fr">
-            <div>
-              <div class="bar-list reveal-left d2">
-                <div class="bar-row"><div class="label">Femur Dice</div><div class="bar-track"><div class="bar-fill" style="width:63.1%;background:var(--bone-femur)"></div></div><div class="bar-value">.631</div></div>
-                <div class="bar-row"><div class="label">Tibia Dice</div><div class="bar-track"><div class="bar-fill" style="width:62.7%;background:var(--bone-tibia)"></div></div><div class="bar-value">.627</div></div>
-                <div class="bar-row"><div class="label">Patella Dice</div><div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--bone-patella)"></div></div><div class="bar-value">.380</div></div>
-                <div class="bar-row"><div class="label">Fibula Dice</div><div class="bar-track"><div class="bar-fill" style="width:18.3%;background:var(--bone-fibula)"></div></div><div class="bar-value">.183</div></div>
-              </div>
-              <div class="card dark reveal d3" style="margin-top:38px"><p style="font-size:27px" data-editable>Healthy: <strong>.489 Dice / 11.12 mm</strong><br>Fractured: <strong class="accent">.377 Dice / 12.19 mm</strong></p></div>
-            </div>
-            <div class="legacy-model-wrap reveal d3">
-              <div class="model-stage static-model-stage" data-visual="success-comparison" aria-label="Authentic Residual-ReLU prediction and isolated patella and fibula channels for VSD_005_Left">
-                <canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div>
-                <div class="model-fallback"><strong>3D view unavailable.</strong><span>The representative Residual-ReLU prediction retains all four channels; the second view isolates patella and fibula.</span></div>
-              </div>
-              <div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="source">Residual-ReLU bone-specific results. Femur/tibia remained strongest; patella/fibula and fractured cases defined the performance ceiling.</div>
+      <!-- SLIDE 21 — SMALL-BONE BOTTLENECK -->
+      <section class="slide" data-title="Small-bone bottleneck">
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">21</span></div><h2 class="reveal d1" data-editable>Small bones remain the bottleneck.</h2><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:34px;flex:1;min-height:0"><div class="image-frame reveal-left d2"><img src="capstone-assets/bone-performance-chart.png" alt="PowerPoint slide 15 chart comparing Dice by bone across U-style, V-style and Residual-ReLU decoders"></div><div style="display:flex;flex-direction:column;gap:14px"><article class="card red reveal d2" style="padding:20px"><div class="kicker" style="color:white">Fibula</div><div class="metric" style="font-size:43px">0.106 → 0.183</div><div class="metric-label">Dice improvement</div></article><article class="card dark reveal d3" style="padding:20px"><div class="metric accent" style="font-size:40px">25.93 → 17.51 mm</div><div class="metric-label">ASSD reduction</div></article><article class="card reveal d4" style="padding:20px;flex:1"><h3>Meaning</h3><p style="font-size:20px" data-editable>A substantial error reduction is not the same as accurate reconstruction. The small-bone ceiling persists.</p></article></div><div class="legacy-model-wrap reveal d3" style="height:100%;min-height:0"><div class="model-stage static-model-stage" style="height:100%;min-height:0;flex:1" data-visual="success-comparison" aria-label="Draggable 3D Residual-ReLU prediction and isolated patella and fibula channels for VSD_005_Left"><canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div><div class="model-fallback"><strong>3D view unavailable.</strong><span>The representative Residual-ReLU prediction retains all four channels; the second view isolates patella and fibula.</span></div></div><div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div></div></div></div><div class="source">Report pp. 129–131 · PPT slide 15.</div>
       </section>
 
-      <!-- SLIDE 15 — CRITICAL FAILURE ANALYSIS -->
+      <!-- SLIDE 22 — FRACTURED COHORT -->
+      <section class="slide" data-title="Fractured anatomy">
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">22</span></div><h2 class="reveal d1" data-editable>Fractured anatomy remains harder across every decoder.</h2><div class="two-col" style="margin-top:48px;grid-template-columns:1.08fr .92fr;flex:1"><div class="image-frame reveal-left d2"><img src="capstone-assets/cohort-performance-chart.png" alt="PowerPoint slide 16 chart comparing healthy and fractured Dice across decoder variants"></div><div style="display:flex;flex-direction:column;gap:22px;justify-content:center"><article class="card red reveal d3"><div class="metric">0.377</div><div class="metric-label">best fractured-cohort Dice</div></article><article class="card dark reveal d4"><h3>Residual-ReLU versus U-style</h3><p style="font-size:31px" data-editable><strong class="accent">+0.041 Dice · −3.28 mm ASSD</strong></p></article><article class="card reveal d5"><h3>Caution</h3><p data-editable>Fracture status is confounded with dataset and scanner domain. This is a cohort difference, not a causal fracture effect.</p></article></div></div></div><div class="source">Report pp. 132–134 · PPT slide 16.</div>
+      </section>
+
+      <!-- SLIDE 23 — CATASTROPHIC FAILURE -->
       <section class="slide quote-slide" data-title="Failure analysis">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>06 · Critical Analysis</span><span class="slide-no">15</span></div>
-          <div class="statement reveal d1" data-editable>Better overlap did <strong class="constraint-accent">not</strong> guarantee reliable surfaces.</div>
-          <div class="two-col" style="margin-top:46px;grid-template-columns:.88fr 1.12fr">
-            <div class="card dark reveal-left d2">
-              <div class="metric">346.41 mm</div>
-              <div class="metric-label">V-style left-patella ASSD</div>
-              <p style="font-size:27px;margin-top:28px" data-editable>An empty left-patella prediction inflated the subject-level patella ASSD to 177.58 mm—even while the right side measured 8.74 mm.</p>
-            </div>
-            <div class="legacy-model-wrap reveal d3">
-              <div class="model-stage static-model-stage" data-visual="failure-comparison" aria-label="Authentic target and held-out failure prediction for VSD_z023_Left">
-                <canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div>
-                <div class="model-fallback"><strong>3D view unavailable.</strong><span>The held-out prediction is empty for the patella channel at the 0.5 threshold.</span></div>
-              </div>
-              <div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="source">Fold-4 sensitivity case. Catastrophic empty predictions were retained, not removed as outliers—making the failure mode visible.</div>
+        <div class="slide-inner"><div class="topline reveal"><span>03 · Critical Thinking</span><span class="slide-no">23</span></div><div class="statement reveal d1" data-editable>Aggregate gains do <strong class="constraint-accent">not</strong> eliminate catastrophic failures.</div><div class="two-col" style="margin-top:40px;grid-template-columns:.88fr 1.12fr"><div style="display:flex;flex-direction:column;gap:18px"><article class="card dark reveal-left d2"><div class="metric">~177 mm</div><div class="metric-label">subject-level patellar ASSD</div><p style="font-size:24px;margin-top:22px" data-editable>One residual-decoder case produced an empty patella prediction. The failure was retained—not averaged away.</p></article><article class="card reveal-left d3"><h3>Sensitivity experiment</h3><p data-editable>SimCLR plus joint training improved aggregate Dice, but the healthy–fractured gap widened. Better averages did not mean safer pathology generalisation.</p></article></div><div class="legacy-model-wrap reveal d3"><div class="model-stage static-model-stage" data-visual="failure-comparison" aria-label="Authentic target and held-out failure prediction for VSD_z023_Left"><canvas></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic 3D surfaces…</div><div class="model-fallback"><strong>3D view unavailable.</strong><span>The held-out prediction is empty for the patella channel at the 0.5 threshold.</span></div></div><div class="bone-legend"><span><i data-bone="femur"></i>Femur</span><span><i data-bone="tibia"></i>Tibia</span><span><i data-bone="patella"></i>Patella</span><span><i data-bone="fibula"></i>Fibula</span></div></div></div></div><div class="source">Report pp. 127–128, 135–137. Read overlap, surface distance, subgroups and explicit failures together.</div>
       </section>
-
       <!-- MODELLING DEEP DIVE 07 — CONSTRAINTS -->
       <section class="slide model-slide" data-title="Pipeline constraints">
         <div class="slide-inner">
-          <div class="topline reveal"><span>05 · Results &amp; Interpretation</span><span class="slide-no"></span></div>
-          <h2 class="reveal d1" data-editable>A real failure makes the pipeline’s constraints visible.</h2>
+          <div class="topline reveal"><span>05 · Results &amp; Interpretation</span><span class="slide-no">24</span></div>
+          <h2 class="reveal d1" data-editable>Geometry-inconsistent lifting is the plausible system bottleneck.</h2>
           <div class="model-layout">
             <div class="model-copy reveal-left d2">
               <div class="model-eyebrow">Held-out case · VSD_z023_Left · Fold 2</div>
@@ -1044,82 +945,17 @@
         </div>
       </section>
 
-      <!-- SLIDE 17 — RESPONSIBLE COMPUTING -->
-      <section class="slide" data-title="Responsible computing">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>07 · Impact & Responsibility</span><span class="slide-no">17</span></div>
-          <h2 class="reveal d1" data-editable>Responsible value comes from limits made explicit.</h2>
-          <div class="risk-balance reveal d2">
-            <div class="risk-side">
-              <h3>Potential societal value</h3>
-              <ul class="clean">
-                <li data-editable>Additional 3D context where CT is delayed or unavailable.</li>
-                <li data-editable>Support for referral, education, planning and communication.</li>
-                <li data-editable>Lower-radiation inputs than CT for preliminary computational study.</li>
-                <li data-editable>Reusable controlled-ablation framework for small medical datasets.</li>
-              </ul>
-            </div>
-            <div class="risk-side">
-              <h3>Conditions before deployment</h3>
-              <ul class="clean">
-                <li data-editable>Expert-validated fracture annotations and clinical measurements.</li>
-                <li data-editable>External paired radiograph–CT testing across institutions.</li>
-                <li data-editable>Subgroup, privacy, safety and domain-shift monitoring.</li>
-                <li data-editable>Compute, energy, radiation, workflow and cost-effectiveness assessment.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="tag reveal d3" style="margin-top:32px;align-self:flex-start">SDG 3 · Good Health & Well-Being — contribution is potential, not established clinical benefit</div>
-        </div>
-      </section>
-
-      <!-- SLIDE 18 — CONCLUSION -->
+            <!-- SLIDE 25 — CONCLUSION -->
       <section class="slide" data-title="Conclusion">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>08 · Conclusion</span><span class="slide-no">18</span></div>
-          <h2 class="reveal d1" data-editable>What the controlled evidence supports.</h2>
-          <div class="three-col" style="margin-top:48px">
-            <article class="card red reveal d2"><div class="metric">01</div><h3 style="margin-top:20px">Topology matters</h3><p data-editable>Projected residual connectivity produced the strongest and most consistent improvement.</p></article>
-            <article class="card reveal d3"><div class="metric">02</div><h3 style="margin-top:20px">Activation was secondary</h3><p data-editable>PReLU did not explain the apparent V-style advantage under controlled conditions.</p></article>
-            <article class="card dark reveal d4"><div class="metric accent">03</div><h3 style="margin-top:20px">Accuracy is not safety</h3><p data-editable>Fractured cases, patella, fibula and empty predictions prevent clinical claims.</p></article>
-          </div>
-          <div class="question reveal d5" style="font-size:48px;margin-top:52px" data-editable>The contribution is a repeatable method for isolating architectural effects—and revealing where aggregate success still conceals failure.</div>
-        </div>
+        <div class="slide-inner"><div class="topline reveal"><span>04 · Conclusion</span><span class="slide-no">25</span></div><h2 class="reveal d1" data-editable>Residual topology matters more than activation choice.</h2><div class="question reveal d2" style="margin-top:38px;font-size:46px" data-editable>Residual-ReLU was the strongest tested condition—but the project establishes a controlled evaluation method, not clinical readiness.</div><div class="four-col" style="margin-top:44px"><article class="card reveal d2"><div class="kicker">Next 01</div><h3>Projection-aware lifting</h3></article><article class="card reveal d3"><div class="kicker">Next 02</div><h3>Balanced fractured cohorts</h3></article><article class="card reveal d4"><div class="kicker">Next 03</div><h3>Expert fracture evaluation</h3></article><article class="card dark reveal d5"><div class="kicker">Next 04</div><h3>Real paired X-ray/CT validation</h3></article></div><div class="card red reveal d5" style="margin-top:34px"><p style="font-size:28px" data-editable><strong>Best defensible claim:</strong> residual decoding uses the available 3D features more effectively, while absolute and fracture-specific performance remain limited.</p></div></div><div class="source">Conclusion · PowerPoint slide 19 · CHAN ZHENG SHAO · 24020059</div>
       </section>
-
-      <!-- SLIDE 19 — FUTURE WORK / CLOSE -->
-      <section class="slide" data-title="Future work">
-        <div class="slide-inner">
-          <div class="topline reveal"><span>09 · Next Steps</span><span class="slide-no">19</span></div>
-          <h2 class="reveal d1" data-editable>Change one factor at a time.</h2>
-          <div class="four-col" style="margin-top:50px">
-            <article class="card reveal d2"><div class="kicker">01</div><h3>Projection-aware lifting</h3><p data-editable>Matched ray-based lift and differentiable reprojection ablation.</p></article>
-            <article class="card reveal d3"><div class="kicker">02</div><h3>Balanced fracture evidence</h3><p data-editable>Larger cohorts with acquisition source modeled explicitly.</p></article>
-            <article class="card reveal d4"><div class="kicker">03</div><h3>Expert fracture metrics</h3><p data-editable>Gap width, displacement, depression and cortical continuity.</p></article>
-            <article class="card reveal d5"><div class="kicker">04</div><h3>External clinical validation</h3><p data-editable>Paired real radiographs and CT across scanners and institutions.</p></article>
-          </div>
-          <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:end">
-            <div>
-              <div class="redline"></div>
-              <div style="font:800 72px/.95 var(--font-display);letter-spacing:-.05em" data-editable>Thank you.<br><span class="accent">Questions?</span></div>
-            </div>
-            <div style="text-align:right;font-size:22px;line-height:1.55" data-editable>
-              CHAN ZHENG SHAO · 24020059<br>
-              School of Computing and Artificial Intelligence<br>
-              Sunway University
-            </div>
-          </div>
-        </div>
-        <div class="source">Key references: Kasten et al. (2020); Shiode et al. (2021); Van Houtte et al. (2022); Buttongkum et al. (2023); Shakya & Khanal (2023); Gopalakrishnan & Golland (2022).</div>
-      </section>
-
     </main>
   </div>
 
   <!-- Presentation controls are outside the 1920×1080 stage. -->
   <nav class="deck-controls" aria-label="Presentation controls">
     <button id="prevBtn" aria-label="Previous slide">←</button>
-    <span id="counter">1 / 24</span>
+    <span id="counter">1 / 25</span>
     <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
     <button id="nextBtn" aria-label="Next slide">→</button>
   </nav>
