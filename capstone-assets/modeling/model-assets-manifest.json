@@ -1,0 +1,396 @@
+{
+  "bone_order": [
+    "femur",
+    "tibia",
+    "patella",
+    "fibula"
+  ],
+  "drr": {
+    "ap": {
+      "display_percentiles": [
+        0.0,
+        0.9227766990661621
+      ],
+      "shape": [
+        256,
+        256
+      ]
+    },
+    "case": "VSD_005_Left",
+    "lat": {
+      "display_percentiles": [
+        0.0,
+        0.9347301125526428
+      ],
+      "shape": [
+        256,
+        256
+      ]
+    },
+    "source_sha256": {
+      "ap": "3bc2835fba324bf05340639736f83383c73893c3d67aad0ffcd8f3043f014150",
+      "lat": "b780cb35d2283d2ff5a791e5bfc4a0693f102e3a006e610f83e4fe241f991410"
+    }
+  },
+  "failurePrediction": {
+    "bones": {
+      "femur": {
+        "bounds_mm": [
+          [
+            61.71875,
+            63.28125,
+            72.65625
+          ],
+          [
+            136.71875,
+            138.28125,
+            198.4375
+          ]
+        ],
+        "centroid_mm": [
+          97.49010134505936,
+          100.16522184715716,
+          131.60382775305746
+        ],
+        "empty_prediction": false,
+        "faces": 31134,
+        "vertices": 15640,
+        "voxel_count": 675264
+      },
+      "fibula": {
+        "bounds_mm": [
+          [
+            50.78125,
+            117.96875,
+            0.0
+          ],
+          [
+            124.21875,
+            161.71875,
+            25.78125
+          ]
+        ],
+        "centroid_mm": [
+          83.75216049215454,
+          137.56823640560702,
+          12.51701437577935
+        ],
+        "empty_prediction": false,
+        "faces": 5922,
+        "vertices": 3030,
+        "voxel_count": 76000
+      },
+      "patella": {
+        "bounds_mm": null,
+        "centroid_mm": null,
+        "empty_prediction": true,
+        "faces": 0,
+        "vertices": 0,
+        "voxel_count": 0
+      },
+      "tibia": {
+        "bounds_mm": [
+          [
+            61.71875,
+            75.78125,
+            0.0
+          ],
+          [
+            138.28125,
+            132.03125,
+            75.78125
+          ]
+        ],
+        "centroid_mm": [
+          98.63516624333897,
+          105.04042118936795,
+          33.92750514325616
+        ],
+        "empty_prediction": false,
+        "faces": 15454,
+        "vertices": 7810,
+        "voxel_count": 295161
+      }
+    }
+  },
+  "failureTarget": {
+    "bones": {
+      "femur": {
+        "bounds_mm": [
+          [
+            49.21875,
+            80.46875,
+            103.90625
+          ],
+          [
+            128.90625,
+            155.46875,
+            198.4375
+          ]
+        ],
+        "centroid_mm": [
+          90.11504967752568,
+          121.54003818740595,
+          145.2601461338366
+        ],
+        "empty_prediction": false,
+        "faces": 24362,
+        "vertices": 12235,
+        "voxel_count": 432415
+      },
+      "fibula": {
+        "bounds_mm": [
+          [
+            86.71875,
+            39.84375,
+            0.0
+          ],
+          [
+            144.53125,
+            77.34375,
+            105.46875
+          ]
+        ],
+        "centroid_mm": [
+          112.87029508051437,
+          58.05076576707931,
+          57.96306918740415
+        ],
+        "empty_prediction": false,
+        "faces": 6666,
+        "vertices": 3348,
+        "voxel_count": 42660
+      },
+      "patella": {
+        "bounds_mm": [
+          [
+            49.21875,
+            121.09375,
+            97.65625
+          ],
+          [
+            74.21875,
+            153.90625,
+            135.15625
+          ]
+        ],
+        "centroid_mm": [
+          60.67811220258439,
+          137.21791390107174,
+          116.38138552380101
+        ],
+        "empty_prediction": false,
+        "faces": 3676,
+        "vertices": 1840,
+        "voxel_count": 29133
+      },
+      "tibia": {
+        "bounds_mm": [
+          [
+            66.40625,
+            72.65625,
+            0.0
+          ],
+          [
+            142.96875,
+            138.28125,
+            113.28125
+          ]
+        ],
+        "centroid_mm": [
+          104.41253700926214,
+          102.03189954922982,
+          65.88185130149571
+        ],
+        "empty_prediction": false,
+        "faces": 22232,
+        "vertices": 11158,
+        "voxel_count": 361051
+      }
+    }
+  },
+  "failure_prediction": {
+    "arm": "residual_vnet_style",
+    "case": "VSD_z023_Left",
+    "fold": 2,
+    "source_sha256": "a086304da4b15c36d7c984d12526974ce3db15d7c1857a2db411d3013c0eb777"
+  },
+  "failure_target": {
+    "case": "VSD_z023_Left",
+    "source_sha256": {
+      "femur": "3e8ae4008b6c460da56f6e93bcd67a6157e87cfb1606412bb6a82016eb15b95a",
+      "fibula": "d20a6400a5d73b6f35c892c68815e87a009c67f1ebe8142a824e57ee36aa5a97",
+      "patella": "4eae12511793497456984ca13bc80b502e0ca5d2984518ae7c699c0d511479e7",
+      "tibia": "434b67b746cb5a169db83aaacc582fa4ce859cee91ac9680848a91b45ea07c6e"
+    }
+  },
+  "features": {
+    "aggregation": "rms_across_channels",
+    "case": "VSD_005_Left",
+    "encoder_sha256": "82521880200015b238023b78cff5f40c67d5b530f7bfa72ef383e40c2f88d967",
+    "level_0": {
+      "channels": 96,
+      "display_percentiles": [
+        1.9843336343765259,
+        3.2756292819976807
+      ],
+      "shape": [
+        64,
+        64
+      ]
+    },
+    "level_1": {
+      "channels": 192,
+      "display_percentiles": [
+        2.3298227787017822,
+        3.207900047302246
+      ],
+      "shape": [
+        32,
+        32
+      ]
+    },
+    "level_2": {
+      "channels": 384,
+      "display_percentiles": [
+        4.34013557434082,
+        13.9868745803833
+      ],
+      "shape": [
+        16,
+        16
+      ]
+    },
+    "level_3": {
+      "channels": 768,
+      "display_percentiles": [
+        0.3310530185699463,
+        1.1222918033599854
+      ],
+      "shape": [
+        8,
+        8
+      ]
+    }
+  },
+  "mesh_extraction": {
+    "algorithm": "skimage.measure.marching_cubes",
+    "level": 0.5,
+    "step_size": 2
+  },
+  "palette": {
+    "femur": "#1457D9",
+    "fibula": "#FF3300",
+    "patella": "#187B61",
+    "tibia": "#F28C28"
+  },
+  "project_root": "C:\\Users\\Chan Zheng Shao\\OneDrive\\Desktop\\Github Repo\\TestProject\\TestProject",
+  "schema_version": "capstone-model-assets-v1",
+  "spacing_mm": [
+    0.78125,
+    0.78125,
+    0.78125
+  ],
+  "successPrediction": {
+    "bones": {
+      "femur": {
+        "bounds_mm": [
+          [
+            52.34375,
+            63.28125,
+            69.53125
+          ],
+          [
+            149.21875,
+            147.65625,
+            198.4375
+          ]
+        ],
+        "centroid_mm": [
+          104.34725387557793,
+          98.75396583656239,
+          122.29952216204515
+        ],
+        "empty_prediction": false,
+        "faces": 38422,
+        "vertices": 19272,
+        "voxel_count": 902242
+      },
+      "fibula": {
+        "bounds_mm": [
+          [
+            50.78125,
+            103.90625,
+            0.0
+          ],
+          [
+            150.78125,
+            172.65625,
+            74.21875
+          ]
+        ],
+        "centroid_mm": [
+          107.52474059640352,
+          139.42796576456993,
+          38.29602325609785
+        ],
+        "empty_prediction": false,
+        "faces": 22506,
+        "vertices": 11344,
+        "voxel_count": 448434
+      },
+      "patella": {
+        "bounds_mm": [
+          [
+            91.40625,
+            46.09375,
+            74.21875
+          ],
+          [
+            150.78125,
+            91.40625,
+            138.28125
+          ]
+        ],
+        "centroid_mm": [
+          123.20661241248752,
+          65.20681057359428,
+          106.9890348613486
+        ],
+        "empty_prediction": false,
+        "faces": 10708,
+        "vertices": 5356,
+        "voxel_count": 133510
+      },
+      "tibia": {
+        "bounds_mm": [
+          [
+            61.71875,
+            67.96875,
+            0.0
+          ],
+          [
+            147.65625,
+            142.96875,
+            82.03125
+          ]
+        ],
+        "centroid_mm": [
+          102.46584817790685,
+          104.50321640023165,
+          47.28583132323257
+        ],
+        "empty_prediction": false,
+        "faces": 24364,
+        "vertices": 12250,
+        "voxel_count": 621022
+      }
+    }
+  },
+  "success_prediction": {
+    "arm": "residual_relu_style",
+    "case": "VSD_005_Left",
+    "fold": 4,
+    "source_sha256": "ae48c4b7c890ab696f033024c6f4ce0719220ed898d629aaf0b6b567a05bf6ed"
+  }
+}

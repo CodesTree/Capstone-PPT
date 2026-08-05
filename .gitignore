@@ -1,0 +1,3 @@
+qa-renders*/*.png
+qa-slide-*.png
+tools/.*-fragment.tmp
