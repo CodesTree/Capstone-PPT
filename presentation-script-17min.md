@@ -20,7 +20,7 @@ This distinction matters because fracture morphology is spatial, not simply pres
 
 ## Slide 4 — Literature trajectory | 1:30–2:15
 
-The literature shows a clear progression. Early work emphasized calibration, focal position, orientation and anatomical superimposition. Kasten and colleagues then demonstrated end-to-end biplanar knee reconstruction. Later studies expanded to clinical wrist radiographs, calibrated atlas registration, fracture-aware reconstruction, neural implicit fields and transformer-based methods. My report compares eleven studies systematically across data, preprocessing, architecture, training and results, with Shakya and Khanal providing an additional benchmarking perspective. The main lesson is that reported accuracy cannot be separated from dataset and experimental design.
+The literature shows a clear progression. Early work emphasized on SSMs and have calibration, focal position, orientation and anatomical superimposition as a core constrint. Kasten and colleagues then demonstrated end-to-end biplanar knee reconstruction. Later studies expanded to clinical wrist radiographs, calibrated atlas registration, fracture-aware reconstruction, neural implicit fields and transformer-based methods. My report compares eleven studies systematically across data, preprocessing, architecture, training and results, with Shakya and Khanal providing an additional benchmarking perspective. The main lesson is that reported accuracy cannot be separated from dataset and experimental design.
 
 ## Slide 5 — Research gap | 2:15–2:55
 
