@@ -518,6 +518,21 @@
   cursor: default;
 }
 
+.model-stage.orbit-enabled {
+  cursor: grab;
+  touch-action: none;
+}
+
+.model-stage.orbit-enabled.orbiting {
+  cursor: grabbing;
+}
+
+.visual-label.orbit-hint {
+  background: var(--ink);
+  color: #fff;
+  pointer-events: none;
+}
+
 .static-model-stage .model-fallback {
   font-size: 19px;
 }

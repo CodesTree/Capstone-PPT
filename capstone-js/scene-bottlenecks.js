@@ -1,4 +1,3 @@
-
 (function () {
   "use strict";
 
@@ -14,7 +13,7 @@
 
   class BottleneckScene extends ThreeScene {
     async build() {
-      this.camera.position.set(5.6, 3.8, 7.8);
+      this.camera.position.set(6.8, 4.6, 9.5);
       this.camera.lookAt(0, 0, 0);
       this.objects.target = await this.createBoneGroup("failureTarget", { opacity: 0.24, wireframe: true });
       this.objects.prediction = await this.createBoneGroup("failurePrediction", { opacity: 0.92 });
@@ -34,30 +33,71 @@
       this.centerGroupsAt([this.objects.patellaDetail], new this.THREE.Vector3(0, -0.05, 0));
       this.objects.patellaDetail.visible = false;
 
-      this.objects.caseLabel = callout("VSD_z023_Left · held-out V-style prediction", { left: "26px", top: "26px" }, "dark-label");
+      this.objects.caseLabel = callout("VSD_z023_Left · Fold 2 · V-style", { left: "26px", top: "26px" }, "dark-label");
       this.objects.stateLabel = callout("Ground truth", { right: "26px", top: "26px" });
+      this.objects.orbitHint = callout("Drag to orbit", { right: "26px", bottom: "92px" }, "orbit-hint");
       this.objects.empty = document.createElement("div");
       this.objects.empty.className = "empty-callout";
-      this.objects.empty.innerHTML = "Patella prediction: <strong>empty</strong><br><span style=\"font:600 17px/1.25 var(--font-body)\">The failure remains in the evaluation; it is not removed as an outlier.</span>";
-      this.objects.constraints = [
-        callout("Depth was lost in projection", { left: "24px", bottom: "24px", opacity: "0" }, "constraint-label"),
-        callout("Deepest grid: 8 × 8", { left: "29%", bottom: "24px", opacity: "0" }, "constraint-label"),
-        callout("Cartesian lift ≠ finite rays", { left: "49%", bottom: "24px", opacity: "0" }, "constraint-label"),
-        callout("128³ logits → 256³", { right: "24px", bottom: "24px", opacity: "0" }, "constraint-label")
-      ];
-      this.domLayer.append(this.objects.caseLabel, this.objects.stateLabel, this.objects.empty, ...this.objects.constraints);
+      this.objects.empty.innerHTML = "Patella prediction: <strong>empty</strong><br><span style=\"font:600 17px/1.25 var(--font-body)\">Retained in evaluation—not removed as an outlier.</span>";
+      this.domLayer.append(this.objects.caseLabel, this.objects.stateLabel, this.objects.orbitHint, this.objects.empty);
+      this.enableOrbit();
+    }
+
+    enableOrbit() {
+      this.stage.classList.add("orbit-enabled");
+      this.canvas.setAttribute("aria-label", "Drag horizontally or vertically to orbit the Fold-2 target and V-style prediction");
+      let dragging = false;
+      let lastX = 0;
+      let lastY = 0;
+      let orbitX = 0;
+      let orbitY = 0;
+
+      const applyOrbit = () => {
+        [this.objects.target, this.objects.prediction, this.objects.patellaDetail].forEach(group => {
+          group.rotation.set(-Math.PI / 2 + orbitX, orbitY, -0.12);
+        });
+        this.renderOnce();
+      };
+      const start = event => {
+        dragging = true;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        this.stage.classList.add("orbiting");
+        if (this.canvas.setPointerCapture) this.canvas.setPointerCapture(event.pointerId);
+      };
+      const move = event => {
+        if (!dragging) return;
+        const deltaX = event.clientX - lastX;
+        const deltaY = event.clientY - lastY;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        orbitY += deltaX * 0.008;
+        orbitX = Math.max(-0.9, Math.min(0.9, orbitX + deltaY * 0.008));
+        applyOrbit();
+      };
+      const end = event => {
+        if (!dragging) return;
+        dragging = false;
+        this.stage.classList.remove("orbiting");
+        if (this.canvas.hasPointerCapture && this.canvas.hasPointerCapture(event.pointerId)) {
+          this.canvas.releasePointerCapture(event.pointerId);
+        }
+      };
+      this.canvas.addEventListener("pointerdown", start);
+      this.canvas.addEventListener("pointermove", move);
+      this.canvas.addEventListener("pointerup", end);
+      this.canvas.addEventListener("pointercancel", end);
     }
 
     renderStep(step) {
-      this.objects.target.visible = step === 0 || step === 2 || step >= 4;
-      this.objects.prediction.visible = step === 1 || step === 2 || step >= 4;
+      this.objects.target.visible = step === 0 || step === 2;
+      this.objects.prediction.visible = step === 1 || step === 2;
       this.objects.patellaDetail.visible = step === 3;
       this.objects.stateLabel.textContent =
         step === 0 ? "Ground truth" :
-        step === 1 ? "Prediction" :
-        step === 2 ? "Overlay: target wireframe + prediction" :
-        step === 3 ? "Isolated patella failure" :
-        "Known constraints + plausible bottleneck";
+        step === 1 ? "Held-out V-style prediction" :
+        step === 2 ? "Target wireframe + prediction" :
+        "Isolated patella failure";
 
       this.setBoneVisibility(this.objects.target, ["femur", "tibia", "patella", "fibula"]);
       this.setBoneVisibility(this.objects.prediction, ["femur", "tibia", "patella", "fibula"]);
@@ -65,7 +105,7 @@
       this.objects.target.children.forEach(child => {
         child.traverse(node => {
           if (node.isMesh) {
-            node.material.opacity = step === 0 || step === 3 ? 0.68 : 0.24;
+            node.material.opacity = step === 0 ? 0.68 : 0.24;
             node.material.wireframe = step !== 0;
           }
         });
@@ -77,9 +117,8 @@
       });
 
       this.objects.empty.classList.toggle("show", step === 3);
-      this.objects.constraints.forEach(element => { element.style.opacity = step >= 4 ? "1" : "0"; });
       const legend = this.slide.querySelector(".bone-legend");
-      if (legend) legend.style.opacity = step >= 4 ? "0" : "1";
+      if (legend) legend.style.opacity = "1";
     }
 
     update() {}
@@ -87,4 +126,3 @@
 
   register("bottlenecks", container => new BottleneckScene(container));
 })();
-
