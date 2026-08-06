@@ -244,6 +244,19 @@
     if ((event.key === "e" || event.key === "E") && !editing) editor.toggleEditMode();
   });
 
+  document.querySelectorAll(".risk-gate-trigger").forEach(trigger => {
+    trigger.addEventListener("click", () => {
+      const gate = trigger.closest(".risk-gate");
+      const willOpen = !gate.classList.contains("open");
+      document.querySelectorAll(".risk-gate.open").forEach(other => {
+        other.classList.remove("open");
+        const otherTrigger = other.querySelector(".risk-gate-trigger");
+        if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+      });
+      gate.classList.toggle("open", willOpen);
+      trigger.setAttribute("aria-expanded", String(willOpen));
+    });
+  });
   window.deck = deck;
   window.deckEditor = editor;
 })();
