@@ -966,6 +966,33 @@
       .factor-rationale h3 { font-size: 25px; margin-bottom: 12px; }
       .factor-rationale .kicker { font-size: 17px; margin-bottom: 10px; }
       .factor-rationale li { font-size: 17px; line-height: 1.25; margin-bottom: 9px !important; }
+      .architecture-overview-slide .slide-inner {
+        inset: 50px 54px 54px 72px;
+      }
+      .architecture-overview-slide .topline {
+        border-top-width: 4px;
+        padding-top: 10px;
+        font-size: 18px;
+      }
+      .architecture-overview-frame {
+        flex: 1;
+        margin-top: 8px;
+        min-height: 0;
+        padding: 0;
+        border: 2px solid var(--ink);
+        background: #f7f9fc;
+        position: relative;
+        overflow: hidden;
+      }
+      .architecture-overview-frame img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+      }
       .matrix {
         display: grid;
         grid-template-columns: 170px 1fr 1fr;
@@ -1902,6 +1929,22 @@
           <div class="source">Report pp. 102–105.</div>
         </section>
 
+        <!-- MODELLING ARCHITECTURE OVERVIEW -->
+        <section class="slide architecture-overview-slide" data-title="Modelling architecture overview">
+          <div class="slide-inner">
+            <div class="topline reveal">
+              <span>04 · Methodology</span><span class="slide-no">13</span>
+            </div>
+            <div class="architecture-overview-frame reveal d1">
+              <img
+                src="capstone-assets/modelling-phase-architecture.svg"
+                alt="Four-phase modelling architecture: fold-specific encoder development, shared bi-planar front end, factorial decoder comparison, and paired out-of-fold evaluation"
+              />
+            </div>
+
+          </div>
+          <div class="source">High-level modelling summary · Report §§3.4–3.5.</div>
+        </section>
         <!-- SLIDE 11 — REPRESENTATION LEARNING SUMMARY -->
         <section class="slide" data-title="P1 and P2 summary">
           <div class="slide-inner">
@@ -3161,7 +3204,7 @@
     <!-- Presentation controls are outside the 1920×1080 stage. -->
     <nav class="deck-controls" aria-label="Presentation controls">
       <button id="prevBtn" aria-label="Previous slide">←</button>
-      <span id="counter">1 / 28</span>
+      <span id="counter">1 / 29</span>
       <div class="progress" aria-hidden="true">
         <div class="progress-fill" id="progressFill"></div>
       </div>
