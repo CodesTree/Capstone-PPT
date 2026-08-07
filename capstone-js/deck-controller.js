@@ -244,18 +244,43 @@
     if ((event.key === "e" || event.key === "E") && !editing) editor.toggleEditMode();
   });
 
+  const closeRiskGate = (gate, restoreFocus = false) => {
+    if (!gate) return;
+    gate.classList.remove("open");
+    const trigger = gate.querySelector(".risk-gate-trigger");
+    const dialog = gate.querySelector(".risk-bubble");
+    if (trigger) trigger.setAttribute("aria-expanded", "false");
+    if (dialog) dialog.setAttribute("aria-hidden", "true");
+    if (restoreFocus && trigger) trigger.focus();
+  };
+
   document.querySelectorAll(".risk-gate-trigger").forEach(trigger => {
     trigger.addEventListener("click", () => {
       const gate = trigger.closest(".risk-gate");
-      const willOpen = !gate.classList.contains("open");
-      document.querySelectorAll(".risk-gate.open").forEach(other => {
-        other.classList.remove("open");
-        const otherTrigger = other.querySelector(".risk-gate-trigger");
-        if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
-      });
-      gate.classList.toggle("open", willOpen);
-      trigger.setAttribute("aria-expanded", String(willOpen));
+      document.querySelectorAll(".risk-gate.open").forEach(other => closeRiskGate(other));
+      gate.classList.add("open");
+      trigger.setAttribute("aria-expanded", "true");
+      const dialog = gate.querySelector(".risk-bubble");
+      if (dialog) dialog.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => gate.querySelector(".risk-overlay-close")?.focus());
     });
+  });
+
+  document.querySelectorAll(".risk-overlay-close").forEach(button => {
+    button.addEventListener("click", () => closeRiskGate(button.closest(".risk-gate"), true));
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key !== "Escape") return;
+    const openGate = document.querySelector(".risk-gate.open");
+    if (openGate) {
+      event.preventDefault();
+      closeRiskGate(openGate, true);
+    }
+  });
+
+  window.addEventListener("deck:slidechange", () => {
+    document.querySelectorAll(".risk-gate.open").forEach(gate => closeRiskGate(gate));
   });
   window.deck = deck;
   window.deckEditor = editor;
