@@ -1,721 +1,756 @@
 {
-  "slideCount": 24,
-  "renderCount": 47,
-  "readyVisuals": 9,
-  "failedVisuals": 0,
+  "structure": {
+    "main": 21,
+    "appendix": 8,
+    "legacyInDom": 0,
+    "stage": [
+      1920,
+      1080
+    ],
+    "editIds": [
+      "s01-title",
+      "s01-subtitle",
+      "s01-author",
+      "s02-title",
+      "s02-copy",
+      "s03-title",
+      "s04-title",
+      "s04-copy",
+      "s05-title",
+      "s06-title",
+      "s06-question",
+      "s07-title",
+      "s08-title",
+      "s08-copy",
+      "s09-title",
+      "s10-title",
+      "s10-copy",
+      "s11-title",
+      "s12-title",
+      "s13-title",
+      "s14-title",
+      "s15-title",
+      "s16-title",
+      "s16-copy",
+      "s17-title",
+      "s18-title",
+      "s19-title",
+      "s20-title",
+      "s21-title",
+      "s21-copy"
+    ]
+  },
+  "slides": [
+    {
+      "hash": "#1",
+      "title": "Fracture-Preserving 3D Knee Reconstruction",
+      "section": "main",
+      "visuals": 0,
+      "visibleText": "Controlled decoder comparison for four-bone reconstruction from paired knee radiographs",
+      "titleWords": 4,
+      "narrativeWords": 10,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "01.png"
+    },
+    {
+      "hash": "#2",
+      "title": "Knee Imaging Background",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Radiographs are accessible but collapse depth. CT resolves 3D anatomy but adds cost and radiation. This project reconstructs femur, tibia, patella and fibula from AP and lateral views.",
+      "titleWords": 3,
+      "narrativeWords": 28,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "02.png"
+    },
+    {
+      "hash": "#3",
+      "title": "Reconstruction Problem Statement",
+      "section": "main",
+      "visuals": 3,
+      "visibleText": "Many 3D shapes can explain the same two projections. Bone boundaries obscure one another in radiographs. A plausible smooth knee may still erase clinically important morphology.",
+      "titleWords": 3,
+      "narrativeWords": 26,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "03.png"
+    },
+    {
+      "hash": "#4",
+      "title": "Medical Reconstruction Literature",
+      "section": "main",
+      "visuals": 1,
+      "visibleText": "The field progressed from shape fitting to learned biplanar reconstruction. Comparisons remain difficult when studies change data, geometry and architecture together.",
+      "titleWords": 3,
+      "narrativeWords": 21,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "04.png"
+    },
+    {
+      "hash": "#5",
+      "title": "Identified Research Gap",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Architecture, data, projection geometry and training often change together, obscuring the cause of improvement. Average overlap can conceal missing small bones, fold instability and subgroup failure.",
+      "titleWords": 3,
+      "narrativeWords": 26,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "05.png"
+    },
+    {
+      "hash": "#6",
+      "title": "Research Question and Objectives",
+      "section": "main",
+      "visuals": 1,
+      "visibleText": "",
+      "titleWords": 4,
+      "narrativeWords": 0,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "06.png"
+    },
+    {
+      "hash": "#7",
+      "title": "Datasets and Study Cohort",
+      "section": "main",
+      "visuals": 3,
+      "visibleText": "Grouped before fold assignment. 58 healthy-source; 13 fractured-source. VSD provides healthy and fractured sources. Ruikar contributes fractured cases. CT defines targets; DRRs provide paired inputs.",
+      "titleWords": 4,
+      "narrativeWords": 25,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "07.png"
+    },
+    {
+      "hash": "#8",
+      "title": "Ground Truth Preparation",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Targets were generated computationally. Expert clinical validation of fracture morphology was not performed.",
+      "titleWords": 3,
+      "narrativeWords": 13,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "08.png"
+    },
+    {
+      "hash": "#9",
+      "title": "Data Preparation Pipeline",
+      "section": "main",
+      "visuals": 1,
+      "visibleText": "Each gate prevents silent label, orientation or geometry errors from entering training.",
+      "titleWords": 3,
+      "narrativeWords": 12,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "09.png"
+    },
+    {
+      "hash": "#10",
+      "title": "Controlled Decoder Experiment",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Cross topology with activation while holding the shared front end, data, folds, initialisation policy and training protocol constant.",
+      "titleWords": 3,
+      "narrativeWords": 18,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "10.png"
+    },
+    {
+      "hash": "#11",
+      "title": "Experimental Controls and Responsibility",
+      "section": "main",
+      "visuals": 3,
+      "visibleText": "Subject-grouped folds prevent knees from one person crossing train and test. Frozen shared front end, matched initialisation and out-of-fold comparison. Research prototype only. Reuse computed features and report energy limits; no clinical deployment claim.",
+      "titleWords": 4,
+      "narrativeWords": 34,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "11.png"
+    },
+    {
+      "hash": "#12",
+      "title": "Representation Learning Stages",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Two views provide complementary evidence. The encoder learns robust local structure. Each view helps predict the other. Variation is applied only to training DRRs.",
+      "titleWords": 3,
+      "narrativeWords": 24,
+      "states": [
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        }
+      ],
+      "fileName": "12.png"
+    },
+    {
+      "hash": "#13",
+      "title": "Shared Front-End Design",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Fine and coarse evidence are retained. View-specific features meet at each scale. Features are expanded into a shared volume. The lift does not encode exact rays.",
+      "titleWords": 3,
+      "narrativeWords": 26,
+      "states": [
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        }
+      ],
+      "fileName": "13.png"
+    },
+    {
+      "hash": "#14",
+      "title": "Decoder Architecture Comparison",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Only block topology and activation change. The baseline transforms every stage directly. Skip paths preserve information and gradients. Plain/residual × ReLU/PReLU.",
+      "titleWords": 3,
+      "narrativeWords": 21,
+      "states": [
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        }
+      ],
+      "fileName": "14.png"
+    },
+    {
+      "hash": "#15",
+      "title": "Reconstruction Evaluation Metrics",
+      "section": "main",
+      "visuals": 3,
+      "visibleText": "Higher means prediction and target occupy more of the same space. Lower means the predicted and target surfaces are closer in millimetres. Missing bones receive an explicit penalty and remain in evaluation.",
+      "titleWords": 3,
+      "narrativeWords": 32,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "15.png"
+    },
+    {
+      "hash": "#16",
+      "title": "Front-End Learning Results",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "P1/P2 learned useful features, but Fold 4 pairing was weakest. Femur and tibia were easier than patella and fibula, setting a ceiling before decoder comparison.",
+      "titleWords": 3,
+      "narrativeWords": 25,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "16.png"
+    },
+    {
+      "hash": "#17",
+      "title": "Overall Decoder Results",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Residual topology delivered the main gain: higher overlap and 2.44 mm lower surface distance. PReLU did not surpass ReLU.",
+      "titleWords": 3,
+      "narrativeWords": 19,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "17.png"
+    },
+    {
+      "hash": "#18",
+      "title": "Fold and Bone Results",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "",
+      "titleWords": 4,
+      "narrativeWords": 0,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "18.png"
+    },
+    {
+      "hash": "#19",
+      "title": "Cohort and Failure Analysis",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "Fractured-source: .377 Dice. Domain and pathology are confounded. The empty prediction creates a 346.41 mm knee-level penalty. Bone, fold and cohort views reveal different weaknesses. The result is a research finding, not a safety claim.",
+      "titleWords": 4,
+      "narrativeWords": 35,
+      "states": [
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        },
+        {
+          "activePanels": 1,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": [
+            "ready"
+          ]
+        }
+      ],
+      "fileName": "19.png"
+    },
+    {
+      "hash": "#20",
+      "title": "Limitations and Future Work",
+      "section": "main",
+      "visuals": 1,
+      "visibleText": "Expert fracture validation is the prerequisite before any clinical claim.",
+      "titleWords": 4,
+      "narrativeWords": 10,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "20.png"
+    },
+    {
+      "hash": "#21",
+      "title": "Conclusion and Contributions",
+      "section": "main",
+      "visuals": 2,
+      "visibleText": "O1–O4 were completed through an auditable cohort, controlled comparison and failure-aware evaluation. The computing contribution is evidence about decoder topology—not a CT replacement or clinically ready system. Residual topology was the decisive factor. Small bones remain the main bottleneck. Clinical fracture preservation remains unproven.",
+      "titleWords": 3,
+      "narrativeWords": 44,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "21.png"
+    },
+    {
+      "hash": "#a1",
+      "title": "Complete Literature Comparison",
+      "section": "appendix",
+      "visuals": 1,
+      "visibleText": "",
+      "titleWords": 3,
+      "narrativeWords": 0,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a1.png"
+    },
+    {
+      "hash": "#a2",
+      "title": "Cohort and Exclusions",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "Quality, metadata or processing gates. 43 subjects; 58 healthy-source and 13 fractured-source.",
+      "titleWords": 3,
+      "narrativeWords": 12,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a2.png"
+    },
+    {
+      "hash": "#a3",
+      "title": "Complete Data Risk Matrix",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "Slice ordering and missing metadata Laterality and coordinate consistency Crop, target and fold leakage checks",
+      "titleWords": 4,
+      "narrativeWords": 15,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a3.png"
+    },
+    {
+      "hash": "#a4",
+      "title": "Detailed Training Configuration",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "Fold-specific encoders frozen for decoder comparison. Same folds, inputs, optimiser policy and evaluation. Every reported knee is evaluated outside its training fold.",
+      "titleWords": 3,
+      "narrativeWords": 22,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a4.png"
+    },
+    {
+      "hash": "#a5",
+      "title": "Decoder Capacity Gate",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "The comparison changes block topology and activation while keeping the shared pipeline fixed. Capacity differences are documented rather than hidden.",
+      "titleWords": 3,
+      "narrativeWords": 20,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a5.png"
+    },
+    {
+      "hash": "#a6",
+      "title": "Complete Fold-Level Results",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "",
+      "titleWords": 3,
+      "narrativeWords": 0,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a6.png"
+    },
+    {
+      "hash": "#a7",
+      "title": "Alternative Pipeline Results",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "Retained as supporting evidence, not mixed into the controlled decoder conclusion.",
+      "titleWords": 3,
+      "narrativeWords": 11,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a7.png"
+    },
+    {
+      "hash": "#a8",
+      "title": "Clinical Safety Boundaries",
+      "section": "appendix",
+      "visuals": 0,
+      "visibleText": "CT replacement Clinical readiness Proven fracture preservation Expert validation External multi-site testing Prospective safety evaluation",
+      "titleWords": 3,
+      "narrativeWords": 15,
+      "states": [
+        {
+          "activePanels": 0,
+          "innerOverflow": false,
+          "titleLines": 1,
+          "stageStates": []
+        }
+      ],
+      "fileName": "a8.png"
+    }
+  ],
+  "navigation": {
+    "mainStop": {
+      "hash": "#21",
+      "counter": "21 / 21"
+    },
+    "appendixOpen": {
+      "hash": "#a1",
+      "counter": "A1 / A8"
+    },
+    "appendixEnd": {
+      "hash": "#a8",
+      "counter": "A8 / A8"
+    },
+    "appendixReturn": {
+      "hash": "#21",
+      "counter": "21 / 21"
+    },
+    "demoInput": {
+      "open": true,
+      "state": true
+    },
+    "demoOutput": {
+      "state": true,
+      "model": "model-stage dark orbit-enabled ready",
+      "canvas": [
+        830,
+        646
+      ]
+    },
+    "demoReturn": {
+      "open": false,
+      "hash": "#21"
+    }
+  },
+  "viewportChecks": [
+    {
+      "viewport": [
+        1920,
+        1080
+      ],
+      "authored": [
+        1920,
+        1080
+      ],
+      "rendered": [
+        1920,
+        1080
+      ],
+      "transform": "translate(0px, 0px) scale(1)"
+    },
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "authored": [
+        1920,
+        1080
+      ],
+      "rendered": [
+        1280,
+        720
+      ],
+      "transform": "translate(0px, 0px) scale(0.666667)"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "authored": [
+        1920,
+        1080
+      ],
+      "rendered": [
+        390,
+        219.375
+      ],
+      "transform": "translate(0px, 312.312px) scale(0.203125)"
+    }
+  ],
   "consoleErrors": [],
   "pageErrors": [],
-  "localBinaryRequests": [],
-  "results": [
-    {
-      "slide": 1,
-      "title": "Title",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-01-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 2,
-      "title": "The inverse problem",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-02-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 3,
-      "title": "Why it matters",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-03-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 4,
-      "title": "Literature trajectory",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-04-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 5,
-      "title": "Research gap",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-05-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 6,
-      "title": "Research question",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-06-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 7,
-      "title": "Cohort",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-07-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 8,
-      "title": "Preparation pipeline",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-08-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 9,
-      "title": "P1 visual grammar",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-09-step-00.png",
-          "audit": {
-            "activePanel": "Start with one projection.The encoder sees an AP or lateral DRR as a 256 × 256 image—without a bone ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-09-step-01.png",
-          "audit": {
-            "activePanel": "Hide exactly 60% of its patches.A uniform 8 × 8 grid supplies 64 patches; 38 are masked for each tra",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-09-step-02.png",
-          "audit": {
-            "activePanel": "Compress the visible evidence at four scales.ConvNeXt preserves fine edges in large feature maps and",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-09-step-03.png",
-          "audit": {
-            "activePanel": "Reconstruct only what was hidden.Learning missing radiographic structure adapts the encoder to this ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 10,
-      "title": "P2 cross-view completion",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-10-step-00.png",
-          "audit": {
-            "activePanel": "Pair two projections of the same knee.AP and lateral images contain complementary evidence about the",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-10-step-01.png",
-          "audit": {
-            "activePanel": "Ask each view to help complete the other.Training runs in both directions: AP from lateral evidence ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-10-step-02.png",
-          "audit": {
-            "activePanel": "Restrict where tokens may communicate.At the final 8 × 8 grid, attention is allowed only within the ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-10-step-03.png",
-          "audit": {
-            "activePanel": "Learn correspondence—not 3D shape yet.The two views become related representations, but the four-bon",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 11,
-      "title": "Four feature scales",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-11-step-00.png",
-          "audit": {
-            "activePanel": "One image becomes four feature maps.The visualization shows RMS activation energy across channels—an",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-11-step-01.png",
-          "audit": {
-            "activePanel": "High resolution keeps local detail.The 64² and 32² maps use local fusion, supporting edges and small",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-11-step-02.png",
-          "audit": {
-            "activePanel": "Low resolution gathers wider context.The 16² and 8² maps use cross-attention so distant AP and later",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-11-step-03.png",
-          "audit": {
-            "activePanel": "Project each scale to a matched decoder width.Trainable 1 × 1 convolutions convert the four levels t",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 12,
-      "title": "2D to 3D lift",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-12-step-00.png",
-          "audit": {
-            "activePanel": "Begin with fused AP and lateral maps.The lateral map is flipped to match the standardized LPS orient",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-12-step-01.png",
-          "audit": {
-            "activePanel": "Replicate each plane along an orthogonal axis.The code permutes, inserts a new dimension and expands",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-12-step-02.png",
-          "audit": {
-            "activePanel": "Concatenate both cubes and learn a 3D fusion.A 3 × 3 × 3 convolution mixes the complementary AP and ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-12-step-03.png",
-          "audit": {
-            "activePanel": "But the input rays were divergent.The current lift assumes Cartesian replication and receives no sou",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 13,
-      "title": "Decoder prediction",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-13-step-00.png",
-          "audit": {
-            "activePanel": "Start at 8³ with 512 channels.The smallest feature volume carries the widest contextual view of the ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-13-step-01.png",
-          "audit": {
-            "activePanel": "Upsample to 16³ and add the matching skip.Transposed convolution doubles spatial resolution; concate",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-13-step-02.png",
-          "audit": {
-            "activePanel": "Repeat at 32³ and 64³.Each stage combines the growing volume with a finer lifted feature level.",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-13-step-03.png",
-          "audit": {
-            "activePanel": "Refine at 128³, then emit four logits.One channel is produced for each bone before a shared trilinea",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 4,
-          "fileName": "slide-13-step-04.png",
-          "audit": {
-            "activePanel": "Convert logits into occupied voxels.Sigmoid probabilities above 0.5 form the final femur, tibia, pat",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 14,
-      "title": "Residual refinement",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-14-step-00.png",
-          "audit": {
-            "activePanel": "Every arm receives the same input feature.The encoder, fusion, lifting, decoder widths and training ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-14-step-01.png",
-          "audit": {
-            "activePanel": "Both blocks apply two matched 3D convolutions.Group normalization and the chosen ReLU or PReLU activ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-14-step-02.png",
-          "audit": {
-            "activePanel": "The residual arm adds a projection shortcut.A 1 × 1 × 1 projection aligns channel width, allowing th",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-14-step-03.png",
-          "audit": {
-            "activePanel": "Learning becomes “refine this” instead of “rebuild everything.”This is the topology change isolated ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 718
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 15,
-      "title": "Controlled experiment",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-15-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 16,
-      "title": "Evaluation",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-16-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 17,
-      "title": "Main result",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-17-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 18,
-      "title": "Fold robustness",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-18-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 19,
-      "title": "Subgroup results",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-19-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 788,
-              "height": 500
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 20,
-      "title": "Failure analysis",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-20-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 928,
-              "height": 500
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 21,
-      "title": "Pipeline constraints",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-21-step-00.png",
-          "audit": {
-            "activePanel": "Begin with the 3D target.The reference volume contains all four bones, including the small patella a",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 1,
-          "fileName": "slide-21-step-01.png",
-          "audit": {
-            "activePanel": "Reveal the out-of-fold prediction.The V-style decoder recovers the large-bone structure but does not",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 2,
-          "fileName": "slide-21-step-02.png",
-          "audit": {
-            "activePanel": "Overlay prediction and target.Solid surfaces are the prediction; neutral wireframes show where the t",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 3,
-          "fileName": "slide-21-step-03.png",
-          "audit": {
-            "activePanel": "Isolate the small-bone failure.The absent green prediction is data-authentic—not an invented interme",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        },
-        {
-          "step": 4,
-          "fileName": "slide-21-step-04.png",
-          "audit": {
-            "activePanel": "Trace plausible information bottlenecks.Two projections collapse depth; the deepest map is only 8 × ",
-            "overflows": [],
-            "stageState": "ready",
-            "canvasPixels": {
-              "width": 1166,
-              "height": 782
-            }
-          }
-        }
-      ]
-    },
-    {
-      "slide": 22,
-      "title": "Responsible computing",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-22-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 23,
-      "title": "Conclusion",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-23-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    },
-    {
-      "slide": 24,
-      "title": "Future work",
-      "states": [
-        {
-          "step": 0,
-          "fileName": "slide-24-step-00.png",
-          "audit": {
-            "activePanel": null,
-            "overflows": [],
-            "stageState": null,
-            "canvasPixels": null
-          }
-        }
-      ]
-    }
-  ]
+  "failedRequests": [],
+  "failures": []
 }

@@ -1,50 +1,36 @@
-# Capstone presentation
+# Capstone web presentation
 
-Open `capstone-presentation.html` directly in Chrome or Edge. The deck is a fixed 1920 × 1080 presentation with 27 slides.
+`capstone-presentation.html` is a fixed-stage 1920×1080 web presentation for the capstone report. It contains 21 timed main slides, eight appendix slides and a separate precomputed input/output demo.
 
-- Use the arrow keys or mouse wheel to move between slides.
-- On modelling slides, click the visual or **Next step** to reveal the next concept.
-- Press `E` to edit text. Edits use stable `data-edit-id` keys and migrate existing v1 browser edits.
-- Reliable Wi-Fi is required because Three.js 0.185.1 and its GLTF loader are loaded from jsDelivr. No Three.js package is bundled locally.
-- If the CDN or WebGL fails, each scene shows a restrained textual fallback.
+## Run locally
 
-## Bone palette
+From the repository root, serve the directory over HTTP, then open `capstone-presentation.html` in a Chromium browser. The authored 1920×1080 stage scales uniformly to the viewport without responsive reflow.
 
-All bone-coded materials, legends and metric bars use one mapping:
+## Controls
 
-- Femur: `#1457D9`
-- Tibia: `#F28C28`
-- Patella: `#187B61`
-- Fibula: `#FF3300`
+- `←` / `→`, `Page Up` / `Page Down`, mouse wheel or swipe: navigate within the active mode.
+- `Home` / `End`: first or last slide in the active mode.
+- `A`: open appendix A1. Appendix hashes are `#a1` through `#a8`.
+- `D`: open the input/output demo from any main slide and return focus to Slide 21.
+- `Escape`: close the demo, or leave appendix mode and return to the previous main slide.
+- `E`: toggle inline editing.
+- `Ctrl+S` / `Cmd+S`: save edits and download an updated HTML copy.
 
-The model channel order remains femur, tibia, patella, fibula.
+The on-screen controls provide previous, appendix, next and demo actions. Main progress always displays `1 / 21` through `21 / 21`; appendix progress displays `A1 / A8` through `A8 / A8`.
 
-## Regenerate authentic assets
+## Design guidelines
 
-Use the project virtual environment so `torch`, `timm`, `nibabel`, `scikit-image` and `trimesh` are available:
+- Keep titles direct, sentence case, three to seven words and on one line. The formal project title is the only exception.
+- Use no more than three marked visual regions per slide. Prefer one dominant visual with up to two supporting visuals and leave clear space between them.
+- Use no more than three concise bullets and approximately 40–45 visible narrative words. Move detail into the speaker script before reducing type size.
+- Keep slide titles at 36–44 pt or larger, body text at 22–26 pt, diagram labels at least 18 pt and source rails at 14–16 pt.
+- Retain the warm off-white paper, black ink and red emphasis. Use blue for femur, orange for tibia, green for patella and red for fibula.
+- Use authentic project inputs, targets and predictions. Do not imply CT replacement, clinical readiness, live inference or proven fracture preservation.
 
-```powershell
-& "C:\Users\Chan Zheng Shao\OneDrive\Desktop\Github Repo\TestProject\TestProject\.venv\Scripts\python.exe" `
-  .\tools\build_modeling_assets.py `
-  --project-root "C:\Users\Chan Zheng Shao\OneDrive\Desktop\Github Repo\TestProject\TestProject" `
-  --output .\capstone-assets\modeling
-```
+## Editing and evidence
 
-The command exports actual AP/LAT DRRs, fold-4 RMS feature-energy maps, optimized GLB geometry embedded in `model-assets.js`, and a provenance manifest containing cases, folds, decoder arms, spacing, hashes and transformations.
+Editable text uses stable `data-edit-id` values and the `capstone-knee-deck-edits-v3` local-storage key. Only compatible v2 fields migrate. Medical visuals come from project assets or embedded precomputed models; the demo does not run inference and must not be described as clinical validation.
 
-## Validate
+## Presentation script
 
-```powershell
-python .\tools\validate_modeling_assets.py
-node --check .\capstone-js\deck-controller.js
-node --check .\capstone-js\modeling-runtime.js
-```
-
-For full browser QA, start a local server and run the Playwright renderer:
-
-```powershell
-python -m http.server 8765 --bind 127.0.0.1
-node .\tools\qa_deck.js http://127.0.0.1:8765/capstone-presentation.html .\qa-renders
-```
-
-The browser test renders every slide and every click state at 1920 × 1080, reports clipping and runtime errors, and confirms that no local GLB/GLTF/JSON fetches occur.
+Use `presentation-script-15min.md`. The main script totals exactly 15:00. The demo script is separate and targets 60–90 seconds.

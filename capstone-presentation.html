@@ -1169,11 +1169,176 @@
         outline-offset: 5px;
         cursor: text;
       }
+
+      /* 2026 overhaul: compact, projection-first layouts. */
+      .slide h2 { white-space: nowrap; font-size: 62px; margin-top: 40px; }
+      .ov-content { flex: 1; min-height: 0; margin-top: 30px; display: grid; gap: 28px; }
+      .ov-two { grid-template-columns: 1fr 1fr; }
+      .ov-three { grid-template-columns: repeat(3, 1fr); }
+      .ov-card { border: 3px solid var(--ink); background: rgba(246,246,241,.94); padding: 25px; min-width: 0; min-height: 0; }
+      .ov-card.dark { background: var(--ink); color: white; }
+      .ov-card.red { background: var(--red); color: white; border-color: var(--red); }
+      .ov-card h3 { font-size: 29px; margin-bottom: 12px; }
+      .ov-card p, .ov-card li { font-size: 21px; line-height: 1.34; }
+      .ov-card ul { margin: 12px 0 0 22px; }
+      .ov-card li { margin-bottom: 10px; }
+      .ov-image { border: 3px solid var(--ink); background: white; padding: 14px; display: grid; place-items: center; min-width: 0; min-height: 0; overflow: hidden; }
+      .ov-image img { width: 100%; height: 100%; object-fit: contain; }
+      .ov-stat { font: 800 66px/.95 var(--font-display); letter-spacing: -.05em; color: var(--red); }
+      .ov-label { font: 800 17px/1.15 var(--font-display); letter-spacing: .08em; text-transform: uppercase; }
+      .ov-arrow { color: var(--red); font: 800 44px/1 var(--font-display); align-self: center; }
+      .ov-flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-items: stretch; }
+      .ov-step { border-top: 6px solid var(--ink); padding: 20px 13px; background: rgba(246,246,241,.9); position: relative; }
+      .ov-step:not(:last-child)::after { content: "→"; position: absolute; right: -17px; top: 42%; color: var(--red); font: 800 28px/1 var(--font-display); }
+      .ov-step strong { display: block; font: 800 23px/1.1 var(--font-display); margin-bottom: 10px; }
+      .ov-step span { font-size: 18px; line-height: 1.25; }
+      .ov-question { border-left: 14px solid var(--red); padding-left: 25px; font: 800 40px/1.12 var(--font-display); }
+      .ov-objectives { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+      .ov-objective { border-top: 5px solid var(--ink); padding-top: 18px; font-size: 20px; line-height: 1.3; }
+      .ov-objective b { display: block; color: var(--red); font: 800 29px/1 var(--font-display); margin-bottom: 8px; }
+      .ov-matrix { display: grid; grid-template-columns: 150px 1fr 1fr; grid-template-rows: 70px 1fr 1fr; gap: 9px; }
+      .ov-matrix > div { border: 3px solid var(--ink); display: grid; place-items: center; text-align: center; padding: 14px; font: 800 22px/1.16 var(--font-display); }
+      .ov-matrix .head { background: var(--ink); color: white; }
+      .ov-matrix .winner { background: var(--red); color: white; border-color: var(--red); }
+      .ov-bars { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
+      .ov-bar { display: grid; grid-template-columns: 185px 1fr 95px; gap: 18px; align-items: center; font: 800 20px/1 var(--font-display); }
+      .ov-track { height: 34px; border: 3px solid var(--ink); background: white; }
+      .ov-fill { height: 100%; background: var(--ink); }
+      .ov-fill.red { background: var(--red); }
+      .bone-femur { color: #1457d9; } .bone-tibia { color: #f28c28; } .bone-patella { color: #187b61; } .bone-fibula { color: #ff3300; }
+      .appendix-slide::after { background: var(--ink); }
+      .appendix-slide .slide-no { color: var(--ink); }
+      .appendix-badge { color: var(--red); }
+      .demo-overlay { position: absolute; inset: 0; z-index: 80; background: var(--paper); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+      .demo-overlay.open { visibility: visible; opacity: 1; pointer-events: auto; }
+      .demo-shell { position: absolute; inset: 58px 70px; display: grid; grid-template-rows: auto minmax(0,1fr) auto; }
+      .demo-head { display:flex; align-items:center; justify-content:space-between; border-top:5px solid var(--ink); padding-top:16px; }
+      .demo-head h2 { font:800 48px/1 var(--font-display); }
+      .demo-close, .demo-next, .demo-launch { border:3px solid var(--ink); background:var(--ink); color:white; padding:14px 20px; font:800 17px/1 var(--font-display); cursor:pointer; }
+      .demo-state { min-height:0; display:grid; grid-row:2; grid-column:1; grid-template-columns:1fr 1fr; gap:28px; margin-top:28px; visibility:hidden; opacity:0; pointer-events:none; }
+      .demo-state.active { visibility:visible; opacity:1; pointer-events:auto; }
+      .demo-panel { border:3px solid var(--ink); background:white; padding:16px; display:flex; flex-direction:column; min-width:0; min-height:0; }
+      .demo-panel img { flex:1; width:100%; min-height:0; object-fit:contain; }
+      .demo-panel h3 { font-size:27px; margin-bottom:10px; }
+      .demo-model { flex:1; min-height:0; position:relative; }
+      .demo-model .model-stage { height:100%; }
+      .demo-foot { display:flex; justify-content:space-between; align-items:center; margin-top:18px; font-size:19px; }
+      .demo-launch { margin-top:20px; background:var(--red); border-color:var(--red); }
+      .density-exempt { }
     </style>
   </head>
   <body>
     <div class="deck-viewport">
       <main class="deck-stage" id="deckStage">
+        <!-- Main deck: 21 timed slides. Sources are additionally recorded in comments for audit. -->
+        <section class="slide title-slide active" data-section="main" data-title="Fracture-Preserving 3D Knee Reconstruction">
+          <div class="title-circle" aria-hidden="true"></div><div class="title-axis" aria-hidden="true"></div>
+          <div class="slide-inner"><div class="topline"><span>Capstone Project 2 · Final Presentation</span><span class="slide-no">01</span></div>
+            <h1 style="font-size:82px;white-space:nowrap" data-editable data-edit-id="s01-title">Fracture-Preserving 3D Knee Reconstruction</h1>
+            <p class="title-sub" data-editable data-edit-id="s01-subtitle">Controlled decoder comparison for four-bone reconstruction from paired knee radiographs</p>
+            <div class="title-meta"><span data-editable data-edit-id="s01-author">Chan Zheng Shao · 24020059<br>BIS (Hons) Data Analytics</span><span>Supervisor: Prof. Ts. Dr Lee Yun Li<br>Sunway University</span></div>
+          </div>
+        </section>
+
+        <section class="slide" data-section="main" data-title="Knee Imaging Background"><div class="slide-inner"><div class="topline"><span>Background</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s02-title">Knee Imaging Background</h2>
+          <div class="ov-content ov-two"><div class="ov-image" data-visual-item><img src="capstone-assets/biplanar-drr.png" alt="Authentic AP and lateral digitally reconstructed radiographs"></div><div class="ov-card" data-visual-item><div class="ov-stat">2D × 2 → 3D × 4</div><h3 style="margin-top:25px">Two complementary tools</h3><p data-editable data-edit-id="s02-copy">Radiographs are accessible but collapse depth. CT resolves 3D anatomy but adds cost and radiation. This project reconstructs femur, tibia, patella and fibula from AP and lateral views.</p></div></div>
+        </div><div class="source">Project inputs and four-bone CT targets · Report §§1.1–1.2.</div></section>
+
+        <section class="slide" data-section="main" data-title="Reconstruction Problem Statement"><div class="slide-inner"><div class="topline"><span>Problem</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s03-title">Reconstruction Problem Statement</h2>
+          <div class="ov-content ov-three"><div class="ov-card" data-visual-item><div class="ov-stat">01</div><h3>Depth is lost</h3><p>Many 3D shapes can explain the same two projections.</p></div><div class="ov-card" data-visual-item><div class="ov-stat">02</div><h3>Anatomy overlaps</h3><p>Bone boundaries obscure one another in radiographs.</p></div><div class="ov-card red" data-visual-item><div class="ov-stat" style="color:white">03</div><h3>Fractures matter</h3><p>A plausible smooth knee may still erase clinically important morphology.</p></div></div>
+        </div><div class="source">Research problem · Report §1.2. No claim of proven fracture preservation.</div></section>
+
+        <section class="slide" data-section="main" data-title="Medical Reconstruction Literature"><div class="slide-inner"><div class="topline"><span>Literature</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s04-title">Medical Reconstruction Literature</h2>
+          <div class="ov-content" data-visual-item><div class="ov-flow" style="grid-template-columns:repeat(5,1fr)"><div class="ov-step"><strong>Geometry</strong><span>Statistical shape priors</span></div><div class="ov-step"><strong>Biplanar</strong><span>Two views reduce ambiguity</span></div><div class="ov-step"><strong>Learning</strong><span>Images map to volumes</span></div><div class="ov-step"><strong>Fracture-aware</strong><span>Pathology challenges priors</span></div><div class="ov-step"><strong>Controlled study</strong><span>Isolate decoder effects</span></div></div><div class="ov-card dark"><p data-editable data-edit-id="s04-copy">The field progressed from shape fitting to learned biplanar reconstruction. Comparisons remain difficult when studies change data, geometry and architecture together.</p></div></div>
+        </div><div class="source">Literature synthesis · Report Chapter 2. Full comparison in A1.</div></section>
+
+        <section class="slide" data-section="main" data-title="Identified Research Gap"><div class="slide-inner"><div class="topline"><span>Gap</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s05-title">Identified Research Gap</h2>
+          <div class="ov-content ov-two"><div class="ov-card" data-visual-item><h3>Uncontrolled comparisons</h3><p>Architecture, data, projection geometry and training often change together, obscuring the cause of improvement.</p><div class="ov-stat" style="margin-top:38px">≠ fair evidence</div></div><div class="ov-card red" data-visual-item><h3>Hidden failures</h3><p>Average overlap can conceal missing small bones, fold instability and subgroup failure.</p><div class="ov-stat" style="color:white;margin-top:38px">mean ≠ safety</div></div></div>
+        </div><div class="source">Gap statement · Report §§2.5 and 3.1.</div></section>
+
+        <section class="slide" data-section="main" data-title="Research Question and Objectives"><div class="slide-inner"><div class="topline"><span>Research design</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s06-title">Research Question and Objectives</h2>
+          <div class="ov-content"><div class="ov-question" data-editable data-edit-id="s06-question">Under matched conditions, which decoder topology and activation best reconstruct four knee bones from paired radiographs?</div><div class="ov-objectives" data-visual-item><div class="ov-objective"><b>O1</b>Build an auditable cohort.</div><div class="ov-objective"><b>O2</b>Control the comparison.</div><div class="ov-objective"><b>O3</b>Evaluate folds, bones and cohorts.</div><div class="ov-objective"><b>O4</b>Identify the strongest decoder.</div></div></div>
+        </div><div class="source">Research question and objectives · Report §1.3.</div></section>
+
+        <section class="slide" data-section="main" data-title="Datasets and Study Cohort"><div class="slide-inner"><div class="topline"><span>Data</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s07-title">Datasets and Study Cohort</h2>
+          <div class="ov-content ov-three"><div class="ov-card" data-visual-item><div class="ov-stat">43</div><h3>subjects</h3><p>Grouped before fold assignment.</p></div><div class="ov-card" data-visual-item><div class="ov-stat">71</div><h3>knees</h3><p>58 healthy-source; 13 fractured-source.</p></div><div class="ov-card dark" data-visual-item><h3>Dataset roles</h3><p>VSD provides healthy and fractured sources. Ruikar contributes fractured cases. CT defines targets; DRRs provide paired inputs.</p></div></div>
+        </div><div class="source">Final cohort after seven exclusions · Report §§3.2–3.3. Full table in A2.</div></section>
+
+        <section class="slide" data-section="main" data-title="Ground Truth Preparation"><div class="slide-inner"><div class="topline"><span>Targets</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s08-title">Ground Truth Preparation</h2>
+          <div class="ov-content ov-two"><div class="ov-image" data-visual-item><img src="capstone-assets/four-channel-targets.png" alt="Four-channel femur tibia patella and fibula targets"></div><div class="ov-card" data-visual-item><div class="ov-flow" style="grid-template-columns:repeat(3,1fr)"><div class="ov-step"><strong>Segment</strong><span>Four bones</span></div><div class="ov-step"><strong>Align</strong><span>Common frame</span></div><div class="ov-step"><strong>Voxelise</strong><span>Four channels</span></div></div><p style="margin-top:34px" data-editable data-edit-id="s08-copy">Targets were generated computationally. Expert clinical validation of fracture morphology was not performed.</p></div></div>
+        </div><div class="source">Target preparation · Report §3.4.</div></section>
+
+        <section class="slide" data-section="main" data-title="Data Preparation Pipeline"><div class="slide-inner"><div class="topline"><span>Methodology</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s09-title">Data Preparation Pipeline</h2>
+          <div class="ov-content" data-visual-item><div class="ov-flow"><div class="ov-step"><strong>Order</strong><span>Verify slice sequence</span></div><div class="ov-step"><strong>Orient</strong><span>Normalise laterality</span></div><div class="ov-step"><strong>Crop</strong><span>Focus knee region</span></div><div class="ov-step"><strong>Standardise</strong><span>Intensity and spacing</span></div><div class="ov-step"><strong>Target</strong><span>Four channels</span></div><div class="ov-step"><strong>Project</strong><span>AP/LAT DRRs</span></div></div><div class="ov-card dark"><p>Each gate prevents silent label, orientation or geometry errors from entering training.</p></div></div>
+        </div><div class="source">Preparation controls · Report §§3.3–3.5. Full risk matrix in A3.</div></section>
+
+        <section class="slide" data-section="main" data-title="Controlled Decoder Experiment"><div class="slide-inner"><div class="topline"><span>Experiment</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s10-title">Controlled Decoder Experiment</h2>
+          <div class="ov-content ov-two"><div class="ov-matrix" data-visual-item><div></div><div class="head">ReLU</div><div class="head">PReLU</div><div class="head">Plain</div><div>Plain–ReLU</div><div>Plain–PReLU</div><div class="head">Residual</div><div class="winner">Residual–ReLU</div><div>Residual–PReLU</div></div><div class="ov-card" data-visual-item><h3>One controlled question</h3><p data-editable data-edit-id="s10-copy">Cross topology with activation while holding the shared front end, data, folds, initialisation policy and training protocol constant.</p><div class="ov-stat" style="margin-top:50px">2 × 2</div></div></div>
+        </div><div class="source">Factorial design · Report §3.8.</div></section>
+
+        <section class="slide" data-section="main" data-title="Experimental Controls and Responsibility"><div class="slide-inner"><div class="topline"><span>Fairness and scope</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s11-title">Experimental Controls and Responsibility</h2>
+          <div class="ov-content ov-three"><div class="ov-card" data-visual-item><h3>Grouped evaluation</h3><p>Subject-grouped folds prevent knees from one person crossing train and test.</p></div><div class="ov-card" data-visual-item><h3>Matched training</h3><p>Frozen shared front end, matched initialisation and out-of-fold comparison.</p></div><div class="ov-card red" data-visual-item><h3>Responsible boundary</h3><p>Research prototype only. Reuse computed features and report energy limits; no clinical deployment claim.</p></div></div>
+        </div><div class="source">Fairness, responsibility and sustainability · Report §§3.6, 3.8 and 5.4.</div></section>
+
+        <section class="slide model-slide" data-section="main" data-title="Representation Learning Stages"><div class="slide-inner"><div class="topline"><span>Methodology · click to advance</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s12-title">Representation Learning Stages</h2><div class="model-layout"><div class="model-copy" data-visual-item>
+          <div data-step-panel><div class="model-eyebrow">Inputs</div><div class="model-step-title">Paired AP and lateral DRRs</div><p class="model-step-copy">Two views provide complementary evidence.</p></div><div data-step-panel><div class="model-eyebrow">P1</div><div class="model-step-title">Masked single-view learning</div><p class="model-step-copy">The encoder learns robust local structure.</p></div><div data-step-panel><div class="model-eyebrow">P2</div><div class="model-step-title">Cross-view completion</div><p class="model-step-copy">Each view helps predict the other.</p></div><div data-step-panel><div class="model-eyebrow">Training</div><div class="model-step-title">Online augmentation</div><p class="model-step-copy">Variation is applied only to training DRRs.</p></div><div class="model-progress"><div class="model-progress-dots"></div><button class="model-next">Next step</button></div></div>
+          <div class="model-stage-wrap" data-visual-item><div class="model-stage"><canvas data-visual="representation-learning"></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading visual</div><div class="model-fallback">Static representation-learning summary remains available in A7.</div></div></div></div></div><div class="source">P1/P2 training design · Report §§3.6–3.7.</div></section>
+
+        <section class="slide model-slide" data-section="main" data-title="Shared Front-End Design"><div class="slide-inner"><div class="topline"><span>Methodology · click to advance</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s13-title">Shared Front-End Design</h2><div class="model-layout"><div class="model-copy" data-visual-item>
+          <div data-step-panel><div class="model-eyebrow">Features</div><div class="model-step-title">Four encoder scales</div><p class="model-step-copy">Fine and coarse evidence are retained.</p></div><div data-step-panel><div class="model-eyebrow">Fusion</div><div class="model-step-title">AP and lateral features join</div><p class="model-step-copy">View-specific features meet at each scale.</p></div><div data-step-panel><div class="model-eyebrow">Lift</div><div class="model-step-title">Cartesian 2D-to-3D lifting</div><p class="model-step-copy">Features are expanded into a shared volume.</p></div><div data-step-panel><div class="model-eyebrow">Constraint</div><div class="model-step-title">Geometry remains approximate</div><p class="model-step-copy">The lift does not encode exact rays.</p></div><div class="model-progress"><div class="model-progress-dots"></div><button class="model-next">Next step</button></div></div>
+          <div class="model-stage-wrap" data-visual-item><div class="model-stage"><canvas data-visual="shared-front-end"></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading visual</div><div class="model-fallback">The shared-front-end diagram is unavailable.</div></div></div></div></div><div class="source">Shared encoder and lift · Report §3.7.</div></section>
+
+        <section class="slide model-slide" data-section="main" data-title="Decoder Architecture Comparison"><div class="slide-inner"><div class="topline"><span>Methodology · click to advance</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s14-title">Decoder Architecture Comparison</h2><div class="model-layout"><div class="model-copy" data-visual-item>
+          <div data-step-panel><div class="model-eyebrow">Shared path</div><div class="model-step-title">One multiscale decoder</div><p class="model-step-copy">Only block topology and activation change.</p></div><div data-step-panel><div class="model-eyebrow">Plain</div><div class="model-step-title">Sequential convolutions</div><p class="model-step-copy">The baseline transforms every stage directly.</p></div><div data-step-panel><div class="model-eyebrow">Residual</div><div class="model-step-title">Identity-assisted refinement</div><p class="model-step-copy">Skip paths preserve information and gradients.</p></div><div data-step-panel><div class="model-eyebrow">Arms</div><div class="model-step-title">Four controlled conditions</div><p class="model-step-copy">Plain/residual × ReLU/PReLU.</p></div><div class="model-progress"><div class="model-progress-dots"></div><button class="model-next">Next step</button></div></div>
+          <div class="model-stage-wrap" data-visual-item><div class="model-stage"><canvas data-visual="decoder-architecture"></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading visual</div><div class="model-fallback">The decoder comparison diagram is unavailable.</div></div></div></div></div><div class="source">Decoder conditions · Report §3.8.</div></section>
+
+        <section class="slide" data-section="main" data-title="Reconstruction Evaluation Metrics"><div class="slide-inner"><div class="topline"><span>Evaluation</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s15-title">Reconstruction Evaluation Metrics</h2>
+          <div class="ov-content ov-three"><div class="ov-card" data-visual-item><div class="ov-stat">Dice ↑</div><h3>Volume overlap</h3><p>Higher means prediction and target occupy more of the same space.</p></div><div class="ov-card" data-visual-item><div class="ov-stat">ASSD ↓</div><h3>Surface distance</h3><p>Lower means the predicted and target surfaces are closer in millimetres.</p></div><div class="ov-card red" data-visual-item><div class="ov-stat" style="color:white">∅</div><h3>Empty prediction</h3><p>Missing bones receive an explicit penalty and remain in evaluation.</p></div></div>
+        </div><div class="source">Metric definitions and failure handling · Report §3.9.</div></section>
+
+        <section class="slide" data-section="main" data-title="Front-End Learning Results"><div class="slide-inner"><div class="topline"><span>Results</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s16-title">Front-End Learning Results</h2>
+          <div class="ov-content ov-two"><div class="ov-image" data-visual-item><img src="capstone-assets/front-end-performance-summary.png" alt="Front-end fold and bone performance summary"></div><div class="ov-card" data-visual-item><div class="ov-stat">0.574</div><h3>Best macro Dice</h3><p data-editable data-edit-id="s16-copy">P1/P2 learned useful features, but Fold 4 pairing was weakest. Femur and tibia were easier than patella and fibula, setting a ceiling before decoder comparison.</p></div></div>
+        </div><div class="source">Front-end evidence · Report §4.1.</div></section>
+
+        <section class="slide" data-section="main" data-title="Overall Decoder Results"><div class="slide-inner"><div class="topline"><span>Primary result</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s17-title">Overall Decoder Results</h2>
+          <div class="ov-content ov-two"><div class="ov-matrix" data-visual-item><div></div><div class="head">ReLU</div><div class="head">PReLU</div><div class="head">Plain</div><div>.406<br><small>13.88 mm</small></div><div>.406<br><small>13.76 mm</small></div><div class="head">Residual</div><div class="winner">.455<br><small>11.44 mm</small></div><div>.446<br><small>11.68 mm</small></div></div><div class="ov-card dark" data-visual-item><div class="ov-stat">+0.049</div><h3>Residual effect under ReLU</h3><p>Residual topology delivered the main gain: higher overlap and 2.44 mm lower surface distance. PReLU did not surpass ReLU.</p></div></div>
+        </div><div class="source">Out-of-fold macro results · Report §4.2.</div></section>
+
+        <section class="slide" data-section="main" data-title="Fold and Bone Results"><div class="slide-inner"><div class="topline"><span>Result detail</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s18-title">Fold and Bone Results</h2>
+          <div class="ov-content ov-two"><div class="ov-card" data-visual-item><h3>Residual–ReLU by fold</h3><div class="ov-bars"><div class="ov-bar"><span>F0</span><div class="ov-track"><div class="ov-fill red" style="width:99%"></div></div><b>.495</b></div><div class="ov-bar"><span>F1</span><div class="ov-track"><div class="ov-fill red" style="width:86%"></div></div><b>.430</b></div><div class="ov-bar"><span>F2</span><div class="ov-track"><div class="ov-fill red" style="width:94%"></div></div><b>.469</b></div><div class="ov-bar"><span>F3</span><div class="ov-track"><div class="ov-fill red" style="width:91%"></div></div><b>.456</b></div><div class="ov-bar"><span>F4</span><div class="ov-track"><div class="ov-fill red" style="width:85%"></div></div><b>.423</b></div></div></div><div class="ov-image" data-visual-item><img src="capstone-assets/bone-performance-chart.png" alt="Bone-level Dice and ASSD performance"></div></div>
+        </div><div class="source">Fold and bone results · Report §§4.2–4.3. Full table in A6.</div></section>
+
+        <section class="slide model-slide" data-section="main" data-title="Cohort and Failure Analysis"><div class="slide-inner"><div class="topline"><span>Critical analysis · click failure</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s19-title">Cohort and Failure Analysis</h2><div class="model-layout"><div class="model-copy" data-visual-item>
+          <div data-step-panel><div class="model-eyebrow">Cohorts</div><div class="model-step-title">Healthy-source: .489 Dice</div><p class="model-step-copy">Fractured-source: .377 Dice. Domain and pathology are confounded.</p></div><div data-step-panel><div class="model-eyebrow">Failure</div><div class="model-step-title">Missing patella retained</div><p class="model-step-copy">The empty prediction creates a 346.41 mm knee-level penalty.</p></div><div data-step-panel><div class="model-eyebrow">Interpretation</div><div class="model-step-title">Averages are insufficient</div><p class="model-step-copy">Bone, fold and cohort views reveal different weaknesses.</p></div><div data-step-panel><div class="model-eyebrow">Boundary</div><div class="model-step-title">Not clinically validated</div><p class="model-step-copy">The result is a research finding, not a safety claim.</p></div><div class="model-progress"><div class="model-progress-dots"></div><button class="model-next">Show failure</button></div></div>
+          <div class="model-stage-wrap" data-visual-item><div class="model-stage dark"><canvas data-visual="bottlenecks"></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading authentic case</div><div class="model-fallback"><img src="capstone-assets/cohort-performance-chart.png" alt="Cohort performance fallback"><br>Interactive failure model unavailable.</div></div></div></div></div><div class="source">Cohort and failure analysis · Report §§4.4–4.5.</div></section>
+
+        <section class="slide" data-section="main" data-title="Limitations and Future Work"><div class="slide-inner"><div class="topline"><span>Critical analysis</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s20-title">Limitations and Future Work</h2>
+          <div class="ov-content" data-visual-item><div class="ov-flow" style="grid-template-columns:repeat(4,1fr)"><div class="ov-step"><strong>Imbalance</strong><span>→ expand fractured cohort</span></div><div class="ov-step"><strong>Confounding</strong><span>→ matched domain study</span></div><div class="ov-step"><strong>Resolution</strong><span>→ refine small-bone outputs</span></div><div class="ov-step"><strong>Approximate lift</strong><span>→ test ray-aware lifting</span></div></div><div class="ov-card dark"><p>Expert fracture validation is the prerequisite before any clinical claim.</p></div></div>
+        </div><div class="source">Limitations and matched experiments · Report Chapter 5.</div></section>
+
+        <section class="slide" data-section="main" data-title="Conclusion and Contributions"><div class="slide-inner"><div class="topline"><span>Conclusion</span><span class="slide-no"></span></div><h2 data-editable data-edit-id="s21-title">Conclusion and Contributions</h2>
+          <div class="ov-content ov-two"><div class="ov-card dark" data-visual-item><div class="ov-stat">.455 / 11.44 mm</div><h3>Residual–ReLU performed best</h3><p data-editable data-edit-id="s21-copy">O1–O4 were completed through an auditable cohort, controlled comparison and failure-aware evaluation. The computing contribution is evidence about decoder topology—not a CT replacement or clinically ready system.</p><button class="demo-launch" id="demoLaunch">Input/output demo</button></div><div class="ov-card" data-visual-item><h3>What the evidence supports</h3><ul><li>Residual topology was the decisive factor.</li><li>Small bones remain the main bottleneck.</li><li>Clinical fracture preservation remains unproven.</li></ul><div class="ov-stat" style="margin-top:42px">Questions?</div></div></div>
+        </div><div class="source">Conclusion · Report Chapter 6. Press D for the precomputed demo.</div></section>
+
+        <!-- Appendix mode: excluded from the timed counter and progress. -->
+        <section class="slide appendix-slide" data-section="appendix" data-title="Complete Literature Comparison"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Complete Literature Comparison</h2><div class="ov-content"><div class="ov-image" data-visual-item><img src="capstone-assets/representation-learning.png" alt="Complete literature and representation learning comparison"></div></div></div><div class="source">Report Chapter 2.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Cohort and Exclusions"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Cohort and Exclusions</h2><div class="ov-content ov-three"><div class="ov-card"><div class="ov-stat">78</div><h3>candidate knees</h3></div><div class="ov-card"><div class="ov-stat">7</div><h3>excluded</h3><p>Quality, metadata or processing gates.</p></div><div class="ov-card dark"><div class="ov-stat">71</div><h3>final knees</h3><p>43 subjects; 58 healthy-source and 13 fractured-source.</p></div></div></div><div class="source">Report §§3.2–3.3.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Complete Data Risk Matrix"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Complete Data Risk Matrix</h2><div class="ov-content ov-two"><div class="ov-image"><img src="capstone-assets/method-overview.png" alt="Full data preparation and risk pipeline"></div><div class="ov-card"><h3>Audited risks</h3><ul><li>Slice ordering and missing metadata</li><li>Laterality and coordinate consistency</li><li>Crop, target and fold leakage checks</li></ul></div></div></div><div class="source">Report §§3.3–3.5.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Detailed Training Configuration"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Detailed Training Configuration</h2><div class="ov-content ov-three"><div class="ov-card"><h3>Shared front end</h3><p>Fold-specific encoders frozen for decoder comparison.</p></div><div class="ov-card"><h3>Matched arms</h3><p>Same folds, inputs, optimiser policy and evaluation.</p></div><div class="ov-card dark"><h3>Out-of-fold</h3><p>Every reported knee is evaluated outside its training fold.</p></div></div></div><div class="source">Report §§3.6–3.9.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Decoder Capacity Gate"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Decoder Capacity Gate</h2><div class="ov-content ov-two"><div class="ov-image"><img src="capstone-assets/residual-block.png" alt="Residual decoder block"></div><div class="ov-card"><h3>Fairness gate</h3><p>The comparison changes block topology and activation while keeping the shared pipeline fixed. Capacity differences are documented rather than hidden.</p></div></div></div><div class="source">Report §3.8.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Complete Fold-Level Results"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Complete Fold-Level Results</h2><div class="ov-content"><div class="ov-image"><img src="capstone-assets/fold-training.png" alt="Full fold-level results"></div></div></div><div class="source">Report §4.2.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Alternative Pipeline Results"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Alternative Pipeline Results</h2><div class="ov-content ov-two"><div class="ov-image"><img src="capstone-assets/fold-comparison.png" alt="Alternative front-end comparison"></div><div class="ov-card"><h3>Alternative SimCLR route</h3><p>Retained as supporting evidence, not mixed into the controlled decoder conclusion.</p></div></div></div><div class="source">Report §4.1 and experimental appendix.</div></section>
+        <section class="slide appendix-slide" data-section="appendix" data-title="Clinical Safety Boundaries"><div class="slide-inner"><div class="topline"><span class="appendix-badge">Appendix</span><span class="slide-no"></span></div><h2>Clinical Safety Boundaries</h2><div class="ov-content ov-two"><div class="ov-card red"><h3>Not established</h3><ul><li>CT replacement</li><li>Clinical readiness</li><li>Proven fracture preservation</li></ul></div><div class="ov-card dark"><h3>Required next</h3><ul><li>Expert validation</li><li>External multi-site testing</li><li>Prospective safety evaluation</li></ul></div></div></div><div class="source">Report §§5.4 and 6.2.</div></section>
+
+        <aside class="demo-overlay" id="demoOverlay" aria-hidden="true" aria-label="Input and output demonstration">
+          <div class="demo-shell"><div class="demo-head"><h2>Precomputed Input/Output Demo</h2><button class="demo-close" id="demoClose">Close · Esc</button></div>
+            <div class="demo-state active" data-demo-state="0"><div class="demo-panel" data-visual-item><h3>AP input DRR</h3><img id="demoAp" alt="Authentic AP DRR"></div><div class="demo-panel" data-visual-item><h3>Lateral input DRR</h3><img id="demoLat" alt="Authentic lateral DRR"></div></div>
+            <div class="demo-state" data-demo-state="1"><div class="demo-panel"><h3>Precomputed four-bone prediction</h3><div class="demo-model"><div class="model-stage dark"><canvas data-visual="success-comparison"></canvas><div class="model-dom-layer"></div><div class="model-loading">Loading prediction</div><div class="model-fallback"><img src="capstone-assets/decoder-reconstructions.png" alt="Static predicted reconstruction"><span>Static fallback: interactive model unavailable.</span></div></div></div></div><div class="demo-panel"><h3>Project ground-truth example</h3><img src="capstone-assets/four-channel-targets.png" alt="Static four-bone ground truth example"></div></div>
+            <div class="demo-foot"><span>Precomputed result · drag the prediction once to inspect depth</span><button class="demo-next" id="demoNext">Reveal output</button></div>
+          </div>
+        </aside>
+        <template id="legacyDeckSource" aria-hidden="true">
+        <!-- Legacy deck retained inert for edit-history compatibility; not part of the rendered DOM. -->
         <!-- SLIDE 01 — TITLE -->
         <section class="slide title-slide active" data-title="Title">
           <div class="title-circle" aria-hidden="true"></div>
@@ -3198,17 +3363,20 @@
           </div>
           <div class="source">Conclusion · PowerPoint slide 19.</div>
         </section>
+        </template>
       </main>
     </div>
 
     <!-- Presentation controls are outside the 1920×1080 stage. -->
     <nav class="deck-controls" aria-label="Presentation controls">
       <button id="prevBtn" aria-label="Previous slide">←</button>
-      <span id="counter">1 / 29</span>
+      <button id="appendixBtn" aria-label="Open appendix">A</button>
+      <span id="counter">1 / 21</span>
       <div class="progress" aria-hidden="true">
         <div class="progress-fill" id="progressFill"></div>
       </div>
       <button id="nextBtn" aria-label="Next slide">→</button>
+      <button id="demoBtn" aria-label="Open input output demo">D</button>
     </nav>
 
     <!-- Inline edit affordance: hover top-left or press E. -->
@@ -3248,8 +3416,7 @@
     </script>
     <script src="capstone-assets/modeling/model-assets.js"></script>
     <script src="capstone-js/modeling-runtime.js"></script>
-    <script src="capstone-js/scenes-learning.js"></script>
-    <script src="capstone-js/scenes-volume.js"></script>
+    <script src="capstone-js/scenes-composite.js"></script>
     <script src="capstone-js/scene-bottlenecks.js"></script>
     <script src="capstone-js/scenes-results.js"></script>
     <script src="capstone-js/deck-controller.js"></script>

@@ -42,7 +42,7 @@
     constructor(container, options = {}) {
       this.container = container;
       this.stage = container.closest(".model-stage");
-      this.slide = container.closest(".slide");
+      this.slide = container.closest(".slide") || container.closest(".demo-overlay");
       this.canvas = this.stage.querySelector("canvas");
       this.domLayer = this.stage.querySelector(".model-dom-layer");
       this.loading = this.stage.querySelector(".model-loading");
@@ -105,6 +105,10 @@
         rim.position.set(-5, 2, -4);
         this.scene.add(rim);
         this.clock = new THREE.Clock();
+        if (window.ResizeObserver) {
+          this.resizeObserver = new ResizeObserver(() => this.resize());
+          this.resizeObserver.observe(this.stage);
+        }
         await this.build();
         this.resize();
         this.ready = true;
@@ -185,9 +189,11 @@
     resize() {
       if (!this.renderer) return;
       const rect = this.stage.getBoundingClientRect();
-      const scale = rect.width / this.stage.offsetWidth || 1;
-      const width = Math.max(1, Math.round(rect.width / scale));
-      const height = Math.max(1, Math.round(rect.height / scale));
+      const deck = this.stage.closest("#deckStage");
+      const deckRect = deck?.getBoundingClientRect();
+      const scale = deckRect?.width ? deckRect.width / 1920 : (rect.width / this.stage.offsetWidth || 1);
+      const width = Math.max(1, this.stage.clientWidth || Math.round(rect.width / scale));
+      const height = Math.max(1, this.stage.clientHeight || Math.round(rect.height / scale));
       this.renderer.setSize(width, height, false);
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
@@ -196,6 +202,7 @@
 
     dispose() {
       this.deactivate();
+      if (this.resizeObserver) this.resizeObserver.disconnect();
       if (!this.scene) return;
       this.scene.traverse(object => {
         if (object.geometry) object.geometry.dispose();
@@ -292,6 +299,16 @@
     instances.forEach((instance, container) => {
       const active = container.closest(".slide") === event.detail.slide;
       if (active) instance.activate();
+      else instance.deactivate();
+    });
+  });
+  window.addEventListener("deck:demochange", event => {
+    instances.forEach((instance, container) => {
+      if (!container.closest(".demo-overlay")) return;
+      if (event.detail.open && (event.detail.state === undefined || event.detail.state === 1)) {
+        instance.resize();
+        instance.activate();
+      }
       else instance.deactivate();
     });
   });
