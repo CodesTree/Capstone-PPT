@@ -32,25 +32,134 @@
       .replace(/^-|-$/g, "");
   }
 
+  const qaRoutes = {
+    fracture: "qa-fracture-reliability",
+    literature: "qa-literature",
+    data: "qa-cohort",
+    groundTruth: "qa-ground-truth",
+    protocol: "qa-protocol",
+    architecture: "qa-p1",
+    p2: "qa-p2",
+    features: "qa-features",
+    lift: "qa-lift",
+    decoder: "qa-decoder-detail",
+    representation: "qa-front-end-ceiling",
+    failures: "qa-failure-case"
+  };
+
+  const coreRoute = [
+    "core-title",
+    "core-background",
+    "core-literature-gap",
+    "core-research-question",
+    "core-dataset",
+    "core-preprocessing",
+    "core-experimental-design",
+    "core-architecture",
+    "core-front-end",
+    "core-decoder",
+    "core-main-results",
+    "core-fold-robustness",
+    "core-cohort-results",
+    "core-failure-analysis",
+    "core-lifting-limitation",
+    "core-research-evaluation",
+    "core-conclusion"
+  ];
+
   class SlidePresentation {
     constructor() {
       this.slides = [...document.querySelectorAll(".slide")];
+      this.coreSlides = coreRoute.map(id => document.getElementById(id)).filter(Boolean);
       this.currentSlide = 0;
+      this.currentCoreIndex = 0;
+      this.activeSlide = this.coreSlides[0];
+      this.qaMode = false;
+      this.qaReturnId = this.activeSlide?.id || "core-title";
+      this.qaReturnFocus = null;
       this.stage = document.getElementById("deckStage");
       this.counter = document.getElementById("counter");
       this.progress = document.getElementById("progressFill");
       this.wheelLocked = false;
       this.touchStartX = 0;
       this.assignNumbers();
+      this.setupQaRouting();
+      this.setupArchitectureInteraction();
       this.setupStageScale();
       this.setupNavigation();
-      this.showSlide(this.readHash());
+      this.openInitialRoute();
     }
 
     assignNumbers() {
-      this.slides.forEach((slide, index) => {
+      this.coreSlides.forEach((slide, index) => {
         const marker = slide.querySelector(".slide-no");
         if (marker) marker.textContent = String(index + 1).padStart(2, "0");
+      });
+      this.slides.filter(slide => slide.dataset.route === "qa").forEach(slide => {
+        const marker = slide.querySelector(".slide-no");
+        if (marker) marker.textContent = "Q&A";
+        if (!slide.querySelector(":scope > .qa-badge")) {
+          const badge = document.createElement("div");
+          badge.className = "qa-badge";
+          badge.textContent = "Q&A evidence";
+          badge.setAttribute("aria-hidden", "true");
+          slide.appendChild(badge);
+        }
+      });
+    }
+
+    actionArea(slide) {
+      const topline = slide.querySelector(".topline");
+      if (!topline) return slide;
+      let actions = topline.querySelector(".slide-actions");
+      if (!actions) {
+        actions = document.createElement("div");
+        actions.className = "slide-actions";
+        topline.appendChild(actions);
+      }
+      return actions;
+    }
+
+    setupQaRouting() {
+      this.coreSlides.forEach(slide => {
+        const targetId = slide.dataset.qaTarget;
+        if (!targetId || !document.getElementById(targetId)) return;
+        const trigger = document.createElement("button");
+        trigger.className = "explore-trigger";
+        trigger.type = "button";
+        trigger.textContent = "+ Explore";
+        trigger.setAttribute("aria-controls", targetId);
+        trigger.setAttribute("aria-expanded", "false");
+        trigger.addEventListener("click", () => this.openQaSlide(targetId, true, trigger));
+        trigger.textContent = slide.dataset.exploreLabel || "+ Explore";
+        this.actionArea(slide).appendChild(trigger);
+      });
+
+      document.querySelectorAll("[data-qa-open]").forEach(trigger => {
+        if (trigger.classList.contains("architecture-stage")) return;
+        trigger.addEventListener("click", () => this.openQaSlide(trigger.dataset.qaOpen, true, trigger));
+      });
+    }
+
+    setupArchitectureInteraction() {
+      const copy = {
+        input: ["Input evidence", "Paired AP and lateral DRRs provide complementary, but depth-collapsed, knee evidence."],
+        encoder: ["Fold-specific encoder", "P1 adapts to radiographs; P2 learns correspondence between the paired views without exposing test subjects."],
+        "front-end": ["Shared and frozen", "All decoder arms receive the same fused and lifted 3D representation before comparison."],
+        decoder: ["Controlled decoder test", "Plain versus residual topology and ReLU versus PReLU are the only intended decoder differences."],
+        evaluation: ["Paired evaluation", "Out-of-fold four-bone volumes are compared with Dice, ASSD, cohort and explicit failure analysis."]
+      };
+      const detail = document.getElementById("architectureDetail");
+      const detailLabel = detail?.closest(".architecture-detail")?.querySelector(".detail-label");
+      const detailButton = document.getElementById("architectureDetailOpen");
+      document.querySelectorAll(".architecture-stage").forEach(stage => {
+        stage.addEventListener("click", () => {
+          document.querySelectorAll(".architecture-stage").forEach(item => item.classList.toggle("is-active", item === stage));
+          const [label, message] = copy[stage.dataset.architectureStage] || copy["front-end"];
+          if (detailLabel) detailLabel.textContent = label;
+          if (detail) detail.textContent = message;
+          if (detailButton) detailButton.dataset.qaOpen = stage.dataset.qaOpen;
+        });
       });
     }
 
@@ -70,6 +179,12 @@
       document.addEventListener("keydown", event => {
         const editing = event.target && event.target.getAttribute && event.target.getAttribute("contenteditable") === "true";
         if (editing) return;
+        if (document.querySelector(".risk-gate.open")) return;
+        if (event.key === "Escape" && this.qaMode && !document.querySelector(".risk-gate.open")) {
+          event.preventDefault();
+          this.returnFromQa();
+          return;
+        }
         if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(event.key)) {
           event.preventDefault();
           this.next();
@@ -78,12 +193,13 @@
           event.preventDefault();
           this.prev();
         }
-        if (event.key === "Home") this.showSlide(0);
-        if (event.key === "End") this.showSlide(this.slides.length - 1);
+        if (event.key === "Home" && !this.qaMode) this.showSlide(0);
+        if (event.key === "End" && !this.qaMode) this.showSlide(this.coreSlides.length - 1);
       });
       document.getElementById("prevBtn").addEventListener("click", () => this.prev());
       document.getElementById("nextBtn").addEventListener("click", () => this.next());
       window.addEventListener("wheel", event => {
+        if (document.querySelector(".risk-gate.open")) return;
         if (this.wheelLocked || Math.abs(event.deltaY) < 18) return;
         this.wheelLocked = true;
         event.deltaY > 0 ? this.next() : this.prev();
@@ -93,36 +209,94 @@
         this.touchStartX = event.changedTouches[0].screenX;
       }, { passive: true });
       window.addEventListener("touchend", event => {
+        if (document.querySelector(".risk-gate.open")) return;
         const delta = event.changedTouches[0].screenX - this.touchStartX;
         if (Math.abs(delta) > 50) delta < 0 ? this.next() : this.prev();
       }, { passive: true });
-      window.addEventListener("hashchange", () => this.showSlide(this.readHash(), false));
     }
 
     readHash() {
-      const value = parseInt(location.hash.replace("#", ""), 10);
-      return Number.isFinite(value) ? value - 1 : 0;
+      return decodeURIComponent(location.hash.replace("#", ""));
     }
 
-    showSlide(index, updateHash = true) {
+    openInitialRoute() {
+      const hash = this.readHash();
+      const target = hash ? document.getElementById(hash) : null;
+      if (target?.classList?.contains("slide") && target.dataset.route === "qa") {
+        this.showSlide(0, false);
+        this.openQaSlide(target.id, false);
+        return;
+      }
+      const coreIndex = target ? this.coreSlides.indexOf(target) : -1;
+      const legacyIndex = parseInt(hash, 10) - 1;
+      this.showSlide(coreIndex >= 0 ? coreIndex : (Number.isFinite(legacyIndex) ? legacyIndex : 0), false);
+    }
+
+    activateSlide(slide, updateHash, qaMode) {
       const previous = this.currentSlide;
-      this.currentSlide = Math.max(0, Math.min(index, this.slides.length - 1));
+      this.currentSlide = this.slides.indexOf(slide);
+      this.activeSlide = slide;
       this.slides.forEach((slide, slideIndex) => {
         slide.classList.toggle("active", slideIndex === this.currentSlide);
         slide.classList.toggle("visible", slideIndex === this.currentSlide);
+        if (slideIndex !== this.currentSlide) slide.classList.remove("qa-active");
       });
-      this.counter.textContent = `${this.currentSlide + 1} / ${this.slides.length}`;
-      this.progress.style.width = `${((this.currentSlide + 1) / this.slides.length) * 100}%`;
-      const current = this.slides[this.currentSlide];
-      document.title = `${this.currentSlide + 1}. ${current.dataset.title} — 3D Knee Reconstruction`;
-      if (updateHash) history.replaceState(null, "", `#${this.currentSlide + 1}`);
+      if (qaMode) slide.classList.add("qa-active");
+      this.counter.textContent = qaMode
+        ? `Q&A · ${this.currentCoreIndex + 1} / ${this.coreSlides.length}`
+        : `${this.currentCoreIndex + 1} / ${this.coreSlides.length}`;
+      this.progress.style.width = `${((this.currentCoreIndex + 1) / this.coreSlides.length) * 100}%`;
+      document.title = `${qaMode ? "Q&A" : this.currentCoreIndex + 1}. ${slide.dataset.title} — 3D Knee Reconstruction`;
+      if (updateHash) history.replaceState(null, "", `#${slide.id}`);
       window.dispatchEvent(new CustomEvent("deck:slidechange", {
-        detail: { previous, current: this.currentSlide, slide: current }
+        detail: { previous, current: this.currentSlide, slide, route: qaMode ? "qa" : "core" }
       }));
     }
 
-    next() { this.showSlide(this.currentSlide + 1); }
-    prev() { this.showSlide(this.currentSlide - 1); }
+    showSlide(index, updateHash = true) {
+      this.qaMode = false;
+      this.currentCoreIndex = Math.max(0, Math.min(index, this.coreSlides.length - 1));
+      this.activateSlide(this.coreSlides[this.currentCoreIndex], updateHash, false);
+    }
+
+    openQaSlide(routeOrId, updateHash = true, trigger = null) {
+      const targetId = qaRoutes[routeOrId] || routeOrId;
+      const target = document.getElementById(targetId);
+      if (!target?.classList?.contains("slide") || target.dataset.route !== "qa") return;
+      if (!this.qaMode) this.qaReturnId = this.activeSlide?.id || this.coreSlides[this.currentCoreIndex].id;
+      this.qaReturnFocus = trigger || this.qaReturnFocus;
+      if (trigger?.hasAttribute("aria-expanded")) trigger.setAttribute("aria-expanded", "true");
+      this.qaMode = true;
+      let returnButton = target.querySelector(".slide-actions > .qa-return");
+      if (!returnButton) {
+        returnButton = document.createElement("button");
+        returnButton.className = "qa-return";
+        returnButton.type = "button";
+        returnButton.textContent = "← Return to presentation";
+        returnButton.addEventListener("click", () => this.returnFromQa());
+        this.actionArea(target).appendChild(returnButton);
+      }
+      this.activateSlide(target, updateHash, true);
+      requestAnimationFrame(() => returnButton.focus());
+    }
+
+    returnFromQa() {
+      const returnSlide = document.getElementById(this.qaReturnId);
+      const index = Math.max(0, this.coreSlides.indexOf(returnSlide));
+      const focusTarget = this.qaReturnFocus;
+      this.qaReturnFocus = null;
+      if (focusTarget?.hasAttribute("aria-expanded")) focusTarget.setAttribute("aria-expanded", "false");
+      this.showSlide(index);
+      requestAnimationFrame(() => focusTarget?.focus());
+    }
+
+    next() {
+      if (!this.qaMode) this.showSlide(this.currentCoreIndex + 1);
+    }
+
+    prev() {
+      if (!this.qaMode) this.showSlide(this.currentCoreIndex - 1);
+    }
   }
 
   class InlineEditor {

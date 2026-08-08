@@ -79,17 +79,26 @@ def main() -> None:
         require(re.search(rf"{re.escape(token)}:\s*{re.escape(value)}\s*;", css, re.IGNORECASE) is not None, f"Missing CSS palette token {token}")
 
     require("color: hexNumber(palette[bone])" in runtime, "Three.js materials do not use the central palette")
-    require(len(re.findall(r'<section class="slide', html)) == 27, "Deck does not contain 27 slides")
+    slide_tags = re.findall(r'<section\b[^>]*\bclass="[^"]*\bslide\b[^"]*"[^>]*>', html, re.DOTALL)
+    total_slides = len(slide_tags)
+    core_slides = sum('data-route="core"' in tag for tag in slide_tags)
+    qa_slides = sum('data-route="qa"' in tag for tag in slide_tags)
+    require(all(re.search(r'\bid="[^"]+"', tag) and 'data-route=' in tag for tag in slide_tags), "Every slide needs an id and route")
+    require(total_slides == 30, "Deck does not contain 30 total slides")
+    require(core_slides == 17, "Deck does not contain 17 core slides")
+    require(qa_slides == 13, "Deck does not contain 13 Q&A slides")
     require(len(re.findall(r'data-visual="', html)) == 8, "Deck does not contain 8 active 3D visuals")
     require('three@0.185.1/build/three.module.min.js' in html, "Pinned Three.js CDN import missing")
     require('three@0.185.1/examples/jsm/' in html, "Pinned Three.js addons import missing")
     require(not re.search(r'src="[^"]*(?:three(?:\.min)?\.js|three\.module)', html, re.IGNORECASE), "Three.js appears to be loaded from a local script")
-    require("bone-models.png" not in html and "decoder-reconstructions.png" not in html and "representation-learning.png" not in html, "Conflicting legacy bone artwork remains")
+    require("decoder-reconstructions.png" not in html and "representation-learning.png" not in html, "Conflicting legacy artwork remains")
     require("dataset.editId" in (ROOT / "capstone-js" / "deck-controller.js").read_text(encoding="utf-8"), "Stable edit IDs missing")
 
     summary = {
         "status": "ok",
-        "slides": 27,
+        "slides": total_slides,
+        "core_slides": core_slides,
+        "qa_slides": qa_slides,
         "visuals": len(re.findall(r'data-visual="', html)),
         "palette": EXPECTED_PALETTE,
         "bone_order": EXPECTED_ORDER,

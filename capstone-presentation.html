@@ -160,6 +160,16 @@
         .deck-controls {
           display: none !important;
         }
+
+        .slide[data-route="qa"],
+        .qa-return,
+        .explore-trigger {
+          display: none !important;
+        }
+
+        body.print-all .slide[data-route="qa"] {
+          display: block !important;
+        }
       }
       /* 8. Reduced motion */
       @media (prefers-reduced-motion: reduce) {
@@ -203,6 +213,110 @@
         display: flex;
         flex-direction: column;
         z-index: 2;
+      }
+
+      /* ===========================================
+       CORE / Q&A ROUTING CONTROLS
+       Optional evidence stays secondary to the timed presentation path.
+       =========================================== */
+      .explore-trigger,
+      .qa-return,
+      .evidence-link {
+        appearance: none;
+        border: 2px solid var(--ink);
+        background: var(--paper);
+        color: var(--ink);
+        font: 800 17px/1 var(--font-display);
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition:
+          background 180ms ease,
+          color 180ms ease,
+          border-color 180ms ease,
+          transform 180ms ease;
+      }
+      .explore-trigger {
+        padding: 10px 14px;
+        font-size: 14px;
+      }
+      .qa-return {
+        padding: 10px 14px;
+        font-size: 14px;
+        border-color: var(--red);
+        color: var(--red);
+        display: none;
+      }
+      .slide.qa-active .qa-return { display: block; }
+      .slide-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+      }
+      .explore-trigger:hover,
+      .explore-trigger:focus-visible,
+      .qa-return:hover,
+      .qa-return:focus-visible,
+      .evidence-link:hover,
+      .evidence-link:focus-visible {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: var(--paper);
+        transform: translateY(-2px);
+        outline: 4px solid rgba(255, 51, 0, 0.28);
+        outline-offset: 3px;
+      }
+      .qa-badge {
+        position: absolute;
+        right: 86px;
+        top: 140px;
+        z-index: 8;
+        padding: 10px 14px;
+        background: var(--ink);
+        color: var(--paper);
+        font: 800 16px/1 var(--font-display);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .evaluation-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+      .evaluation-grid .card {
+        min-height: 220px;
+        padding: 24px;
+      }
+      .evaluation-grid .status {
+        display: inline-flex;
+        margin-bottom: 18px;
+        padding: 8px 10px;
+        background: var(--ink);
+        color: var(--paper);
+        font: 800 15px/1 var(--font-display);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .evaluation-grid .status.bounded {
+        background: var(--red);
+      }
+      .evidence-link {
+        width: 100%;
+        margin-top: 18px;
+        padding: 12px 10px;
+        font-size: 14px;
+      }
+      .qa-hub {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .qa-hub .evidence-link {
+        margin: 0;
+        min-height: 48px;
       }
       .topline {
         display: flex;
@@ -561,13 +675,13 @@
       }
       .flow {
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 24px;
         margin-top: 42px;
         align-items: center;
       }
       .flow-step {
-        min-height: 190px;
+        min-height: 168px;
         border: 3px solid var(--ink);
         padding: 24px;
         background: var(--paper);
@@ -679,7 +793,7 @@
         margin-bottom: 16px;
       }
       .prep-node h3 {
-        font-size: 24px;
+        font-size: 21px;
         line-height: 1.08;
         margin-bottom: 11px;
       }
@@ -715,7 +829,7 @@
         cursor: pointer;
       }
       .risk-gate-trigger::after {
-        content: "+ details";
+        content: "+ explore";
         position: absolute;
         right: 24px;
         bottom: 18px;
@@ -972,26 +1086,128 @@
       .architecture-overview-slide .topline {
         border-top-width: 4px;
         padding-top: 10px;
-        font-size: 18px;
+        font-size: 16px;
       }
       .architecture-overview-frame {
         flex: 1;
-        margin-top: 8px;
+        margin-top: 18px;
         min-height: 0;
-        padding: 0;
+        padding: 28px 30px 24px;
         border: 2px solid var(--ink);
-        background: #f7f9fc;
+        background: var(--paper);
         position: relative;
         overflow: hidden;
       }
-      .architecture-overview-frame img {
+      .architecture-board {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 18px;
+        height: calc(100% - 150px);
+      }
+      .architecture-stage {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 18px;
+        border: 2px solid var(--ink);
+        background: var(--paper-dark);
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+        transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+      }
+      .architecture-stage::after {
+        content: "→";
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        display: block;
+        right: -18px;
+        top: 50%;
+        z-index: 2;
+        transform: translate(50%, -50%);
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--paper);
+        color: var(--red);
+        font: 900 24px/1 var(--font-display);
+      }
+      .architecture-stage:last-child::after { display: none; }
+      .architecture-stage:hover,
+      .architecture-stage:focus-visible,
+      .architecture-stage.is-active {
+        background: var(--ink);
+        color: var(--paper);
+        transform: translateY(-6px);
+        outline: 4px solid rgba(255, 51, 0, 0.28);
+        outline-offset: 3px;
+      }
+      .architecture-stage.is-active { border-color: var(--red); }
+      .architecture-stage .stage-no {
+        color: var(--red);
+        font: 800 16px/1 var(--font-display);
+        letter-spacing: 0.12em;
+      }
+      .architecture-stage h3 {
+        font-size: 26px;
+        line-height: 1.05;
+        margin: 0;
+      }
+      .architecture-stage p {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.28;
+      }
+      .architecture-stage .stage-visual {
+        display: grid;
+        place-items: center;
+        min-height: 112px;
+        margin-top: auto;
+        border-top: 2px solid currentColor;
+        padding-top: 14px;
+        font: 800 20px/1.1 var(--font-display);
+        text-align: center;
+      }
+      .architecture-stage img {
+        max-width: 100%;
+        max-height: 104px;
         object-fit: contain;
-        object-position: center;
+        filter: grayscale(1) contrast(1.12);
+      }
+      .architecture-detail {
+        display: grid;
+        grid-template-columns: 230px 1fr auto;
+        align-items: center;
+        gap: 20px;
+        min-height: 118px;
+        margin-top: 20px;
+        padding: 18px 20px;
+        background: var(--ink);
+        color: var(--paper);
+      }
+      .architecture-detail .detail-label {
+        color: var(--red);
+        font: 800 16px/1 var(--font-display);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .architecture-detail p {
+        margin: 0;
+        font-size: 23px;
+        line-height: 1.2;
+      }
+      .architecture-detail button {
+        appearance: none;
+        padding: 11px 14px;
+        border: 2px solid var(--paper);
+        background: transparent;
+        color: var(--paper);
+        font: 800 14px/1 var(--font-display);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
       }
       .matrix {
         display: grid;
@@ -1175,7 +1391,7 @@
     <div class="deck-viewport">
       <main class="deck-stage" id="deckStage">
         <!-- SLIDE 01 — TITLE -->
-        <section class="slide title-slide active" data-title="Title">
+        <section class="slide title-slide active" id="core-title" data-route="core" data-title="Title">
           <div class="title-circle" aria-hidden="true"></div>
           <div class="title-axis" aria-hidden="true"></div>
           <div class="slide-inner">
@@ -1190,6 +1406,9 @@
               A controlled comparison of U-Net-style and V-Net-style decoder
               blocks
             </p>
+            <p class="kicker reveal d3" style="margin-top: 22px" data-editable>
+              What actually causes the decoder performance difference?
+            </p>
             <div class="title-meta reveal d3">
               <span data-editable
                 >CHAN ZHENG SHAO · 24020059<br />BIS (Hons) Data Analytics</span
@@ -1203,13 +1422,13 @@
         </section>
 
         <!-- SLIDE 02 — BACKGROUND -->
-        <section class="slide" data-title="The inverse problem">
+        <section class="slide" id="core-background" data-route="core" data-title="Background" data-qa-target="qa-fracture-reliability">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>01 · Background</span><span class="slide-no">02</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Two projections. One missing dimension.
+              Background
             </h2>
             <div class="hero-equation">
               <div class="reveal-left d2">
@@ -1239,7 +1458,7 @@
         </section>
 
         <!-- SLIDE 03 — DOMAIN MOTIVATION -->
-        <section class="slide" data-title="Why it matters">
+        <section class="slide" id="qa-fracture-reliability" data-route="qa" data-title="Fracture Reliability">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>01 · Background</span><span class="slide-no">03</span>
@@ -1290,7 +1509,7 @@
         </section>
 
         <!-- SLIDE 04 — LITERATURE REVIEW -->
-        <section class="slide" data-title="Literature trajectory">
+        <section class="slide" id="qa-literature" data-route="qa" data-title="Literature Evidence">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Literature Review</span
@@ -1363,38 +1582,40 @@
           </div>
         </section>
         <!-- SLIDE 05 — LITERATURE SYNTHESIS / GAP -->
-        <section class="slide" data-title="Research gap">
+        <section class="slide" id="core-literature-gap" data-route="core" data-title="Literature Review and Research Gap" data-qa-target="qa-literature">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Literature Review</span
               ><span class="slide-no">05</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              The literature compares systems—but rarely isolates causes.
+              Literature Review and Research Gap
             </h2>
-            <div class="three-col" style="margin-top: 54px">
+            <p class="lead reveal d2" style="margin-top: 18px" data-editable>
+              Geometric fitting → direct learning → biplanar reconstruction →
+              fracture-aware and implicit methods: feasibility advanced faster
+              than controlled attribution.
+            </p>
+            <div class="three-col" style="margin-top: 28px">
               <article class="card reveal d2">
                 <div class="kicker">Confound 01</div>
-                <h3>Named network architecture bundle many choices</h3>
+                <h3>Named networks bundle choices</h3>
                 <p data-editable>
-                  Topology, activation, normalization, capacity, loss and
-                  training commonly change together.
+                  Topology, activation and training often change together.
                 </p>
               </article>
               <article class="card reveal d3">
                 <div class="kicker">Confound 02</div>
-                <h3>Datasets and geometry differ</h3>
+                <h3>Data and geometry differ</h3>
                 <p data-editable>
-                  Projection models, anatomy, preprocessing and splits can
-                  change apparent model ranking.
+                  Projections, anatomy and splits alter apparent ranking.
                 </p>
               </article>
               <article class="card reveal d4">
                 <div class="kicker">Blind spot 03</div>
-                <h3>Aggregate metrics hide failure</h3>
+                <h3>Averages hide failure</h3>
                 <p data-editable>
-                  Dice can stay plausible while small bones, surfaces or
-                  fracture gaps fail catastrophically.
+                  Dice can mask small-bone, surface and fracture failure.
                 </p>
               </article>
             </div>
@@ -1408,7 +1629,7 @@
         </section>
 
         <!-- SLIDE 06 — RESEARCH QUESTION -->
-        <section class="slide" data-title="Research question">
+        <section class="slide" id="core-research-question" data-route="core" data-title="Research Question and Objectives">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Problem &amp; Objectives</span
@@ -1442,7 +1663,7 @@
                 <div class="metric">01</div>
                 <h3>Cohort</h3>
                 <p data-editable>
-                  Verify geometry, laterality and subject-level separation.
+                  Verify geometry, laterality and subject grouping.
                 </p>
               </article>
               <article class="card reveal d3">
@@ -1456,14 +1677,14 @@
                 <div class="metric">03</div>
                 <h3>Complementary metrics</h3>
                 <p data-editable>
-                  Use Dice and ASSD with bone and cohort analysis.
+                  Use Dice, ASSD, bone and cohort checks.
                 </p>
               </article>
               <article class="card dark reveal d5">
                 <div class="metric accent">04</div>
                 <h3>Controlled comparison</h3>
                 <p data-editable>
-                  Evaluate four decoder arms over five grouped folds.
+                  Test four arms across five grouped folds.
                 </p>
               </article>
             </div>
@@ -1472,18 +1693,18 @@
         </section>
 
         <!-- DATASET ROLES -->
-        <section class="slide" data-title="Dataset roles">
+        <section class="slide" id="core-dataset" data-route="core" data-title="Dataset and Ground Truth" data-qa-target="qa-cohort">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
               ><span class="slide-no">07</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Three datasets. Two evidence roles.
+              Dataset and Ground Truth
             </h2>
             <p class="lead reveal d2" style="margin-top: 20px" data-editable>
-              CT cohorts build and test the model; clinical X-rays only probe
-              plausibility.
+              43 subjects / 71 knees produce four-bone CT-derived targets;
+              clinical X-rays only probe plausibility.
             </p>
             <div class="dataset-role-layout">
               <article class="dataset-group quantitative reveal-left d3">
@@ -1539,7 +1760,7 @@
           </div>
         </section>
         <!-- SLIDE 07 — COHORT -->
-        <section class="slide" data-title="Cohort">
+        <section class="slide" id="qa-cohort" data-route="qa" data-title="Cohort Details">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
@@ -1602,7 +1823,7 @@
         </section>
 
         <!-- SLIDE 07 — FOUR-CHANNEL TARGETS -->
-        <section class="slide" data-title="Ground-truth meshes">
+        <section class="slide" id="qa-ground-truth" data-route="qa" data-title="Ground Truth">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
@@ -1670,14 +1891,14 @@
         </section>
 
         <!-- PREPARATION PIPELINE -->
-        <section class="slide" data-title="Preparation pipeline">
+        <section class="slide" id="core-preprocessing" data-route="core" data-title="Data Preprocessing">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
               ><span class="slide-no">08</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              A geometry-first preparation pipeline.
+              Data Preprocessing
             </h2>
             <div
               class="prep-flow reveal d2"
@@ -1716,6 +1937,11 @@
                 <h3>Bi-planar DRRs</h3>
                 <p data-editable>Generate paired 256×256 AP/LAT projections.</p>
               </div>
+              <div class="prep-node">
+                <div class="n">06</div>
+                <h3>Subject-grouped folds</h3>
+                <p data-editable>Keep both knees from one subject in one fold.</p>
+              </div>
             </div>
             <div class="potential-risks-label reveal d3">Potential risks identified during data exploration</div>
             <div class="three-col reveal d3 risk-gates">
@@ -1728,7 +1954,7 @@
                   aria-controls="risk-detail-order"
                 >
                   <div class="kicker">Potential risk 01</div>
-                  <h3>Invalid multi-folder volume</h3>
+                  <h3>Volume ordering</h3>
                   <p data-editable>
                     File order may not match physical slice order, especially
                     in multi-folder VSD studies.
@@ -1769,7 +1995,7 @@
                   aria-controls="risk-detail-laterality"
                 >
                   <div class="kicker">Potential risk 02</div>
-                  <h3>Laterality and target mismatch</h3>
+                  <h3>Laterality check</h3>
                   <p data-editable>
                     Absolute position can mislabel laterality; verify relative
                     bone relationships and target chirality.
@@ -1801,7 +2027,7 @@
                   aria-controls="risk-detail-leakage"
                 >
                   <div class="kicker" style="color: white">Potential risk 03</div>
-                  <h3>Leakage and unequal weighting</h3>
+                  <h3>Leakage control</h3>
                   <p data-editable>
                     Bilateral VSD knees can leak across folds or give one
                     subject extra weight.
@@ -1830,14 +2056,14 @@
         </section>
 
         <!-- SLIDE 09 — FACTORIAL DESIGN -->
-        <section class="slide" data-title="Controlled experiment">
+        <section class="slide" id="core-experimental-design" data-route="core" data-title="Experimental Design" data-qa-target="qa-protocol">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
               ><span class="slide-no">09</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              A 2×2 factorial design separates topology from activation.
+              Experimental Design
             </h2>
             <div
               class="two-col"
@@ -1851,7 +2077,7 @@
                 <div class="cell">U-style<br />Plain + ReLU</div>
                 <div class="cell">Plain + PReLU</div>
                 <div class="side">Projected residual</div>
-                <div class="cell winner">Residual + ReLU<br />Best overall</div>
+                <div class="cell">Residual + ReLU</div>
                 <div class="cell">V-style<br />Residual + PReLU</div>
               </div>
               <div>
@@ -1862,16 +2088,15 @@
                     <li data-editable>2D→3D lifting pathway</li>
                     <li data-editable>Decoder skeleton and widths</li>
                     <li data-editable>Folds, data and augmentation</li>
-                    <li data-editable>Loss, optimiser and schedule</li>
+                    <li data-editable>Loss and training schedule</li>
                   </ul>
                 </div>
                 <article class="card reveal d4 factor-rationale" style="margin-top: 18px">
                   <div class="kicker">Why a factorial design?</div>
-                  <h3>Two named networks would confound the cause.</h3>
+                  <h3>Change one factor at a time.</h3>
                   <ul class="clean">
-                    <li data-editable>Plain-ReLU versus residual-PReLU changes topology and activation together.</li>
-                    <li data-editable>The two cross-over arms reveal whether performance follows topology, activation or their interaction.</li>
-                    <li data-editable>One decoder skeleton improves attribution; parameter counts remain close, not identical.</li>
+                    <li data-editable>Cross-over arms separate topology from activation.</li>
+                    <li data-editable>One skeleton makes comparisons interpretable.</li>
                   </ul>
                 </article>
               </div>
@@ -1881,7 +2106,7 @@
         </section>
 
         <!-- SLIDE 10 — FAIR COMPARISON -->
-        <section class="slide" data-title="Fairness controls">
+        <section class="slide" id="qa-protocol" data-route="qa" data-title="Fairness Protocol">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
@@ -1930,30 +2155,63 @@
         </section>
 
         <!-- MODELLING ARCHITECTURE OVERVIEW -->
-        <section class="slide architecture-overview-slide" data-title="Modelling architecture overview">
+        <section class="slide architecture-overview-slide" id="core-architecture" data-route="core" data-title="Model Architecture" data-qa-target="qa-p1">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">13</span>
             </div>
             <div class="architecture-overview-frame reveal d1">
-              <img
-                src="capstone-assets/modelling-phase-architecture.svg"
-                alt="Four-phase modelling architecture: fold-specific encoder development, shared bi-planar front end, factorial decoder comparison, and paired out-of-fold evaluation"
-              />
+              <div class="architecture-board" aria-label="Interactive modelling architecture overview">
+                <button class="architecture-stage" type="button" data-architecture-stage="input" data-qa-open="qa-cohort">
+                  <span class="stage-no">01 · INPUT</span>
+                  <h3>Bi-planar DRRs</h3>
+                  <p>Paired AP and lateral 256 × 256 evidence.</p>
+                  <div class="stage-visual"><img src="capstone-assets/biplanar-drr.png" alt="AP and lateral DRR pair" /></div>
+                </button>
+                <button class="architecture-stage" type="button" data-architecture-stage="encoder" data-qa-open="qa-p1">
+                  <span class="stage-no">02 · ENCODER</span>
+                  <h3>Fold-specific ConvNeXtV2</h3>
+                  <p>P1 masking and P2 cross-view completion.</p>
+                  <div class="stage-visual">P1 → P2<br />per fold</div>
+                </button>
+                <button class="architecture-stage is-active" type="button" data-architecture-stage="front-end" data-qa-open="qa-features">
+                  <span class="stage-no">03 · SHARED FRONT END</span>
+                  <h3>Fusion and 2D→3D lift</h3>
+                  <p>Four scales become one shared 3D representation.</p>
+                  <div class="stage-visual">64² · 32²<br />16² · 8²</div>
+                </button>
+                <button class="architecture-stage" type="button" data-architecture-stage="decoder" data-qa-open="qa-residual">
+                  <span class="stage-no">04 · DECODER TEST</span>
+                  <h3>Controlled 2 × 2 comparison</h3>
+                  <p>Only topology and activation change.</p>
+                  <div class="stage-visual">PLAIN / RESIDUAL<br />ReLU / PReLU</div>
+                </button>
+                <button class="architecture-stage" type="button" data-architecture-stage="evaluation" data-qa-open="qa-failure-case">
+                  <span class="stage-no">05 · OUTPUT</span>
+                  <h3>Four-bone evaluation</h3>
+                  <p>Out-of-fold volume, Dice, ASSD and failures.</p>
+                  <div class="stage-visual"><img src="capstone-assets/bone-models.png" alt="Four reconstructed knee bones" /></div>
+                </button>
+              </div>
+              <div class="architecture-detail" aria-live="polite">
+                <div class="detail-label">Shared and frozen</div>
+                <p id="architectureDetail">All decoder arms receive the same fused and lifted 3D representation before comparison.</p>
+                <button id="architectureDetailOpen" type="button" data-qa-open="qa-features">Explore detail</button>
+              </div>
             </div>
 
           </div>
           <div class="source">High-level modelling summary · Report §§3.4–3.5.</div>
         </section>
         <!-- SLIDE 11 — REPRESENTATION LEARNING SUMMARY -->
-        <section class="slide" data-title="P1 and P2 summary">
+        <section class="slide" id="core-front-end" data-route="core" data-title="Shared Front-End Evaluation" data-qa-target="qa-front-end-ceiling">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>02 · Technical Approach</span
               ><span class="slide-no">11</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              P1 learns structure; P2 links both views.
+              Shared Front-End Evaluation
             </h2>
             <div class="tag reveal d2" style="margin: 18px auto 0">
               Five fold-specific ConvNeXtV2 encoders · test-fold subjects
@@ -2002,7 +2260,7 @@
           </div>
         </section>
         <!-- MODELLING DEEP DIVE 01 — P1 -->
-        <section class="slide model-slide" data-title="P1 visual grammar">
+        <section class="slide model-slide" id="qa-p1" data-route="qa" data-title="P1 Visual Grammar">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">12</span>
@@ -2089,6 +2347,8 @@
         <!-- MODELLING DEEP DIVE 02 — P2 -->
         <section
           class="slide model-slide"
+          id="qa-p2"
+          data-route="qa"
           data-title="P2 cross-view completion"
         >
           <div class="slide-inner">
@@ -2176,7 +2436,7 @@
         </section>
 
         <!-- MODELLING DEEP DIVE 03 — FEATURE PYRAMID -->
-        <section class="slide model-slide" data-title="Four feature scales">
+        <section class="slide model-slide" id="qa-features" data-route="qa" data-title="Four Feature Scales">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">14</span>
@@ -2262,7 +2522,7 @@
         </section>
 
         <!-- MODELLING DEEP DIVE 04 — LIFT -->
-        <section class="slide model-slide" data-title="2D to 3D lift">
+        <section class="slide model-slide" id="qa-lift" data-route="qa" data-title="Orthogonal Lift">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">15</span>
@@ -2347,14 +2607,43 @@
           </aside>
         </section>
 
+        <!-- SLIDE 10 — DECODER SUMMARY -->
+        <section class="slide" id="core-decoder" data-route="core" data-title="Decoder Comparison" data-qa-target="qa-decoder-detail">
+          <div class="slide-inner">
+            <div class="topline reveal">
+              <span>02 · Technical Approach</span><span class="slide-no">10</span>
+            </div>
+            <h2 class="reveal d1" data-editable>One decoder skeleton. Two isolated factors.</h2>
+            <p class="lead reveal d2" style="margin-top: 18px" data-editable>
+              All four arms share encoder, biplanar fusion, lifting, widths and training.
+            </p>
+            <div class="two-col" style="margin-top: 34px">
+              <article class="card dark reveal-left d3">
+                <div class="kicker">Topology</div>
+                <h3>Plain vs projected residual</h3>
+                <p data-editable>A residual shortcut preserves the coarse feature while the block learns a refinement.</p>
+              </article>
+              <article class="card reveal-right d4">
+                <div class="kicker">Activation</div>
+                <h3>ReLU vs PReLU</h3>
+                <p data-editable>The second factor changes activation only; the cross-over arms test the interaction.</p>
+              </article>
+            </div>
+            <div class="question reveal d5" style="margin-top: 30px" data-editable>
+              The result can therefore be attributed to decoder choices—not a different representation pipeline.
+            </div>
+          </div>
+          <div class="source">Controlled decoder comparison · Report §§3.4–3.5.</div>
+        </section>
+
         <!-- MODELLING DEEP DIVE 05 — DECODER -->
-        <section class="slide model-slide" data-title="Decoder prediction">
+        <section class="slide model-slide" id="qa-decoder-detail" data-route="qa" data-title="Decoder Walkthrough">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">16</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              The decoder grows coarse evidence into four bone predictions.
+              Decoder Design
             </h2>
             <div class="model-layout">
               <div class="model-copy reveal-left d2">
@@ -2471,7 +2760,7 @@
         </section>
 
         <!-- MODELLING DEEP DIVE 06 — RESIDUAL -->
-        <section class="slide model-slide" data-title="Residual refinement">
+        <section class="slide model-slide" id="qa-residual" data-route="qa" data-title="Residual Refinement">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Methodology</span><span class="slide-no">17</span>
@@ -2560,7 +2849,7 @@
         </section>
 
         <!-- SLIDE 18 — FRONT-END CEILING -->
-        <section class="slide" data-title="Front-end ceiling">
+        <section class="slide" id="qa-front-end-ceiling" data-route="qa" data-title="Front-End Ceiling">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
@@ -2624,14 +2913,14 @@
         </section>
 
         <!-- SLIDE 19 — MAIN RESULT -->
-        <section class="slide" data-title="Main result">
+        <section class="slide" id="core-main-results" data-route="core" data-title="Main Results" data-qa-target="qa-front-end-ceiling">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
               ><span class="slide-no">19</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Residual-ReLU leads the controlled decoder test.
+              Main Results
             </h2>
             <div
               class="two-col"
@@ -2705,14 +2994,14 @@
         </section>
 
         <!-- SLIDE 20 — FOLD 4 ROBUSTNESS -->
-        <section class="slide" data-title="Fold 4 robustness">
+        <section class="slide" id="core-fold-robustness" data-route="core" data-title="Fold Robustness" data-qa-target="qa-protocol">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
               ><span class="slide-no">20</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Fold 4 lowered accuracy but does not affect the conclusion.
+              Fold Robustness
             </h2>
             <div class="two-col" style="margin-top: 42px; flex: 1">
               <article class="card reveal-left d2">
@@ -2748,14 +3037,14 @@
         </section>
 
         <!-- SLIDE 21 — SMALL-BONE BOTTLENECK -->
-        <section class="slide" data-title="Small-bone bottleneck">
+        <section class="slide" id="core-failure-analysis" data-route="core" data-title="Failure Analysis" data-qa-target="qa-failure-case">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
               ><span class="slide-no">21</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Small bones remain the bottleneck.
+              Failure Analysis
             </h2>
             <div
               style="
@@ -2832,14 +3121,14 @@
         </section>
 
         <!-- SLIDE 22 — FRACTURED COHORT -->
-        <section class="slide" data-title="Fractured anatomy">
+        <section class="slide" id="core-cohort-results" data-route="core" data-title="Cohort Results">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
               ><span class="slide-no">22</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Fractured anatomy remains harder across every decoder.
+              Cohort Results
             </h2>
             <div
               class="two-col"
@@ -2888,7 +3177,7 @@
         </section>
 
         <!-- SLIDE 24 — V-STYLE PATELLA FAILURE -->
-        <section class="slide model-slide" data-title="Failure analysis">
+        <section class="slide model-slide" id="qa-failure-case" data-route="qa" data-title="Catastrophic Patella Failure">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
@@ -2995,14 +3284,14 @@
         </section>
 
         <!-- SLIDE 25 — GEOMETRY-LIFTING HYPOTHESIS -->
-        <section class="slide" data-title="Pipeline constraints">
+        <section class="slide" id="core-lifting-limitation" data-route="core" data-title="2D-to-3D Lifting Limitation" data-qa-target="qa-lift">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>03 · Critical Thinking</span
               ><span class="slide-no">25</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Geometry-inconsistent lifting is the plausible system bottleneck.
+              2D-to-3D Lifting Limitation
             </h2>
             <div
               style="
@@ -3077,57 +3366,61 @@
           <div class="source">Report pp. 139–143 · PowerPoint slide 18.</div>
         </section>
 
-        <!-- SLIDE 26 — FUTURE WORK -->
-        <section class="slide" data-title="Future work">
+        <!-- CORE 16 — RESEARCH CLOSURE -->
+        <section class="slide" id="core-research-evaluation" data-route="core" data-title="Research Question Evaluation">
           <div class="slide-inner">
             <div class="topline reveal">
-              <span>04 · Conclusion</span><span class="slide-no">26</span>
+              <span>04 · Research Closure</span><span class="slide-no">16</span>
             </div>
-            <h2 class="reveal d1" data-editable>Future Works</h2>
-            <div class="four-col" style="margin-top: 50px; flex: 1">
+            <h2 class="reveal d1" data-editable>Research Question Evaluation</h2>
+            <div class="question reveal d2" style="font-size: 34px; margin-top: 18px" data-editable>
+              Under the tested conditions, residual topology produced the
+              stronger independent effect; PReLU added little benefit.
+            </div>
+            <div class="evaluation-grid">
               <article class="card reveal d2">
-                <div class="kicker">01</div>
-                <h3>Projection-aware lifting</h3>
-                <p data-editable>
-                  Matched ray-based lifting and differentiable reprojection
-                  ablation.
-                </p>
+                <span class="status">Achieved</span>
+                <h3>01 · Cohort validity</h3>
+                <p data-editable>Subject-grouped folds, laterality checks and fixed geometry prevented bilateral leakage.</p>
+                <button class="evidence-link" type="button" data-qa-open="qa-cohort">View evidence</button>
               </article>
               <article class="card reveal d3">
-                <div class="kicker">02</div>
-                <h3>Balanced fracture evidence</h3>
-                <p data-editable>
-                  Larger cohorts with acquisition source modelled explicitly.
-                </p>
+                <span class="status">Achieved</span>
+                <h3>02 · Fair representation</h3>
+                <p data-editable>Every decoder received the same frozen front end and lifted 3D representation.</p>
+                <button class="evidence-link" type="button" data-qa-open="qa-p1">View evidence</button>
               </article>
               <article class="card reveal d4">
-                <div class="kicker">03</div>
-                <h3>Expert fracture metrics</h3>
-                <p data-editable>
-                  Gap width, displacement, depression and cortical continuity.
-                </p>
+                <span class="status">Achieved</span>
+                <h3>03 · Complementary evaluation</h3>
+                <p data-editable>Dice, ASSD, bone, cohort and catastrophic-failure analyses challenged the average result.</p>
+                <button class="evidence-link" type="button" data-qa-open="qa-failure-case">View evidence</button>
               </article>
               <article class="card dark reveal d5">
-                <div class="kicker">04</div>
-                <h3>External clinical validation</h3>
-                <p data-editable>
-                  Paired real radiographs and CT across scanners and
-                  institutions.
-                </p>
+                <span class="status bounded">Within scope</span>
+                <h3>04 · Factor attribution</h3>
+                <p data-editable>Five grouped folds across four decoder conditions isolated topology from activation choice.</p>
+                <button class="evidence-link" type="button" data-qa-open="qa-protocol">View evidence</button>
               </article>
             </div>
+            <div class="card red reveal d5" style="margin-top: 20px; padding: 18px 24px; min-height: 0">
+              <p style="font-size: 22px" data-editable>
+                <strong>Aim achieved within experimental scope.</strong>
+                Clinical validation and clinical readiness were not achieved or claimed.
+              </p>
+            </div>
           </div>
-          <div class="source">Future work · Report pp. 139–143.</div>
+          <div class="source">Research question and objectives · Report pp. 12–15, 125–143.</div>
         </section>
 
         <!-- SLIDE 27 — GRAND CONCLUSION -->
-        <section class="slide" data-title="Conclusion">
+        <section class="slide" id="core-conclusion" data-route="core" data-title="Conclusion and Q&A">
           <div class="slide-inner">
             <div class="topline reveal">
               <span>04 · Conclusion</span><span class="slide-no">27</span>
             </div>
             <h2 class="reveal d1" data-editable>
-              Residual topology matters more than activation choice.
+              Conclusion and Q&A
             </h2>
             <div
               class="question reveal d2"
@@ -3148,23 +3441,15 @@
                 fracture-specific performance remain limited.
               </p>
             </div>
-            <div class="contribution-strip">
-              <article class="card dark reveal d4">
-                <h3>Project contribution</h3>
-                <p data-editable>
-                  A leakage-controlled factorial framework that isolates decoder
-                  topology and activation, then exposes bone-, surface- and
-                  cohort-specific failure—not only average overlap.
-                </p>
-              </article>
-              <article class="card reveal d4">
-                <h3>SDG 3.8 alignment</h3>
-                <p data-editable>
-                  The work explores how widely available radiographs could
-                  eventually support more accessible 3D visualisation; this is
-                  research alignment, not demonstrated healthcare impact.
-                </p>
-              </article>
+            <div class="qa-hub reveal d4" aria-label="Q&A evidence routes">
+              <button class="evidence-link" type="button" data-qa-open="qa-cohort">Data</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-cohort">Preprocessing</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-p1">Architecture</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-p2">P1 / P2</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-decoder-detail">Decoder</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-front-end-ceiling">Results</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-failure-case">Failures</button>
+              <button class="evidence-link" type="button" data-qa-open="qa-lift">Future Work</button>
             </div>
             <div
               style="

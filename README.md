@@ -1,8 +1,9 @@
 # Capstone presentation
 
-Open `capstone-presentation.html` directly in Chrome or Edge. The deck is a fixed 1920 × 1080 presentation with 27 slides.
+Open `capstone-presentation.html` directly in Chrome or Edge. The deck is a fixed 1920 × 1080 presentation with 17 core slides and 13 Q&A evidence slides.
 
-- Use the arrow keys or mouse wheel to move between slides.
+- Use the arrow keys or mouse wheel to move through the 17-slide timed presentation.
+- Use **+ Explore** or the final Q&A hub to open technical evidence; press `Escape` or **Return to presentation** to resume the same core slide.
 - On modelling slides, click the visual or **Next step** to reveal the next concept.
 - Press `E` to edit text. Edits use stable `data-edit-id` keys and migrate existing v1 browser edits.
 - Reliable Wi-Fi is required because Three.js 0.185.1 and its GLTF loader are loaded from jsDelivr. No Three.js package is bundled locally.
@@ -47,4 +48,4 @@ python -m http.server 8765 --bind 127.0.0.1
 node .\tools\qa_deck.js http://127.0.0.1:8765/capstone-presentation.html .\qa-renders
 ```
 
-The browser test renders every slide and every click state at 1920 × 1080, reports clipping and runtime errors, and confirms that no local GLB/GLTF/JSON fetches occur.
+The browser test renders all core and Q&A slides plus every click state at 1920 × 1080, reports clipping and runtime errors, and confirms that no local GLB/GLTF/JSON fetches occur.

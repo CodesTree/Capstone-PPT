@@ -26,15 +26,27 @@ const browserPath = process.env.CAPSTONE_BROWSER || edgePath;
     if (/127\.0\.0\.1.*\.(?:glb|gltf|json)(?:\?|$)/i.test(requestUrl)) localBinaryRequests.push(requestUrl);
   });
 
-  await page.goto(url + "#1", { waitUntil: "networkidle", timeout: 90000 });
+  await page.goto(url + "#core-title", { waitUntil: "networkidle", timeout: 90000 });
   await page.waitForTimeout(1800);
 
-  const slideCount = await page.locator(".slide").count();
+  const routes = await page.locator("section.slide[data-route]").evaluateAll(slides => slides.map(slide => ({
+    id: slide.id,
+    route: slide.dataset.route,
+    title: slide.dataset.title
+  })));
+  const slideCount = routes.length;
   const results = [];
 
-  for (let slideIndex = 0; slideIndex < slideCount; slideIndex += 1) {
-    await page.evaluate(number => { window.location.hash = String(number); }, slideIndex + 1);
-    await page.waitForTimeout(350);
+  for (let slideIndex = 0; slideIndex < routes.length; slideIndex += 1) {
+    const route = routes[slideIndex];
+    await page.evaluate(item => {
+      if (item.route === "core") {
+        window.deck.showSlide(window.deck.coreSlides.findIndex(slide => slide.id === item.id));
+      } else {
+        window.deck.openQaSlide(item.id);
+      }
+    }, route);
+    await page.waitForTimeout(1400);
 
     const visualCount = await page.locator(".slide.active [data-visual]").count();
     if (visualCount) {
@@ -88,11 +100,13 @@ const browserPath = process.env.CAPSTONE_BROWSER || edgePath;
       await page.screenshot({ path: path.join(outputRoot, fileName), type: "png" });
       states.push({ step, fileName, audit });
     }
-    results.push({ slide: slideIndex + 1, title, states });
+    results.push({ slide: slideIndex + 1, id: route.id, route: route.route, title, states });
   }
 
   const summary = {
     slideCount,
+    coreSlideCount: routes.filter(route => route.route === "core").length,
+    qaSlideCount: routes.filter(route => route.route === "qa").length,
     renderCount: results.reduce((total, slide) => total + slide.states.length, 0),
     readyVisuals: await page.locator(".model-stage.ready").count(),
     failedVisuals: await page.locator(".model-stage.failed").count(),
@@ -104,6 +118,8 @@ const browserPath = process.env.CAPSTONE_BROWSER || edgePath;
   fs.writeFileSync(path.join(outputRoot, "qa-report.json"), JSON.stringify(summary, null, 2));
   process.stdout.write(JSON.stringify({
     slideCount: summary.slideCount,
+    coreSlideCount: summary.coreSlideCount,
+    qaSlideCount: summary.qaSlideCount,
     renderCount: summary.renderCount,
     readyVisuals: summary.readyVisuals,
     failedVisuals: summary.failedVisuals,
