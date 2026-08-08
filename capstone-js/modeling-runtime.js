@@ -81,6 +81,7 @@
       if (this.nextButton) this.nextButton.addEventListener("click", advance);
       this.stage.addEventListener("click", event => {
         if (event.target.closest(".model-next")) return;
+        if (this.stage.classList.contains("orbit-enabled")) return;
         advance(event);
       });
     }

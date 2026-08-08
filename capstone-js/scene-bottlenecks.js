@@ -47,6 +47,10 @@
       this.stage.classList.add("orbit-enabled");
       this.canvas.setAttribute("aria-label", "Drag horizontally or vertically to orbit the Fold-2 target and V-style prediction");
       let dragging = false;
+      let moved = false;
+      let suppressClick = false;
+      let startX = 0;
+      let startY = 0;
       let lastX = 0;
       let lastY = 0;
       let orbitX = 0;
@@ -59,7 +63,12 @@
         this.renderOnce();
       };
       const start = event => {
+        if (event.button !== undefined && event.button !== 0) return;
+        event.preventDefault();
         dragging = true;
+        moved = false;
+        startX = event.clientX;
+        startY = event.clientY;
         lastX = event.clientX;
         lastY = event.clientY;
         this.stage.classList.add("orbiting");
@@ -67,6 +76,10 @@
       };
       const move = event => {
         if (!dragging) return;
+        const distance = Math.hypot(event.clientX - startX, event.clientY - startY);
+        if (!moved && distance < 5) return;
+        moved = true;
+        event.preventDefault();
         const deltaX = event.clientX - lastX;
         const deltaY = event.clientY - lastY;
         lastX = event.clientX;
@@ -78,6 +91,7 @@
       const end = event => {
         if (!dragging) return;
         dragging = false;
+        suppressClick = moved;
         this.stage.classList.remove("orbiting");
         if (this.canvas.hasPointerCapture && this.canvas.hasPointerCapture(event.pointerId)) {
           this.canvas.releasePointerCapture(event.pointerId);
@@ -87,6 +101,12 @@
       this.canvas.addEventListener("pointermove", move);
       this.canvas.addEventListener("pointerup", end);
       this.canvas.addEventListener("pointercancel", end);
+      this.canvas.addEventListener("click", event => {
+        if (!suppressClick) return;
+        suppressClick = false;
+        event.preventDefault();
+        event.stopPropagation();
+      }, true);
     }
 
     renderStep(step) {

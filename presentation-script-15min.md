@@ -16,15 +16,15 @@ This is an ill-posed inverse problem: several 3D shapes can explain the same ima
 
 ## Slide 4 — Medical Reconstruction Literature (0:45)
 
-Earlier work fitted statistical shape priors. Biplanar methods then reduced ambiguity, and deep learning enabled direct image-to-volume prediction. Fracture-aware work shows why healthy priors are insufficient. However, published comparisons often change data, geometry and architecture simultaneously.
+The literature moves through model families. Before 2020, statistical shape models and deformable fitting adapted a known shape to the images. In 2020–21, voxel CNNs, CycleGAN, Pix2pix and latent-transfer CNNs learned mappings from images to volumes. In 2022, atlas registration combined ProST with dual U-Nets. FracReconNet made fracture evidence explicit in 2023. Recent work explores transformers, implicit fields and hybrid registration. Across studies, however, data, geometry and training change with architecture.
 
 ## Slide 5 — Identified Research Gap (0:35)
 
-Two gaps motivate this study. First, uncontrolled comparisons make architectural attribution weak. Second, aggregate scores can hide missing small bones, unstable folds or subgroup failures. I therefore isolate decoder changes and keep failure cases in the analysis.
+The literature conclusion gives three reasons a controlled study is needed. First, decoder topology, activation and training are often bundled together. Second, datasets and projection geometry differ. Third, aggregate metrics can hide a missing small bone. This study therefore isolates decoder properties in one shared, failure-aware pipeline.
 
 ## Slide 6 — Research Question and Objectives (0:40)
 
-The question is: under matched conditions, which decoder topology and activation perform best? The four objectives build an auditable cohort, control the experiment, evaluate folds, bones and cohorts, and identify the strongest condition without overstating clinical meaning.
+The research question asks how decoder topology and activation affect overlap, surface accuracy and robustness under one leakage-controlled bi-planar front end. The aim is a controlled U-Net-style versus V-Net-style decoder study. The objectives are: build the cohort, hold the front end fair, use complementary Dice and ASSD evidence, and compare the four decoder conditions.
 
 ## Slide 7 — Datasets and Study Cohort (0:40)
 
@@ -32,11 +32,11 @@ After seven exclusions, the cohort contains 43 subjects and 71 knees. Fifty-eigh
 
 ## Slide 8 — Ground Truth Preparation (0:35)
 
-CT-derived masks were segmented into femur, tibia, patella and fibula, aligned to a common frame, then voxelised as four channels. These are computational ground truths; fracture morphology was not independently validated by clinical experts.
+The CT workflow segments the four bones, refines and exports the masks, aligns them in one frame and voxelises them as four binary channels. Those targets support training and evaluation. They are computational ground truths: fracture morphology was not independently validated by clinical experts.
 
 ## Slide 9 — Data Preparation Pipeline (0:45)
 
-The pipeline verifies slice order, normalises laterality, crops the knee, standardises intensity and spacing, constructs four-channel targets, then generates paired DRRs. Each gate prevents silent orientation, label or geometry errors from contaminating the experiment.
+This is the report pipeline. After case cleaning and anatomical isolation, spatial standardisation uses SimpleITK, followed by radiometric standardisation. A four-channel binary target is constructed, then a fracture mask is retained before paired DRRs are generated. The detailed risk checks remain available in Appendix A3.
 
 ## Slide 10 — Controlled Decoder Experiment (0:45)
 
@@ -64,7 +64,7 @@ Dice measures volume overlap, so higher is better. ASSD measures average surface
 
 ## Slide 16 — Front-End Learning Results (0:40)
 
-P1 and P2 learned useful features, reaching a best macro Dice of 0.574. Fold 4 showed weaker pairing. Femur and tibia outperformed patella and fibula, revealing a small-bone ceiling before the decoder experiment began.
+The best validation macro-Dice was 0.574. The original front-end pattern is clear: large bones perform best and small bones remain weaker. The per-bone maxima are femur 0.732 in Fold 4, tibia 0.698 in Fold 1, patella 0.529 in Fold 4 and fibula 0.359 in Fold 4. This same hierarchy reappears in decoder results.
 
 ## Slide 17 — Overall Decoder Results (0:55)
 
@@ -76,7 +76,7 @@ Residual–ReLU remained strongest across the five folds, although absolute perf
 
 ## Slide 19 — Cohort and Failure Analysis (0:55)
 
-[Click 1] Healthy-source knees reached 0.489 Dice; fractured-source knees reached 0.377. Pathology and source domain are confounded, so this is not a pure fracture effect. [Click 2] One missing patella caused a 346.41-millimetre knee-level penalty. [Clicks 3–4] Retaining it exposes the limit of averages and the clinical boundary.
+[Next 1] Healthy-source knees reached 0.489 Dice; fractured-source knees reached 0.377. Pathology and source domain are confounded, so this is not a pure fracture effect. You may drag the model without changing the explanation. [Next 2] One missing patella caused a 346.41-millimetre knee-level penalty. [Next 3–4] Retaining it exposes the limit of averages and the clinical boundary.
 
 ## Slide 20 — Limitations and Future Work (0:55)
 

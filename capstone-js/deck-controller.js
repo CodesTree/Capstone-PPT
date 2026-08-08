@@ -80,8 +80,16 @@
       });
       document.getElementById("prevBtn").addEventListener("click", () => this.prev());
       document.getElementById("nextBtn").addEventListener("click", () => this.next());
-      document.getElementById("appendixBtn").addEventListener("click", () => this.enterAppendix(0));
-      document.getElementById("demoBtn").addEventListener("click", () => this.openDemo());
+        document.getElementById("appendixBtn").addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.enterAppendix(0);
+        });
+        document.getElementById("demoBtn").addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          this.openDemo();
+        });
       window.addEventListener("wheel", event => {
         if (this.demo.classList.contains("open") || this.wheelLocked || Math.abs(event.deltaY) < 18) return;
         this.wheelLocked = true;
